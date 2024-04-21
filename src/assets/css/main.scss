@@ -6,4 +6,13 @@
   margin: 0 auto;
   font-weight: normal;
   background-color: #e7e7e7;
+  font-family: 'Ubuntu', 'Source Han Sans CN', sans-serif;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.show {
+  opacity: 1;
 }
