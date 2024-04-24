@@ -1,16 +1,23 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import NavBarItem from './NavBarItem.vue'
+import NavBarTitle from './NavBarTitle.vue'
 
 const handleSelect = (index: number) => {
   console.log(index)
 }
 
-let itemClass = ref('hidden')
+let barPinned = false
+let itemShow = ref(false)
 const handleMouseOver = () => {
-  itemClass.value = 'show'
+  if (!barPinned) {
+    itemShow.value = true
+  }
 }
 const handleMouseLeave = () => {
-  itemClass.value = 'hidden'
+  if (!barPinned) {
+    itemShow.value = false
+  }
 }
 </script>
 
@@ -27,10 +34,10 @@ const handleMouseLeave = () => {
       <el-avatar>
         <img src="https://avatars.githubusercontent.com/u/66063199" />
       </el-avatar>
-      <div class="title">Jasonzyt's Blog</div>
+      <NavBarTitle :show="itemShow">Jasonzyt's Blog</NavBarTitle>
     </el-menu-item>
     <div class="flex-grow" />
-    <el-menu-item class="item" :class="itemClass" index="1">相册</el-menu-item>
+    <NavBarItem :show="itemShow" :index="'1'">相册</NavBarItem>
   </el-menu>
 </template>
 
@@ -41,9 +48,9 @@ const handleMouseLeave = () => {
 }
 
 .navbar {
-  --el-menu-active-color: #409eff;
+  --el-menu-active-color: #666;
   --el-menu-hover-text-color: #409eff;
-  --el-menu-text-color: #000;
+  --el-menu-text-color: #666;
   /* --el-menu-bg-color: #fff; */
   --el-menu-hover-bg-color: rgba(0, 0, 0, 0);
   padding: 0 1rem 0 1rem;
@@ -62,33 +69,9 @@ const handleMouseLeave = () => {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
-.title {
-  color: #000;
-  margin-left: 1rem;
-  font-family: 'Jetbrains Mono', sans-serif;
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.item {
-  font-size: 1.05rem;
-  transition: opacity 0.4s ease-in-out;
-}
-
-.hidden {
-  opacity: 0;
-}
-
-.show {
-  opacity: 1;
-}
-
+.el-menu--horizontal > .el-menu-item,
 .el-menu--horizontal > .el-menu-item.is-active {
   border-bottom: 0;
-}
-
-.el-menu-item:hover {
-  border-bottom: 10px #409eff !important;
 }
 
 .flex-grow {
