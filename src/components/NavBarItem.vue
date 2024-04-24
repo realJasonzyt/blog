@@ -7,12 +7,15 @@ defineProps({
 })
 
 let borderWidth = ref('0')
+let textColor = ref('#666')
 
 const handleMouseOver = () => {
   borderWidth.value = '100%'
+  textColor.value = '#409eff'
 }
 const handleMouseLeave = () => {
   borderWidth.value = '0'
+  textColor.value = '#666'
 }
 </script>
 
@@ -20,7 +23,7 @@ const handleMouseLeave = () => {
   <el-menu-item
     class="item"
     :class="show ? 'show' : 'hidden'"
-    :style="{ '--border-width': borderWidth }"
+    :style="{ '--border-width': borderWidth, '--el-menu-active-color': textColor }"
     :index="index"
     @mouseover="handleMouseOver"
     @mouseleave="handleMouseLeave"
@@ -33,6 +36,7 @@ const handleMouseLeave = () => {
   font-size: 1.05rem;
   transition:
     border-bottom 0.4s ease-in-out,
+    color 0.4s ease-in-out,
     opacity 0.4s ease-in-out;
 }
 
