@@ -3,8 +3,15 @@ import { ref } from 'vue'
 import NavBarItem from './NavBarItem.vue'
 import NavBarTitle from './NavBarTitle.vue'
 
-const handleSelect = (index: number) => {
-  console.log(index)
+const handleSelect = async (index: any) => {
+  switch (index) {
+    case '0':
+      window.location.href = '/'
+      break
+    case '1':
+      window.location.href = '/gallery'
+      break
+  }
 }
 
 let barPinned = false
@@ -37,7 +44,12 @@ const handleMouseLeave = () => {
       <NavBarTitle :show="itemShow">Jasonzyt's Blog</NavBarTitle>
     </el-menu-item>
     <div class="flex-grow" />
-    <NavBarItem :show="itemShow" :index="'1'">相册</NavBarItem>
+    <NavBarItem :show="itemShow" :index="'1'">
+      <el-icon>
+        <IconCamera />
+      </el-icon>
+      Gallery
+    </NavBarItem>
   </el-menu>
 </template>
 
@@ -53,6 +65,7 @@ const handleMouseLeave = () => {
   --el-menu-text-color: #666;
   /* --el-menu-bg-color: #fff; */
   --el-menu-hover-bg-color: rgba(0, 0, 0, 0);
+  --el-menu-border-color: rgba(0, 0, 0, 0);
   padding: 0 1rem 0 1rem;
   width: 100vw;
   display: flex;

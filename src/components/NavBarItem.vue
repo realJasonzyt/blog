@@ -27,13 +27,15 @@ const handleMouseLeave = () => {
     :index="index"
     @mouseover="handleMouseOver"
     @mouseleave="handleMouseLeave"
-    ><slot></slot
-  ></el-menu-item>
+  >
+    <slot></slot>
+  </el-menu-item>
 </template>
 
 <style scoped>
 .item {
   font-size: 1.05rem;
+  margin-top: 1px !important;
   transition:
     border-bottom 0.4s ease-in-out,
     color 0.4s ease-in-out,

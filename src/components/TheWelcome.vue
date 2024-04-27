@@ -54,7 +54,7 @@ let background = ref(matchedBackgrounds[Math.floor(Math.random() * matchedBackgr
 
 .hello p {
   color: #fff;
-  font-size: 5rem;
+  font-size: 5.5rem;
   font-family: 'Ubuntu', sans-serif;
   font-weight: 600;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
