@@ -1,8 +1,10 @@
-import './assets/css/main.scss'
-import IconMap from './icons'
+import '@/assets/css/main.scss'
+import Icon from '@/icon'
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+
+import { createRouter, createWebHistory } from 'vue-router/auto'
 
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -11,12 +13,12 @@ const app = createApp(App)
 
 app.use(ElementPlus)
 
-for (const [key, value] of Object.entries(IconMap)) {
-  app.component('Icon' + key, {
-    name: 'Icon' + key,
-    template: value
+app.use(
+  createRouter({
+    history: createWebHistory()
   })
-  console.log(app.component('Icon' + key))
-}
+)
+
+Icon.setup(app)
 
 app.mount('#app')
