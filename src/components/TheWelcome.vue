@@ -2,8 +2,8 @@
 import { ref } from 'vue'
 
 const Backgrounds = [
-  { path: '/src/assets/img/backgrounds/74922836_p0.jpg', props: ['horizontal', 'dark'] },
-  { path: '/src/assets/img/backgrounds/100022190_p0_small.jpg', props: ['horizontal', 'light'] }
+  { path: '/assets/img/backgrounds/74922836_p0.jpg', props: ['horizontal', 'dark'] },
+  { path: '/assets/img/backgrounds/100022190_p0_small.jpg', props: ['horizontal', 'light'] }
 ]
 
 let requiredProps = []
