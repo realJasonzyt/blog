@@ -2,13 +2,16 @@
 import { ref } from 'vue'
 import axios from 'axios'
 
-const hitokoto = ref('合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。')
+const hitokoto = ref({
+  hitokoto: '合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。',
+  from: '《老子》'
+})
 
 const updateHitokoto = () => {
   axios
-    .get('https://v1.hitokoto.cn')
+    .get('https://v1.hitokoto.cn?c=a&c=b&c=c&c=d&c=h&c=i&c=k')
     .then((response) => {
-      hitokoto.value = response.data.hitokoto
+      hitokoto.value = response.data
     })
     .catch((error) => {
       console.error(error)
@@ -22,9 +25,15 @@ updateHitokoto()
 <template>
   <div class="footer">
     <div class="footer-content">
-      <p id="hitokoto">
-        {{ hitokoto }}
-      </p>
+      <el-popover placement="right" trigger="hover">
+        <template #reference>
+          <p id="hitokoto" ref="hitokotoPopOver">
+            {{ hitokoto.hitokoto }}
+          </p>
+        </template>
+        <template #default> ——{{ hitokoto.from }}</template>
+      </el-popover>
+      <br />
       <br />
       <p>&copy;Jasonzyt {{ new Date().getFullYear() }}</p>
       <p class="power-vue">
@@ -54,15 +63,17 @@ updateHitokoto()
 #hitokoto {
   font-size: 16px;
   color: #666;
+  width: fit-content;
+  display: inline-block;
 }
 
 .power-vue a {
-  color: #414040;
+  color: #888;
   text-decoration: none;
   transition: color 0.4s ease-in-out;
 }
 
 .power-vue a:hover {
-  color: #777;
+  color: #585858;
 }
 </style>
