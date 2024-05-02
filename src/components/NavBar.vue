@@ -3,26 +3,19 @@ import { ref } from 'vue'
 import NavBarItem from './NavBarItem.vue'
 import NavBarTitle from './NavBarTitle.vue'
 
-const handleSelect = async (index: any) => {
-  switch (index) {
-    case '0':
-      window.location.href = '/'
-      break
-    case '1':
-      window.location.href = '/gallery'
-      break
-  }
-}
+const props = defineProps<{
+  handleSelect: (index: string) => void
+  pinned: boolean
+}>()
 
-let barPinned = false
-let itemShow = ref(false)
-const handleMouseOver = () => {
-  if (!barPinned) {
+let itemShow = ref(props.pinned)
+function handleMouseOver() {
+  if (!props.pinned) {
     itemShow.value = true
   }
 }
 const handleMouseLeave = () => {
-  if (!barPinned) {
+  if (!props.pinned) {
     itemShow.value = false
   }
 }
@@ -33,22 +26,26 @@ const handleMouseLeave = () => {
     class="navbar"
     mode="horizontal"
     :ellipsis="false"
+    :style="{
+      position: pinned ? 'relative' : 'fixed',
+      'box-shadow': pinned ? '0 0 10px 0 rgba(0, 0, 0, 0.1)' : 'none'
+    }"
     @select="handleSelect"
     @mouseover="handleMouseOver"
     @mouseleave="handleMouseLeave"
   >
-    <el-menu-item class="avatar" index="0">
+    <el-menu-item class="avatar" index="logo">
       <el-avatar>
         <img src="https://avatars.githubusercontent.com/u/66063199" />
       </el-avatar>
-      <NavBarTitle :show="itemShow">Jasonzyt's Blog</NavBarTitle>
+      <NavBarTitle :show="itemShow || pinned">Jasonzyt's Blog</NavBarTitle>
     </el-menu-item>
     <div class="flex-grow" />
-    <NavBarItem :show="itemShow" :index="'1'">
+    <NavBarItem :show="itemShow || pinned" index="articles">
       <el-icon>
-        <IconCamera />
+        <IconFolder />
       </el-icon>
-      Gallery
+      Articles
     </NavBarItem>
   </el-menu>
 </template>
@@ -69,7 +66,6 @@ const handleMouseLeave = () => {
   padding: 0 1rem 0 1rem;
   width: 100vw;
   display: flex;
-  position: fixed;
   border-bottom: 0;
   z-index: 9;
   transition:
@@ -79,15 +75,11 @@ const handleMouseLeave = () => {
 
 .navbar:hover {
   background-color: #fff;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2) !important;
 }
 
 .el-menu--horizontal > .el-menu-item,
 .el-menu--horizontal > .el-menu-item.is-active {
   border-bottom: 0;
-}
-
-.flex-grow {
-  flex-grow: 1;
 }
 </style>
