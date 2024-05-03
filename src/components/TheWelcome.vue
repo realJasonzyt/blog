@@ -27,6 +27,11 @@ let background = ref(matchedBackgrounds[Math.floor(Math.random() * matchedBackgr
       <div class="contact"></div>
     </div>
   </div>
+  <div class="chevron-down">
+    <el-icon>
+      <IconChevronDown />
+    </el-icon>
+  </div>
 </template>
 
 <style scoped>
@@ -62,5 +67,45 @@ let background = ref(matchedBackgrounds[Math.floor(Math.random() * matchedBackgr
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   word-spacing: 0.6rem;
+  user-select: none;
+}
+
+@keyframes float {
+  0% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  50% {
+    -webkit-transform: translateY(-8px);
+    -ms-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+.chevron-down {
+  position: absolute;
+  left: 50%;
+  bottom: 2rem;
+  text-align: center;
+  z-index: 1;
+  animation: float 3s ease-in-out infinite;
+}
+
+.chevron-down .el-icon {
+  font-size: 3rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.chevron-down svg {
+  transform: scale(1, 0.6);
 }
 </style>
