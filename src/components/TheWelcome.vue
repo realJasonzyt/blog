@@ -21,9 +21,11 @@ let background = ref(matchedBackgrounds[Math.floor(Math.random() * matchedBackgr
 </script>
 
 <template>
-  <div class="background" :style="{ 'background-image': `url('${background.path}')` }"></div>
-  <div class="hello">
-    <p>HI, JASONZYT!</p>
+  <div class="background" :style="{ 'background-image': `url('${background.path}')` }">
+    <div class="hello">
+      <p>HI, JASONZYT!</p>
+      <div class="contact"></div>
+    </div>
   </div>
 </template>
 
@@ -32,20 +34,20 @@ let background = ref(matchedBackgrounds[Math.floor(Math.random() * matchedBackgr
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  width: 100vw;
+  background-attachment: fixed;
+  width: 100%;
   height: 100vh;
-  position: fixed;
+  position: relative;
   display: table;
   z-index: 0;
-  overflow-x: hidden;
 }
+
 .hello {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+  text-align: center;
   z-index: 1;
-  width: 100%;
   max-width: 1280px;
   padding: 0 1rem;
   line-height: 1.5;
