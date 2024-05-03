@@ -18,16 +18,28 @@ let matchedBackgrounds = Backgrounds.filter((background) =>
   requiredProps.every((prop) => background.props.includes(prop))
 )
 let background = ref(matchedBackgrounds[Math.floor(Math.random() * matchedBackgrounds.length)])
+
+const handleClickDown = () => {
+  window.scrollTo({
+    top: document.documentElement.clientHeight,
+    behavior: 'smooth'
+  })
+}
 </script>
 
 <template>
   <div class="background" :style="{ 'background-image': `url('${background.path}')` }">
     <div class="hello">
-      <p>HI, JASONZYT!</p>
-      <div class="contact"></div>
+      <h1>HI, JASONZYT!</h1>
+      <div class="social">
+        <el-icon><IconQuoteLeft /></el-icon>
+        <!-- <span>Do the right thing, wait to get fired.</span> -->
+        <span>個性捨てたら，死んでるのと一緒だよ</span>
+        <el-icon><IconQuoteRight /></el-icon>
+      </div>
     </div>
   </div>
-  <div class="chevron-down">
+  <div class="chevron-down" @click="handleClickDown">
     <el-icon>
       <IconChevronDown />
     </el-icon>
@@ -59,7 +71,7 @@ let background = ref(matchedBackgrounds[Math.floor(Math.random() * matchedBackgr
   transition: opacity 0.4s ease-in-out;
 }
 
-.hello p {
+.hello h1 {
   color: #fff;
   font-size: 5.5rem;
   font-family: 'Ubuntu', sans-serif;
@@ -68,6 +80,28 @@ let background = ref(matchedBackgrounds[Math.floor(Math.random() * matchedBackgr
   text-align: center;
   word-spacing: 0.6rem;
   user-select: none;
+}
+
+.social {
+  border-radius: 10px;
+  margin: 1rem auto;
+  padding: 0.5rem 1rem;
+  width: fit-content;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.social .el-icon + span,
+.social span + .el-icon {
+  margin-left: 0.5rem;
+}
+
+.social span {
+  font-size: 1.5rem;
+  text-align: center;
+  user-select: none;
+  margin: 0;
+  padding: 0;
 }
 
 @keyframes float {
@@ -92,9 +126,9 @@ let background = ref(matchedBackgrounds[Math.floor(Math.random() * matchedBackgr
 
 .chevron-down {
   position: absolute;
-  left: 50%;
   bottom: 2rem;
   text-align: center;
+  left: calc(50vw - 1.5rem);
   z-index: 1;
   animation: float 3s ease-in-out infinite;
 }
