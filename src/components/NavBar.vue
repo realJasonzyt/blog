@@ -19,6 +19,11 @@ const handleMouseLeave = () => {
     itemShow.value = false
   }
 }
+
+const items = [
+  { index: 'articles', text: 'Articles', icon: 'IconFolder' },
+  { index: 'about', text: 'About', icon: 'IconFolder' }
+]
 </script>
 
 <template>
@@ -41,11 +46,16 @@ const handleMouseLeave = () => {
       <NavBarTitle :show="itemShow || pinned">Jasonzyt's Blog</NavBarTitle>
     </el-menu-item>
     <div class="flex-grow" />
-    <NavBarItem :show="itemShow || pinned" index="articles">
+    <NavBarItem
+      v-for="item in items"
+      :show="itemShow || pinned"
+      :index="item.index"
+      :key="item.index"
+    >
       <el-icon>
-        <IconFolder />
+        <component :is="item.icon" />
       </el-icon>
-      Articles
+      {{ item.text }}
     </NavBarItem>
   </el-menu>
 </template>

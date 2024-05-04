@@ -10,7 +10,7 @@ let borderWidth = ref('0')
 let textColor = ref('#666')
 
 const handleMouseOver = () => {
-  borderWidth.value = '100%'
+  borderWidth.value = '90%'
   textColor.value = '#409eff'
 }
 const handleMouseLeave = () => {
@@ -36,6 +36,7 @@ const handleMouseLeave = () => {
 .item {
   font-size: 1.05rem;
   margin-top: 1px !important;
+  padding: 0 10px;
   transition:
     border-bottom 0.4s ease-in-out,
     color 0.4s ease-in-out,
