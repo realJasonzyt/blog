@@ -7,6 +7,18 @@ const router = useRouter()
 
 let barPinned = ref(false)
 
+const refreshPin = (path: string = router.currentRoute.value.path) => {
+  if (path === '/') {
+    if (document.documentElement.scrollTop > document.documentElement.clientHeight * 0.8) {
+      barPinned.value = true
+    } else {
+      barPinned.value = false
+    }
+  } else {
+    barPinned.value = true
+  }
+}
+
 const handleNavBarSelect = (index: string) => {
   switch (index) {
     case 'logo':
@@ -21,13 +33,14 @@ const handleNavBarSelect = (index: string) => {
 }
 
 router.beforeEach((to, from, next) => {
-  if (to.path === '/') {
-    barPinned.value = false
-  } else {
-    barPinned.value = true
-  }
+  refreshPin(to.path)
   next()
 })
+
+setInterval(() => {
+  refreshPin()
+}, 50)
+refreshPin()
 </script>
 
 <template>
