@@ -18,7 +18,7 @@ const updateHitokoto = () => {
     })
 }
 
-setInterval(updateHitokoto, 5 * 60 * 1000)
+// setInterval(updateHitokoto, 5 * 60 * 1000)
 updateHitokoto()
 </script>
 
