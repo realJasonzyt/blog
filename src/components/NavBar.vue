@@ -27,7 +27,7 @@ const handleMouseLeave = () => {
     mode="horizontal"
     :ellipsis="false"
     :style="{
-      position: pinned ? 'relative' : 'fixed',
+      'background-color': itemShow || pinned ? '#fff' : 'rgba(0, 0, 0, 0)',
       'box-shadow': pinned ? '0 0 10px 0 rgba(0, 0, 0, 0.1)' : 'none'
     }"
     @select="handleSelect"
@@ -52,7 +52,6 @@ const handleMouseLeave = () => {
 
 <style scoped>
 .el-menu {
-  background-color: rgba(0, 0, 0, 0);
   box-shadow: none;
 }
 
@@ -65,7 +64,7 @@ const handleMouseLeave = () => {
   --el-menu-border-color: rgba(0, 0, 0, 0);
   padding: 0 1rem 0 1rem;
   width: 100vw;
-  display: flex;
+  position: fixed;
   border-bottom: 0;
   z-index: 9;
   transition:
