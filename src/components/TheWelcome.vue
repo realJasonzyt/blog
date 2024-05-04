@@ -38,7 +38,7 @@ const handleClickDown = () => {
 
 <template>
   <div class="background" :style="{ 'background-image': `url('${background.path}')` }">
-    <div class="hello">
+    <div class="hello hidden-xs-only">
       <h1>HI, JASONZYT!</h1>
       <div class="social">
         <el-icon><IconQuoteLeft /></el-icon>
