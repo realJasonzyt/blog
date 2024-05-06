@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import NavBarTitle from './NavBarTitle.vue'
 
-const props = defineProps<{ items: { index: string; text: string; icon: string }[] }>()
+defineProps<{ items: { index: string; text: string; icon: string }[] }>()
 
 let realNavShow = ref(false)
 
