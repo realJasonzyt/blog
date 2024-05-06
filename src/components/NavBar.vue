@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import NavBarItem from './NavBarItem.vue'
 import NavBarTitle from './NavBarTitle.vue'
+import MobileNavBar from './MobileNavBar.vue'
 
 const props = defineProps<{
   handleSelect: (index: string) => void
@@ -22,13 +23,14 @@ const handleMouseLeave = () => {
 
 const items = [
   { index: 'articles', text: 'Articles', icon: 'IconFolder' },
-  { index: 'about', text: 'About', icon: 'IconFolder' }
+  { index: 'about', text: 'About', icon: 'IconUser' }
 ]
 </script>
 
 <template>
+  <MobileNavBar :items="items" />
   <el-menu
-    class="navbar"
+    class="navbar hidden-xs-only"
     mode="horizontal"
     :ellipsis="false"
     :style="{
