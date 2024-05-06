@@ -44,7 +44,7 @@ refreshPin()
 </script>
 
 <template>
-  <NavBar :handle-select="handleNavBarSelect" :pinned="barPinned" />
+  <NavBar @select="handleNavBarSelect" :pinned="barPinned" />
   <RouterView />
 </template>
 

@@ -5,9 +5,10 @@ import NavBarTitle from './NavBarTitle.vue'
 import MobileNavBar from './MobileNavBar.vue'
 
 const props = defineProps<{
-  handleSelect: (index: string) => void
   pinned: boolean
 }>()
+
+defineEmits<{ select: [index: string] }>()
 
 let itemShow = ref(props.pinned)
 function handleMouseOver() {
@@ -37,7 +38,7 @@ const items = [
       'background-color': itemShow || pinned ? '#fff' : 'rgba(0, 0, 0, 0)',
       'box-shadow': pinned ? '0 0 10px 0 rgba(0, 0, 0, 0.1)' : 'none'
     }"
-    @select="handleSelect"
+    @select="$emit('select', $event)"
     @mouseover="handleMouseOver"
     @mouseleave="handleMouseLeave"
   >
