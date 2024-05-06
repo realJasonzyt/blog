@@ -20,12 +20,14 @@ const updateHitokoto = () => {
 
 // setInterval(updateHitokoto, 5 * 60 * 1000)
 updateHitokoto()
+
+const documentWidth = document.documentElement.clientWidth
 </script>
 
 <template>
   <div class="footer">
     <div class="footer-content">
-      <el-popover placement="right" trigger="hover">
+      <el-popover :placement="documentWidth < 768 ? 'bottom' : 'right'" trigger="hover">
         <template #reference>
           <p id="hitokoto" ref="hitokotoPopOver">
             {{ hitokoto.hitokoto }}
