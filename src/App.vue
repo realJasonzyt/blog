@@ -21,6 +21,9 @@ const refreshPin = (path: string = router.currentRoute.value.path) => {
 
 const handleNavBarSelect = (index: string) => {
   switch (index) {
+    case 'home':
+      router.push('/')
+      break
     case 'logo':
       router.push('/')
       break
@@ -39,7 +42,7 @@ router.beforeEach((to, from, next) => {
 
 setInterval(() => {
   refreshPin()
-}, 50)
+}, 200)
 refreshPin()
 </script>
 

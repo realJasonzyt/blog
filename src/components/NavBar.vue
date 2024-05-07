@@ -29,7 +29,7 @@ const items = [
 </script>
 
 <template>
-  <MobileNavBar :items="items" />
+  <MobileNavBar :items="items" @select="$emit('select', $event)" />
   <el-menu
     class="navbar hidden-xs-only"
     mode="horizontal"

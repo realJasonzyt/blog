@@ -4,11 +4,18 @@ import NavBarTitle from './NavBarTitle.vue'
 
 defineProps<{ items: { index: string; text: string; icon: string }[] }>()
 
+const $emit = defineEmits<{ select: [index: string] }>()
+
 let realNavShow = ref(false)
 
 const handleExpand = () => {
   realNavShow.value = !realNavShow.value
   document.body.style.overflow = realNavShow.value ? 'hidden' : 'auto'
+}
+
+const handleSelect = (index: string) => {
+  $emit('select', index)
+  handleExpand()
 }
 </script>
 
@@ -29,7 +36,13 @@ const handleExpand = () => {
         </el-avatar>
         <h1>Jasonzyt</h1>
         <el-divider />
-        <el-menu mode="vertical">
+        <el-menu mode="vertical" @select="handleSelect">
+          <el-menu-item index="home">
+            <el-icon>
+              <IconHome />
+            </el-icon>
+            Home
+          </el-menu-item>
           <el-menu-item v-for="item in items" :key="item.index" :index="item.index">
             <el-icon>
               <component :is="item.icon" />
