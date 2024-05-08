@@ -40,7 +40,7 @@ const documentWidth = document.documentElement.clientWidth
       <p>&copy;Jasonzyt {{ new Date().getFullYear() }}</p>
       <p class="power-vue">
         Powered by
-        <a href="https://vuejs.org/">
+        <a href="https://vuejs.org/" class="vue">
           <el-icon size="0.8em"><IconVue /></el-icon>ue.js
         </a>
       </p>
@@ -70,12 +70,12 @@ const documentWidth = document.documentElement.clientWidth
 }
 
 .power-vue a {
-  color: #888;
+  color: #42b883;
   text-decoration: none;
   transition: color 0.4s ease-in-out;
 }
 
 .power-vue a:hover {
-  color: #585858;
+  color: #35495e;
 }
 </style>
