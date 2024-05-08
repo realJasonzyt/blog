@@ -35,6 +35,11 @@ const handleSelect = (index: string) => {
           <img src="https://avatars.githubusercontent.com/u/66063199" />
         </el-avatar>
         <h1>Jasonzyt</h1>
+        <p class="quote">
+          <el-icon><IconQuoteLeft /></el-icon>
+          <span>Do the right thing, wait to get fired.</span>
+          <el-icon><IconQuoteRight /></el-icon>
+        </p>
         <el-divider />
         <el-menu mode="vertical" @select="handleSelect">
           <el-menu-item index="home">
@@ -106,10 +111,29 @@ const handleSelect = (index: string) => {
   color: #666;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
+.quote {
+  margin: 1rem auto;
+  padding: 0.5rem 1rem;
+  width: fit-content;
+  color: #666;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  font-size: calc(100vw / 26);
+  font-family: Ubuntu;
 }
+
+.quote .el-icon + span {
+  margin-left: 0.5rem;
+}
+
+.quote span {
+  user-select: none;
+}
+
+.quote span + .el-icon {
+  margin-left: 0.5rem;
+}
+
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
