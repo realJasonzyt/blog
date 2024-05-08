@@ -40,7 +40,7 @@ const handleClickDown = () => {
   <div class="background" :style="{ 'background-image': `url('${background.path}')` }">
     <div class="hello hidden-xs-only">
       <h1>HI, JASONZYT!</h1>
-      <div class="social">
+      <div class="quote">
         <el-icon><IconQuoteLeft /></el-icon>
         <span>Do the right thing, wait to get fired.</span>
         <!-- <span>個性捨てたら，死んでるのと一緒だよ</span> -->
@@ -92,7 +92,7 @@ const handleClickDown = () => {
   user-select: none;
 }
 
-.social {
+.quote {
   border-radius: 10px;
   margin: 1rem auto;
   padding: 0.5rem 1rem;
@@ -101,12 +101,12 @@ const handleClickDown = () => {
   background-color: rgba(0, 0, 0, 0.25);
 }
 
-.social .el-icon + span,
-.social span + .el-icon {
+.quote .el-icon + span,
+.quote span + .el-icon {
   margin-left: 0.5rem;
 }
 
-.social span {
+.quote span {
   font-size: 1.5rem;
   text-align: center;
   user-select: none;
