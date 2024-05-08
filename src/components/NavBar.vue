@@ -4,20 +4,20 @@ import NavBarItem from './NavBarItem.vue'
 import NavBarTitle from './NavBarTitle.vue'
 import MobileNavBar from './MobileNavBar.vue'
 
-const props = defineProps<{
+const $props = defineProps<{
   pinned: boolean
 }>()
 
 defineEmits<{ select: [index: string] }>()
 
-let itemShow = ref(props.pinned)
+let itemShow = ref($props.pinned)
 function handleMouseOver() {
-  if (!props.pinned) {
+  if (!$props.pinned) {
     itemShow.value = true
   }
 }
 const handleMouseLeave = () => {
-  if (!props.pinned) {
+  if (!$props.pinned) {
     itemShow.value = false
   }
 }
@@ -34,10 +34,6 @@ const items = [
     class="navbar hidden-xs-only"
     mode="horizontal"
     :ellipsis="false"
-    :style="{
-      'background-color': itemShow || pinned ? '#fff' : 'rgba(0, 0, 0, 0)',
-      'box-shadow': pinned ? '0 0 10px 0 rgba(0, 0, 0, 0.1)' : 'none'
-    }"
     @select="$emit('select', $event)"
     @mouseover="handleMouseOver"
     @mouseleave="handleMouseLeave"
@@ -79,6 +75,8 @@ const items = [
   width: 100vw;
   position: fixed;
   border-bottom: 0;
+  background-color: v-bind("itemShow || pinned ? '#fff' : 'rgba(0, 0, 0, 0)'");
+  box-shadow: v-bind("pinned ? '0 0 10px 0 rgba(0, 0, 0, 0.1)' : 'none'");
   z-index: 9;
   transition:
     background-color 0.4s ease-in-out,

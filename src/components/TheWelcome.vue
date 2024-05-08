@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const Backgrounds = [
+const backgrounds = [
   { path: '/assets/img/backgrounds/74922836_p0.jpg', props: ['horizontal', 'dark'] },
   { path: '/assets/img/backgrounds/100022190_p0.jpg', props: ['horizontal', 'light'] },
   { path: '/assets/img/backgrounds/118020641_p0.jpg', props: ['vertical', 'light'] },
@@ -15,6 +15,11 @@ const Backgrounds = [
   { path: '/assets/img/backgrounds/104805436_p0.jpg', props: ['horizontal', 'light'] }
 ]
 
+const background = ref({
+  path: '/assets/img/backgrounds/74922836_p0.jpg',
+  props: ['horizontal', 'dark']
+})
+
 let requiredProps = []
 requiredProps.push(
   document.documentElement.clientWidth > document.documentElement.clientHeight
@@ -23,10 +28,11 @@ requiredProps.push(
 )
 // requiredProps.push(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
-let matchedBackgrounds = Backgrounds.filter((background) =>
+let matchedBackgrounds = backgrounds.filter((background) =>
   requiredProps.every((prop) => background.props.includes(prop))
 )
-let background = ref(matchedBackgrounds[Math.floor(Math.random() * matchedBackgrounds.length)])
+
+background.value = matchedBackgrounds[Math.floor(Math.random() * matchedBackgrounds.length)]
 
 const handleClickDown = () => {
   window.scrollTo({
