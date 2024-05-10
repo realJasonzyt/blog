@@ -23,7 +23,7 @@ const handleMouseLeave = () => {
 }
 
 const items = [
-  { index: 'articles', text: 'Articles', icon: 'IconFolder' },
+  { index: 'articles', text: 'Articles', icon: 'IconFeather' },
   { index: 'about', text: 'About', icon: 'IconUser' }
 ]
 </script>
