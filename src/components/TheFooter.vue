@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import axios from 'axios'
+import $config from '@/_config'
 
 const hitokoto = ref({
   hitokoto: '合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。',
@@ -37,7 +38,7 @@ const documentWidth = document.documentElement.clientWidth
       </el-popover>
       <br />
       <br />
-      <p>&copy;Jasonzyt {{ new Date().getFullYear() }}</p>
+      <p v-html="$config.footer"></p>
       <p class="power-vue">
         Powered by
         <a href="https://vuejs.org/" class="vue">

@@ -1,24 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import $config from '@/_config'
 
-const backgrounds = [
-  { path: '/assets/img/backgrounds/74922836_p0.jpg', props: ['horizontal', 'dark'] },
-  { path: '/assets/img/backgrounds/100022190_p0.jpg', props: ['horizontal', 'light'] },
-  { path: '/assets/img/backgrounds/118020641_p0.jpg', props: ['vertical', 'light'] },
-  { path: '/assets/img/backgrounds/109453105_p0.jpg', props: ['vertical', 'light'] },
-  { path: '/assets/img/backgrounds/107163970_p0.jpg', props: ['vertical', 'dark'] },
-  { path: '/assets/img/backgrounds/112167497_p0.jpg', props: ['horizontal', 'dark'] },
-  { path: '/assets/img/backgrounds/113793915_p0.jpg', props: ['horizontal', 'dark'] },
-  { path: '/assets/img/backgrounds/109884134_p0.jpg', props: ['horizontal', 'light'] },
-  { path: '/assets/img/backgrounds/109884134_p1.jpg', props: ['horizontal', 'dark'] },
-  { path: '/assets/img/backgrounds/109884134_p2.jpg', props: ['horizontal', 'dark'] },
-  { path: '/assets/img/backgrounds/104805436_p0.jpg', props: ['horizontal', 'light'] }
-]
-
-const background = ref({
-  path: '/assets/img/backgrounds/74922836_p0.jpg',
-  props: ['horizontal', 'dark']
-})
+const backgrounds = $config.Index.backgrounds
 
 let requiredProps = []
 requiredProps.push(
@@ -28,11 +12,11 @@ requiredProps.push(
 )
 // requiredProps.push(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
-let matchedBackgrounds = backgrounds.filter((background) =>
+let matchedBackgrounds = backgrounds.filter((background: any) =>
   requiredProps.every((prop) => background.props.includes(prop))
 )
 
-background.value = matchedBackgrounds[Math.floor(Math.random() * matchedBackgrounds.length)]
+const background = ref(matchedBackgrounds[Math.floor(Math.random() * matchedBackgrounds.length)])
 
 const handleClickDown = () => {
   window.scrollTo({
@@ -45,10 +29,10 @@ const handleClickDown = () => {
 <template>
   <div class="background" :style="{ 'background-image': `url('${background.path}')` }">
     <div class="hello hidden-xs-only">
-      <h1>HI, JASONZYT!</h1>
+      <h1>{{ $config.Index.welcome }}</h1>
       <div class="quote">
         <el-icon><IconQuoteLeft /></el-icon>
-        <span>Do the right thing, wait to get fired.</span>
+        <span>{{ $config.Index.quote }}</span>
         <!-- <span>個性捨てたら，死んでるのと一緒だよ</span> -->
         <el-icon><IconQuoteRight /></el-icon>
         <p></p>
