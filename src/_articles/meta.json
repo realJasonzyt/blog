@@ -1,0 +1,32 @@
+{
+    "articles": [
+        {
+            "id": "hello-world",
+            "createdAt": "2024-01-01T00:00:00.000Z",
+            "updatedAt": "2024-01-01T00:00:00.000Z",
+            "title": "Hello World!",
+            "cover": "https://source.unsplash.com/random/800x600",
+            "author": {
+                "name": "Jasonzyt",
+                "location": "China",
+                "status": "Stu(dying)"
+            },
+            "content": {
+                "format": "mdx",
+                "url": "./_articles/hello-world.mdx"
+            },
+            "tags": [
+                "hello",
+                "world"
+            ],
+            "category": "Test"
+        }
+    ],
+    "categories": [
+        {
+            "name": "Test",
+            "description": "Test",
+            "color": "#000000"
+        }
+    ]
+}

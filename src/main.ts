@@ -5,20 +5,24 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/display.css'
 
-import { createRouter, createWebHistory } from 'vue-router/auto'
+import { createRouter, createWebHistory, DataLoaderPlugin } from 'vue-router/auto'
 
 import { createApp } from 'vue'
 import App from './App.vue'
+
+import 'reflect-metadata'
+
+const router = createRouter({
+  history: createWebHistory()
+})
 
 const app = createApp(App)
 
 app.use(ElementPlus)
 
-app.use(
-  createRouter({
-    history: createWebHistory()
-  })
-)
+app.use(router)
+
+app.use(DataLoaderPlugin, { router })
 
 Icon.setup(app)
 
