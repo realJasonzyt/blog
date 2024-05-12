@@ -1,61 +1,35 @@
-import rawMetaData from '@/_articles/meta.json?raw'
-import { plainToInstance } from 'class-transformer'
+import rawMetaData from '@/_meta.json?raw'
+import $config from '@/_config'
 
-export interface IArticle {
-  id: string
-  createdAt: string
-  updatedAt: string
-  title: string
-  tags: string[]
-  category: string
-  content: IContent
-  author: IAuthor
-
-  fetch(): Promise<Response>
-}
-
-export interface IAuthor {
-  name: string
-  location: string
-  avatar: string
-}
-
-export interface ICategory {
-  name: string
-  description: string
-  color: string
-}
+import { Type, plainToInstance } from 'class-transformer'
 
 export enum ContentFormat {
   Mdx = 'mdx'
 }
 
-export interface IContent {
-  format: ContentFormat
-  url: string
-}
-
-export class Article implements IArticle {
-  public id: string
+export class Article {
+  public slug: string
   public title: string
   public tags: string[]
   public category: string
-  public content: IContent
-  public author: IAuthor
+  @Type(() => Content)
+  public content: Content
+  @Type(() => Author)
+  public author: Author
   public createdAt: string
   public updatedAt: string
 
   constructor(
-    id: string,
+    slug: string,
     title: string,
     tags: string[],
     category: string,
-    content: IContent,
-    author: IAuthor,
+    content: Content,
+    author: Author,
     createdAt: string,
     updatedAt: string
   ) {
-    this.id = id
+    this.slug = slug
     this.title = title
     this.tags = tags
     this.category = category
@@ -66,23 +40,19 @@ export class Article implements IArticle {
   }
 
   static create(
-    id: string,
+    slug: string,
     title: string,
     tags: string[],
     category: string,
-    content: IContent,
-    author: IAuthor
+    content: Content,
+    author: Author
   ) {
     const now = new Date().toISOString()
-    return new Article(id, title, tags, category, content, author, now, now)
-  }
-
-  fetch() {
-    return fetch(new URL(this.content.url, import.meta.url))
+    return new Article(slug, title, tags, category, content, author, now, now)
   }
 }
 
-export class Author implements IAuthor {
+export class Author {
   public name: string
   public location: string
   public avatar: string
@@ -94,7 +64,7 @@ export class Author implements IAuthor {
   }
 }
 
-export class Content implements IContent {
+export class Content {
   public format: ContentFormat
   public url: string
 
@@ -102,17 +72,35 @@ export class Content implements IContent {
     this.format = format
     this.url = url
   }
+
+  fetch(): Promise<Response> {
+    return fetch($config.articlesBase + this.url)
+  }
+}
+
+export class Category {
+  public name: string
+  public description: string
+  public color: string
+
+  constructor(name: string, description: string, color: string) {
+    this.name = name
+    this.description = description
+    this.color = color
+  }
 }
 
 export class MetaData {
-  public articles: IArticle[] = []
-  public categories: ICategory[] = []
+  @Type(() => Article)
+  public articles: Article[] = []
+  @Type(() => Category)
+  public categories: Category[] = []
 }
 
-export const metaData = plainToInstance(MetaData, JSON.parse(rawMetaData))
+export const metaData = plainToInstance(MetaData, JSON.parse(rawMetaData), {})
 
-export const getArticle = (id: string): IArticle | undefined => {
-  return metaData.articles.find((article: IArticle) => article.id === id)
+export const getArticle = (slug: string): Article | undefined => {
+  return metaData.articles.find((article: Article) => article.slug === slug)
 }
 
 export default {

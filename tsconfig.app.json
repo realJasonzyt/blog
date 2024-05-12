@@ -22,6 +22,8 @@
     "types": [
       "node",
       "unplugin-vue-router/client"
-    ]
+    ],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   }
 }

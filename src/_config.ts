@@ -18,7 +18,8 @@ const Config = {
       { path: '/assets/img/backgrounds/109453105_p0.jpg', props: ['vertical', 'light'] },
       { path: '/assets/img/backgrounds/107163970_p0.jpg', props: ['vertical', 'dark'] }
     ]
-  }
+  },
+  articlesBase: '/_articles/'
 }
 
 const build = (config: any = Config) => {

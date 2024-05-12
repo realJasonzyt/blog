@@ -1,19 +1,18 @@
 <script lang="ts">
-import { getArticle } from '@/api'
+import { getArticle, metaData } from '@/api'
 import { defineBasicLoader } from 'unplugin-vue-router/data-loaders/basic'
 
-export const useArticle = defineBasicLoader(async (route) => {
-  const { id } = route.params
-  console.log(route.fullPath)
-  if (typeof id !== 'string') {
+export const useArticle = defineBasicLoader('/articles/[slug]+', async (route) => {
+  const { slug } = route.params
+  if (slug.length > 1) {
     return null
   }
-  const article = getArticle(id)
+  const article = getArticle(slug[0])
   console.log(article)
   if (!article) {
     return null
   }
-  return { article, content: await article.fetch() }
+  return { article, content: await article.content.fetch() }
 })
 </script>
 

@@ -1,7 +1,7 @@
 {
     "articles": [
         {
-            "id": "hello-world",
+            "slug": "hello-world",
             "createdAt": "2024-01-01T00:00:00.000Z",
             "updatedAt": "2024-01-01T00:00:00.000Z",
             "title": "Hello World!",
@@ -13,7 +13,7 @@
             },
             "content": {
                 "format": "mdx",
-                "url": "./_articles/hello-world.mdx"
+                "url": "hello-world.mdx"
             },
             "tags": [
                 "hello",
