@@ -12,8 +12,8 @@
                 "status": "Stu(dying)"
             },
             "content": {
-                "format": "mdx",
-                "url": "hello-world.mdx"
+                "format": "md",
+                "url": "hello-world.md"
             },
             "tags": [
                 "hello",

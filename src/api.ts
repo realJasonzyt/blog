@@ -4,7 +4,7 @@ import $config from '@/_config'
 import { Type, plainToInstance } from 'class-transformer'
 
 export enum ContentFormat {
-  Mdx = 'mdx'
+  Markdown = 'md'
 }
 
 export class Article {
