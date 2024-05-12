@@ -6,10 +6,10 @@ import { Type, plainToInstance } from 'class-transformer'
 export enum ContentFormat {
   Markdown = 'md'
 }
-
 export class Article {
   public slug: string
   public title: string
+  public cover: string // New property
   public tags: string[]
   public category: string
   @Type(() => Content)
@@ -22,6 +22,7 @@ export class Article {
   constructor(
     slug: string,
     title: string,
+    cover: string,
     tags: string[],
     category: string,
     content: Content,
@@ -31,6 +32,7 @@ export class Article {
   ) {
     this.slug = slug
     this.title = title
+    this.cover = cover
     this.tags = tags
     this.category = category
     this.content = content
@@ -42,13 +44,14 @@ export class Article {
   static create(
     slug: string,
     title: string,
+    cover: string,
     tags: string[],
     category: string,
     content: Content,
     author: Author
   ) {
     const now = new Date().toISOString()
-    return new Article(slug, title, tags, category, content, author, now, now)
+    return new Article(slug, title, cover, tags, category, content, author, now, now)
   }
 }
 
