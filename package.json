@@ -19,6 +19,7 @@
     "class-transformer": "^0.5.1",
     "element-plus": "^2.7.0",
     "github-markdown-css": "^5.5.1",
+    "highlight.js": "^11.9.0",
     "markdown-it": "^14.1.0",
     "patch-package": "^8.0.0",
     "reflect-metadata": "^0.2.2",
