@@ -7,9 +7,29 @@ const router = useRouter()
 
 let barPinned = ref(false)
 
-const refreshPin = (path: string = router.currentRoute.value.path) => {
-  if (path === '/') {
-    if (document.documentElement.scrollTop > document.documentElement.clientHeight * 0.8) {
+interface PinPageList {
+  [key: string]: {
+    pinWhenScrollDown: number
+  }
+}
+
+const dynamicPinPageList: PinPageList = {
+  '/': {
+    pinWhenScrollDown: document.documentElement.clientHeight * 0.8
+  },
+  '/articles/:slug+': {
+    pinWhenScrollDown: 300
+  }
+}
+
+const refreshPin = (matches = router.currentRoute.value.matched) => {
+  if (!matches || matches.length === 0) {
+    return
+  }
+  const matched = matches[matches.length - 1]
+  if (Object.keys(dynamicPinPageList).indexOf(matched.path) !== -1) {
+    const { pinWhenScrollDown: pinWhenTopHeight } = dynamicPinPageList[matched.path]
+    if (document.documentElement.scrollTop > pinWhenTopHeight) {
       barPinned.value = true
     } else {
       barPinned.value = false
@@ -36,7 +56,7 @@ const handleNavBarSelect = (index: string) => {
 }
 
 router.beforeEach((to, from, next) => {
-  refreshPin(to.path)
+  refreshPin(to.matched)
   next()
 })
 
