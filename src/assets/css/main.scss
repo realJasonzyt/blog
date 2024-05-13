@@ -46,16 +46,24 @@ body::-webkit-scrollbar-track {
   background-color: #eee;
 }
 
-pre,
-pre code {
-  font-family: 'JetBrains Mono', Consolas, monospace;
-}
-
 pre {
+  font-family: 'JetBrains Mono', Consolas, monospace;
   background-color: #f5f5f5;
   border-radius: 5px;
-  padding: 1em;
+  padding: 0.8em;
   margin: 1em 0;
+}
+
+code {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  background-color: #f5f5f5;
+}
+
+:not(pre) > code {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  background-color: #f5f5f5;
+  border-radius: 3px;
 }
 
 #app {

@@ -1,6 +1,6 @@
 # Hello World
 
-This is a test article.
+This is a test `article`.
 
 ```cpp
 #include <iostream>
@@ -15,3 +15,7 @@ $e^{i\pi}=-1$
 $\sqrt{x^2+y^2}$
 
 $CH_2=CH_2+HCl\overset{}{\rightarrow} CH_3-CH_2Cl$
+
+```js
+import vue from 'vue'
+```
