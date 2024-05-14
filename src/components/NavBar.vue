@@ -3,21 +3,22 @@ import { ref } from 'vue'
 import NavBarItem from './NavBarItem.vue'
 import NavBarTitle from './NavBarTitle.vue'
 import MobileNavBar from './MobileNavBar.vue'
+import $config from '@/_config'
 
-const $props = defineProps<{
+const props = defineProps<{
   pinned: boolean
 }>()
 
 defineEmits<{ select: [index: string] }>()
 
-let itemShow = ref($props.pinned)
+let itemShow = ref(props.pinned)
 function handleMouseOver() {
-  if (!$props.pinned) {
+  if (!props.pinned) {
     itemShow.value = true
   }
 }
 const handleMouseLeave = () => {
-  if (!$props.pinned) {
+  if (!props.pinned) {
     itemShow.value = false
   }
 }
@@ -40,9 +41,9 @@ const items = [
   >
     <el-menu-item class="avatar" index="logo">
       <el-avatar>
-        <img src="https://avatars.githubusercontent.com/u/66063199" />
+        <img :src="$config.avatar" />
       </el-avatar>
-      <NavBarTitle :show="itemShow || pinned">Jasonzyt's Blog</NavBarTitle>
+      <NavBarTitle :show="itemShow || pinned">{{ $config.title }}</NavBarTitle>
     </el-menu-item>
     <div class="flex-grow" />
     <NavBarItem

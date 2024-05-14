@@ -4,12 +4,11 @@
             "slug": "hello-world",
             "createdAt": "2024-01-01T00:00:00.000Z",
             "updatedAt": "2024-01-01T00:00:00.000Z",
-            "title": "Hello World!",
-            "cover": "https://source.unsplash.com/random/800x600",
+            "title": "Hello World! 你好!",
+            "cover": "/assets/img/covers/98493374_p0-hello-world.jpg",
             "author": {
                 "name": "Jasonzyt",
-                "location": "China",
-                "status": "Stu(dying)"
+                "avatar": "https://avatars.githubusercontent.com/u/66063199"
             },
             "content": {
                 "format": "md",

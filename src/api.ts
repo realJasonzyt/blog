@@ -57,12 +57,12 @@ export class Article {
 
 export class Author {
   public name: string
-  public location: string
+  public extra: string
   public avatar: string
 
-  constructor(name: string, location: string = '', avatar: string = '') {
+  constructor(name: string, extra: string = '', avatar: string = '') {
     this.name = name
-    this.location = location
+    this.extra = extra
     this.avatar = avatar
   }
 }
