@@ -7,18 +7,26 @@ const router = useRouter()
 
 let barPinned = ref(false)
 
-interface PinPageList {
+enum NavBarAction {
+  Pin = 1,
+  Unpin = 0
+}
+
+interface NavBarActionList {
   [key: string]: {
-    pinWhenScrollDown: number
+    whenDownTo: number
+    action: NavBarAction
   }
 }
 
-const dynamicPinPageList: PinPageList = {
+const barActionList: NavBarActionList = {
   '/': {
-    pinWhenScrollDown: document.documentElement.clientHeight * 0.8
+    whenDownTo: document.documentElement.clientHeight * 0.8,
+    action: NavBarAction.Pin
   },
   '/articles/:slug+': {
-    pinWhenScrollDown: 300
+    whenDownTo: document.documentElement.clientHeight * 0.8,
+    action: NavBarAction.Unpin
   }
 }
 
@@ -27,12 +35,12 @@ const refreshPin = (matches = router.currentRoute.value.matched) => {
     return
   }
   const matched = matches[matches.length - 1]
-  if (Object.keys(dynamicPinPageList).indexOf(matched.path) !== -1) {
-    const { pinWhenScrollDown: pinWhenTopHeight } = dynamicPinPageList[matched.path]
-    if (document.documentElement.scrollTop > pinWhenTopHeight) {
-      barPinned.value = true
+  if (Object.keys(barActionList).indexOf(matched.path) !== -1) {
+    const { whenDownTo, action } = barActionList[matched.path]
+    if (document.documentElement.scrollTop > whenDownTo) {
+      barPinned.value = action === NavBarAction.Pin
     } else {
-      barPinned.value = false
+      barPinned.value = action === NavBarAction.Unpin
     }
   } else {
     barPinned.value = true
