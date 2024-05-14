@@ -64,15 +64,18 @@ export default {
       const child = doc.body.children[i]
       if (child.tagName === 'PRE') {
         blocks.push(
-          h(CodeBlock, {
-            language: child.children[0].className.replace('language-', ''),
-            onCopy: () => {
-              if (child.textContent) {
-                navigator.clipboard.writeText(child.textContent)
+          h(
+            CodeBlock,
+            {
+              language: child.children[0].className.replace('language-', ''),
+              onCopy: () => {
+                if (child.textContent) {
+                  navigator.clipboard.writeText(child.textContent)
+                }
               }
             },
-            innerHTML: child.outerHTML
-          })
+            { default: () => h('pre', { innerHTML: child.innerHTML }) }
+          )
         )
       } else {
         blocks.push(h(child.tagName, { innerHTML: child.innerHTML }))
