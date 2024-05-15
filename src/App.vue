@@ -25,7 +25,7 @@ const barActionList: NavBarActionList = {
     action: NavBarAction.Pin
   },
   '/articles/:slug+': {
-    whenDownTo: document.documentElement.clientHeight * 0.8,
+    whenDownTo: document.documentElement.clientHeight * 0.3,
     action: NavBarAction.Unpin
   }
 }
