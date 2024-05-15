@@ -14,9 +14,6 @@ export default {
       required: true
     }
   },
-  data() {
-    return {}
-  },
   async setup(props) {
     const article = getArticle(props.slug)
     if (!article) {
