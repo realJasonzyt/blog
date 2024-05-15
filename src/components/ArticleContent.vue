@@ -1,5 +1,5 @@
 <script lang="ts">
-import { getArticle } from '@/api'
+import { getArticle, utils } from '@/api'
 import CodeBlock from '@/components/CodeBlock.vue'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-light.min.css'
@@ -57,23 +57,39 @@ export default {
     const parser = new DOMParser()
     const doc = parser.parseFromString(content, 'text/html')
     const blocks: VNode[] = []
+    const titles: Record<string, string> = {}
+    const addHeaderId = (el: Element) => {
+      const id = utils.textToSlug(el.textContent || '')
+      return h(el.tagName, { innerHTML: el.innerHTML, id })
+    }
+    const replaces: Record<string, (el: Element) => VNode> = {
+      PRE: (el: Element) => h(
+        CodeBlock,
+        {
+          language: el.children[0].className.replace('language-', ''),
+          onCopy: () => {
+            if (el.textContent) {
+              navigator.clipboard.writeText(el.textContent)
+            }
+          }
+        },
+        { default: () => h('pre', { innerHTML: el.innerHTML }) }
+      ),
+      H1: (el: Element) => {
+        const id = utils.textToSlug(el.textContent || '')
+        titles[el.innerHTML] = id
+        return h('h1', { innerHTML: el.innerHTML, id })
+      },
+      H2: addHeaderId,
+      H3: addHeaderId,
+      H4: addHeaderId,
+      H5: addHeaderId,
+      H6: addHeaderId
+    }
     for (let i = 0; i < doc.body.children.length; i++) {
       const child = doc.body.children[i]
-      if (child.tagName === 'PRE') {
-        blocks.push(
-          h(
-            CodeBlock,
-            {
-              language: child.children[0].className.replace('language-', ''),
-              onCopy: () => {
-                if (child.textContent) {
-                  navigator.clipboard.writeText(child.textContent)
-                }
-              }
-            },
-            { default: () => h('pre', { innerHTML: child.innerHTML }) }
-          )
-        )
+      if (replaces[child.tagName]) {
+        blocks.push(replaces[child.tagName](child))
       } else {
         blocks.push(h(child.tagName, { innerHTML: child.innerHTML }))
       }

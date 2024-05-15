@@ -106,6 +106,18 @@ export const getArticle = (slug: string): Article | undefined => {
   return metaData.articles.find((article: Article) => article.slug === slug)
 }
 
+export const utils = {
+  textToSlug: (text: string): string => {
+    return text
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^\p{L}\p{N}-]+/gu, '')
+      .replace(/--+/g, '-')
+      .replace(/^-+/, '')
+      .replace(/-+$/, '')
+  }
+}
+
 export default {
   metaData,
   getArticle
