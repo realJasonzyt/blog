@@ -6,6 +6,7 @@ import 'highlight.js/styles/atom-one-light.min.css'
 import MarkdownIt from 'markdown-it'
 import MarkdownItKatex from '@vscode/markdown-it-katex'
 import { h, type VNode } from 'vue'
+import AnchorHeader from './AnchorHeading.vue'
 
 export default {
   props: {
@@ -58,11 +59,15 @@ export default {
     const doc = parser.parseFromString(content, 'text/html')
     const blocks: VNode[] = []
     const titles: Record<string, string> = {}
-    const addHeaderId = (el: Element) => {
+    const renderHeader = (el: Element) => {
       const id = utils.textToSlug(el.textContent || '')
-      return h(el.tagName, { innerHTML: el.innerHTML, id })
+      if (el.tagName === 'H1') {
+        titles[el.innerHTML] = id
+      }
+
+      return h(AnchorHeader, { id, tag: el.tagName, heading: el.innerHTML })
     }
-    const replaces: Record<string, (el: Element) => VNode> = {
+    const replaces: Record<string, (el: Element) => VNode | VNode[]> = {
       PRE: (el: Element) => h(
         CodeBlock,
         {
@@ -75,21 +80,19 @@ export default {
         },
         { default: () => h('pre', { innerHTML: el.innerHTML }) }
       ),
-      H1: (el: Element) => {
-        const id = utils.textToSlug(el.textContent || '')
-        titles[el.innerHTML] = id
-        return h('h1', { innerHTML: el.innerHTML, id })
-      },
-      H2: addHeaderId,
-      H3: addHeaderId,
-      H4: addHeaderId,
-      H5: addHeaderId,
-      H6: addHeaderId
+      H1: renderHeader,
+      H2: renderHeader,
+      H3: renderHeader
     }
     for (let i = 0; i < doc.body.children.length; i++) {
       const child = doc.body.children[i]
       if (replaces[child.tagName]) {
-        blocks.push(replaces[child.tagName](child))
+        const result = replaces[child.tagName](child)
+        if (Array.isArray(result)) {
+          blocks.push(...result)
+        } else {
+          blocks.push(result)
+        }
       } else {
         blocks.push(h(child.tagName, { innerHTML: child.innerHTML }))
       }
@@ -98,3 +101,5 @@ export default {
   }
 }
 </script>
+
+<style scoped></style>
