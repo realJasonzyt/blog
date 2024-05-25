@@ -106,6 +106,11 @@ export const getArticle = (slug: string): Article | undefined => {
   return metaData.articles.find((article: Article) => article.slug === slug)
 }
 
+export const getCategory = (name: string | undefined): Category | undefined => {
+  if (!name) return undefined
+  return metaData.categories.find((category: Category) => category.name === name)
+}
+
 export const utils = {
   textToSlug: (text: string): string => {
     return text
@@ -120,5 +125,6 @@ export const utils = {
 
 export default {
   metaData,
-  getArticle
+  getArticle,
+  getCategory
 }
