@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import NavBarTitle from './NavBarTitle.vue'
 
-defineProps<{ items: { index: string; text: string; icon: string }[] }>()
+defineProps<{ items: { index: string; text: string; icon: string }[], show: boolean }>()
 
 const $emit = defineEmits<{ select: [index: string] }>()
 
@@ -21,24 +21,30 @@ const handleSelect = (index: string) => {
 
 <template>
   <div class="hidden-sm-and-up">
-    <div class="logo">
-      <NavBarTitle :show="true">Jasonzyt's Blog</NavBarTitle>
-    </div>
+    <Transition name="fade">
+      <div class="logo" v-show="show">
+        <NavBarTitle :show="true">Jasonzyt's Blog</NavBarTitle>
+      </div>
+    </Transition>
     <div class="expand" @click="handleExpand">
       <el-icon size="1.5rem" color="#666">
         <component :is="realNavShow ? 'IconClose' : 'IconOptions'" />
       </el-icon>
     </div>
-    <transition name="fade">
+    <Transition name="fade">
       <div class="real-nav" v-if="realNavShow">
         <el-avatar :size="80">
           <img src="https://avatars.githubusercontent.com/u/66063199" />
         </el-avatar>
         <h1>Jasonzyt</h1>
         <p class="quote">
-          <el-icon><IconQuoteLeft /></el-icon>
+          <el-icon>
+            <IconQuoteLeft />
+          </el-icon>
           <span>Do the right thing, wait to get fired.</span>
-          <el-icon><IconQuoteRight /></el-icon>
+          <el-icon>
+            <IconQuoteRight />
+          </el-icon>
         </p>
         <el-divider />
         <el-menu mode="vertical" @select="handleSelect">
@@ -56,7 +62,7 @@ const handleSelect = (index: string) => {
           </el-menu-item>
         </el-menu>
       </div>
-    </transition>
+    </Transition>
   </div>
 </template>
 
@@ -122,7 +128,7 @@ const handleSelect = (index: string) => {
   font-family: Ubuntu;
 }
 
-.quote .el-icon + span {
+.quote .el-icon+span {
   margin-left: 0.5rem;
 }
 
@@ -130,7 +136,7 @@ const handleSelect = (index: string) => {
   user-select: none;
 }
 
-.quote span + .el-icon {
+.quote span+.el-icon {
   margin-left: 0.5rem;
 }
 
@@ -138,8 +144,14 @@ const handleSelect = (index: string) => {
 .fade-leave-to {
   opacity: 0;
 }
+
 .fade-enter-to,
 .fade-leave-from {
   opacity: 1;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
 }
 </style>

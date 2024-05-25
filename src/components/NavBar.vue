@@ -30,15 +30,9 @@ const items = [
 </script>
 
 <template>
-  <MobileNavBar :items="items" @select="$emit('select', $event)" />
-  <el-menu
-    class="navbar hidden-xs-only"
-    mode="horizontal"
-    :ellipsis="false"
-    @select="$emit('select', $event)"
-    @mouseover="handleMouseOver"
-    @mouseleave="handleMouseLeave"
-  >
+  <MobileNavBar :items="items" :show="pinned" @select="$emit('select', $event)" />
+  <el-menu class="navbar hidden-xs-only" mode="horizontal" :ellipsis="false" @select="$emit('select', $event)"
+    @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
     <el-menu-item class="avatar" index="logo">
       <el-avatar>
         <img :src="$config.avatar" />
@@ -46,12 +40,7 @@ const items = [
       <NavBarTitle :show="itemShow || pinned">{{ $config.title }}</NavBarTitle>
     </el-menu-item>
     <div class="flex-grow" />
-    <NavBarItem
-      v-for="item in items"
-      :show="itemShow || pinned"
-      :index="item.index"
-      :key="item.index"
-    >
+    <NavBarItem v-for="item in items" :show="itemShow || pinned" :index="item.index" :key="item.index">
       <el-icon>
         <component :is="item.icon" />
       </el-icon>
@@ -89,8 +78,8 @@ const items = [
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2) !important;
 }
 
-.el-menu--horizontal > .el-menu-item,
-.el-menu--horizontal > .el-menu-item.is-active {
+.el-menu--horizontal>.el-menu-item,
+.el-menu--horizontal>.el-menu-item.is-active {
   border-bottom: 0;
 }
 </style>
