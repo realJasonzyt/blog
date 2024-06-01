@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { getArticle, getCategory } from '@/api'
+import $config from '@/_config'
+import { getArticle, getCategory, utils } from '@/api'
 import ArticleContent from '@/components/ArticleContent.vue'
 import TheFooter from '@/components/TheFooter.vue'
 import { ref } from 'vue'
@@ -12,6 +13,8 @@ if (!route.params.slug || !route.params.slug[0]) {
 const slug = route.params.slug[0]
 const article = getArticle(slug)
 const category = getCategory(article?.category)
+
+const displayViews = ref('-')
 
 const show = ref(false)
 const onResolve = () => {
@@ -37,12 +40,23 @@ const onResolve = () => {
             </el-icon>
             <span>{{ article?.category }}</span>
           </span>
+          <span class="views" v-if="$config.api.stats.enable">
+            <el-icon>
+              <IconEye />
+            </el-icon>
+            <span v-html="displayViews"></span>
+          </span>
         </div>
       </div>
       <div class="body">
         <Suspense @resolve="onResolve">
           <ArticleContent :slug="slug" />
         </Suspense>
+        <div class="note">
+          <p v-if="article?.updatedAt != article?.createdAt">
+            Updated at {{ new Date(article?.updatedAt ?? '').toLocaleDateString() }}
+          </p>
+        </div>
       </div>
     </div>
     <TheFooter />
@@ -105,9 +119,20 @@ const onResolve = () => {
   color: v-bind("category?.color");
 }
 
+.views {
+  text-align: left;
+  min-width: 3em;
+}
+
 .body {
   margin-top: 50px;
   padding: auto 2rem;
   font-size: 16px;
+}
+
+.note {
+  margin-top: 2rem;
+  color: #666;
+  font-size: 14px;
 }
 </style>

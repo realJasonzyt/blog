@@ -2,6 +2,14 @@ const Config = {
   title: "Jasonzyt's Blog",
   avatar: 'https://avatars.githubusercontent.com/u/66063199',
   footer: `&copy;Jasonzyt&nbsp;&nbsp;${new Date().getFullYear()}`,
+  articlesBase: '/_articles/',
+  api: {
+    base: '/api/',
+    stats: {
+      enable: true,
+      endpoint: 'stats'
+    }
+  },
   Index: {
     welcome: 'HI, JASONZYT',
     quote: 'Do the right thing, wait to get fired.',
@@ -18,8 +26,7 @@ const Config = {
       { path: '/assets/img/backgrounds/109453105_p0.jpg', props: ['vertical', 'light'] },
       { path: '/assets/img/backgrounds/107163970_p0.jpg', props: ['vertical', 'dark'] }
     ]
-  },
-  articlesBase: '/_articles/'
+  }
 }
 
 const build = (config: any = Config) => {

@@ -106,9 +106,17 @@ export const getArticle = (slug: string): Article | undefined => {
   return metaData.articles.find((article: Article) => article.slug === slug)
 }
 
+export const getArticles = (): Article[] => {
+  return metaData.articles
+}
+
 export const getCategory = (name: string | undefined): Category | undefined => {
   if (!name) return undefined
   return metaData.categories.find((category: Category) => category.name === name)
+}
+
+export const getCategories = (): Category[] => {
+  return metaData.categories
 }
 
 export const utils = {
@@ -120,6 +128,25 @@ export const utils = {
       .replace(/--+/g, '-')
       .replace(/^-+/, '')
       .replace(/-+$/, '')
+  },
+  simplifyNumber: (num: number): string => {
+    if (num >= 1e9) {
+      return (num / 1e9).toFixed(1) + 'B'
+    }
+    if (num >= 1e6) {
+      return (num / 1e6).toFixed(1) + 'M'
+    }
+    if (num >= 1e3) {
+      return (num / 1e3).toFixed(1) + 'K'
+    }
+    return num.toString()
+  },
+  sortArticlesByTime: (articles: Article[], desc: boolean = true): Article[] => {
+    return articles.sort((a: Article, b: Article) => {
+      return desc
+        ? Date.parse(b.createdAt) - Date.parse(a.createdAt)
+        : Date.parse(a.createdAt) - Date.parse(b.createdAt)
+    })
   }
 }
 
