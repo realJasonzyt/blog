@@ -5,22 +5,35 @@ defineProps<{
   language: string
 }>()
 
-defineEmits<{ copy: [] }>()
+const emits = defineEmits<{ copy: [] }>()
 
 let showButton = ref(false)
+let showCheck = ref(false)
+
+const onClick = () => {
+  emits('copy')
+  showCheck.value = true
+}
+
+const onMouseLeave = () => {
+  setTimeout(() => {
+    showCheck.value = false
+  }, 2000)
+}
 </script>
 
 <template>
   <div class="block" @mouseenter="showButton = true" @mouseleave="showButton = false">
     <slot></slot>
-    <Transition name="fade">
-      <el-button v-show="showButton" class="copy" type="info" @click="$emit('copy')">
-        <el-icon size="1.2rem"><IconCopy /></el-icon>
-      </el-button>
-    </Transition>
-    <Transition name="fade">
-      <span v-show="!showButton" class="lang">{{ language }}</span>
-    </Transition>
+    <el-button v-show="showButton || showCheck" class="copy" type="info" @click="onClick" @mouseleave="onMouseLeave">
+      <el-icon size="1.2rem" v-show="!showCheck">
+        <IconCopy />
+      </el-icon>
+      <el-icon size="1.2rem" color="#1a7f37" v-show="showCheck">
+        <IconLightCheck />
+      </el-icon>
+    </el-button>
+    <span v-show="!showButton" class="lang">{{ language }}</span>
   </div>
 </template>
 
@@ -71,15 +84,5 @@ let showButton = ref(false)
   font-weight: 600;
   cursor: pointer;
   text-transform: uppercase;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>
