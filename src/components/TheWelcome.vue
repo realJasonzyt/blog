@@ -31,12 +31,18 @@ const handleClickDown = () => {
     <div class="hello hidden-xs-only">
       <h1>{{ $config.Index.welcome }}</h1>
       <div class="quote">
-        <el-icon><IconQuoteLeft /></el-icon>
+        <el-icon>
+          <IconQuoteLeft />
+        </el-icon>
         <span>{{ $config.Index.quote }}</span>
         <!-- <span>個性捨てたら，死んでるのと一緒だよ</span> -->
-        <el-icon><IconQuoteRight /></el-icon>
-        <p></p>
+        <el-icon>
+          <IconQuoteRight />
+        </el-icon>
       </div>
+    </div>
+    <div class="hello hidden-sm-and-up">
+      <h2>{{ $config.Index.welcome }}</h2>
     </div>
   </div>
   <div class="chevron-down" @click="handleClickDown">
@@ -82,6 +88,16 @@ const handleClickDown = () => {
   user-select: none;
 }
 
+.hello h2 {
+  color: #fff;
+  font-size: 3rem;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  user-select: none;
+}
+
 .quote {
   border-radius: 10px;
   margin: 1rem auto;
@@ -91,8 +107,8 @@ const handleClickDown = () => {
   background-color: rgba(0, 0, 0, 0.25);
 }
 
-.quote .el-icon + span,
-.quote span + .el-icon {
+.quote .el-icon+span,
+.quote span+.el-icon {
   margin-left: 0.5rem;
 }
 
