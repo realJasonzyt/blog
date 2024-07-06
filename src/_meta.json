@@ -3,7 +3,7 @@
         {
             "slug": "hello-world",
             "createdAt": "2024-01-01T00:00:00.000Z",
-            "updatedAt": "2024-01-01T00:00:00.000Z",
+            "updatedAt": "2024-01-03T00:00:00.000Z",
             "title": "Hello World! 你好!",
             "cover": "/assets/img/covers/98493374_p0-hello-world.jpg",
             "author": {
@@ -17,6 +17,25 @@
             "tags": [
                 "hello",
                 "world"
+            ],
+            "category": "Test"
+        },
+        {
+            "slug": "test2",
+            "createdAt": "2024-06-01T00:00:00.000Z",
+            "updatedAt": "2024-06-01T00:00:00.000Z",
+            "title": "Test2",
+            "cover": "/assets/img/covers/98493374_p0-hello-world.jpg",
+            "author": {
+                "name": "Jasonzyt",
+                "avatar": "https://avatars.githubusercontent.com/u/66063199"
+            },
+            "content": {
+                "format": "md",
+                "url": "test2.md"
+            },
+            "tags": [
+                "test2"
             ],
             "category": "Test"
         }
