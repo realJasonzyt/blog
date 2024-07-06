@@ -1,6 +1,6 @@
 const Config = {
   title: "Jasonzyt's Blog",
-  avatar: 'https://avatars.githubusercontent.com/u/66063199',
+  avatar: 'assets/img/avatar.jpg',
   footer: `&copy;Jasonzyt&nbsp;&nbsp;${new Date().getFullYear()}`,
   articlesBase: '/_articles/',
   api: {

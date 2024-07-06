@@ -71,9 +71,15 @@ const onResolve = () => {
 
 <style scoped>
 .main {
-  padding: 150px 2rem 2rem;
+  padding: 150px 4rem 2rem;
   max-width: 1000px;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    padding: 100px 2rem 2rem;
+  }
 }
 
 .header {
