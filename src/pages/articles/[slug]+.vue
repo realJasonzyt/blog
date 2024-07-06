@@ -67,6 +67,10 @@ const onResolve = () => {
 .katex-html {
   display: none;
 }
+
+img {
+  max-width: 100%;
+}
 </style>
 
 <style scoped>
