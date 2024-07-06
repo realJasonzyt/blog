@@ -10,7 +10,61 @@ import MarkdownIt from 'markdown-it'
 import MarkdownItKatex from '@vscode/markdown-it-katex'
 import { align as MarkdownItAlign } from "@mdit/plugin-align";
 
-import { h, type VNode } from 'vue'
+import { h, render, type VNode } from 'vue'
+
+// TODO: Outline
+// const titles: Record<string, string> = {}
+const renderHeader = (el: Element) => {
+  const id = utils.textToSlug(el.textContent || '')
+  // if (el.tagName === 'H1') {
+  //   titles[el.innerHTML] = id
+  // }
+  return h(AnchorHeader, { id, tag: el.tagName, heading: el.innerHTML })
+}
+
+const renderOverrides: Record<string, (el: Element) => VNode | VNode[]> = {
+  PRE: (el: Element) => h(
+    CodeBlock,
+    {
+      language: el.children[0].className.replace('language-', ''),
+      onCopy: () => {
+        if (el.textContent) {
+          navigator.clipboard.writeText(el.textContent)
+        }
+      }
+    },
+    { default: () => h('pre', { innerHTML: el.innerHTML }) }
+  ),
+  H1: renderHeader,
+  H2: renderHeader,
+  H3: renderHeader
+}
+
+const renderHTML = (elements: HTMLCollection): VNode[] => {
+  let vnodes: VNode[] = []
+  for (let i = 0; i < elements.length; i++) {
+    const child = elements[i];
+    // Override
+    if (renderOverrides[child.tagName]) {
+      const result = renderOverrides[child.tagName](child)
+      if (Array.isArray(result)) {
+        vnodes.push(...result);
+        continue;
+      }
+      vnodes.push(result);
+      continue;
+    }
+    // Normal
+    const attrs: Record<string, string> = {};
+    const attrNames = child.getAttributeNames();
+    for (let i = 0; i < attrNames.length; i++) {
+      attrs[attrNames[i]] = child.getAttribute(attrNames[i]) ?? ""
+    }
+    let inner = renderHTML(child.children);
+    vnodes.push(h(child.tagName, attrs, { default: () => inner }))
+  }
+  return vnodes;
+}
 
 export default {
   props: {
@@ -62,46 +116,7 @@ export default {
     const content = md.render(text)
     const parser = new DOMParser()
     const doc = parser.parseFromString(content, 'text/html')
-    const blocks: VNode[] = []
-    const titles: Record<string, string> = {}
-    const renderHeader = (el: Element) => {
-      const id = utils.textToSlug(el.textContent || '')
-      if (el.tagName === 'H1') {
-        titles[el.innerHTML] = id
-      }
-
-      return h(AnchorHeader, { id, tag: el.tagName, heading: el.innerHTML })
-    }
-    const replaces: Record<string, (el: Element) => VNode | VNode[]> = {
-      PRE: (el: Element) => h(
-        CodeBlock,
-        {
-          language: el.children[0].className.replace('language-', ''),
-          onCopy: () => {
-            if (el.textContent) {
-              navigator.clipboard.writeText(el.textContent)
-            }
-          }
-        },
-        { default: () => h('pre', { innerHTML: el.innerHTML }) }
-      ),
-      H1: renderHeader,
-      H2: renderHeader,
-      H3: renderHeader
-    }
-    for (let i = 0; i < doc.body.children.length; i++) {
-      const child = doc.body.children[i]
-      if (replaces[child.tagName]) {
-        const result = replaces[child.tagName](child)
-        if (Array.isArray(result)) {
-          blocks.push(...result)
-        } else {
-          blocks.push(result)
-        }
-      } else {
-        blocks.push(h(child.tagName, { innerHTML: child.innerHTML }))
-      }
-    }
+    const blocks: VNode[] = renderHTML(doc.body.children)
     return () => h('div', blocks)
   }
 }
