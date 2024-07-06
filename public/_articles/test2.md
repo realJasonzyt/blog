@@ -1,6 +1,8 @@
 This is also a test article.
 
+::: center
 ![img](/assets/img/illustrations/112981252_p0.jpg)
+:::
 
 ```python
 from PIL import Image

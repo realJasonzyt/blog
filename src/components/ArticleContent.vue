@@ -1,12 +1,16 @@
 <script lang="ts">
 import { getArticle, utils } from '@/api'
 import CodeBlock from '@/components/CodeBlock.vue'
+import AnchorHeader from './AnchorHeading.vue'
+
 import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-light.min.css'
+
 import MarkdownIt from 'markdown-it'
 import MarkdownItKatex from '@vscode/markdown-it-katex'
+import { align as MarkdownItAlign } from "@mdit/plugin-align";
+
 import { h, type VNode } from 'vue'
-import AnchorHeader from './AnchorHeading.vue'
 
 export default {
   props: {
@@ -54,6 +58,7 @@ export default {
       html: true
     })
     md.use(MarkdownItKatex)
+    md.use(MarkdownItAlign)
     const content = md.render(text)
     const parser = new DOMParser()
     const doc = parser.parseFromString(content, 'text/html')

@@ -13,6 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@mdit/plugin-align": "^0.12.0",
     "@types/markdown-it": "^14.1.1",
     "@vscode/markdown-it-katex": "^1.0.3",
     "axios": "^1.6.8",
