@@ -6,6 +6,13 @@ import { Type, plainToInstance } from 'class-transformer'
 export enum ContentFormat {
   Markdown = 'md'
 }
+
+export enum MatchType {
+  Title = 'title',
+  Tags = 'tags',
+  Category = 'category'
+}
+
 export class Article {
   public slug: string
   public title: string
@@ -100,6 +107,44 @@ export class MetaData {
   public categories: Category[] = []
 }
 
+export class Range {
+  public start: number = 0
+  public end: number = 0
+
+  constructor(start: number, end: number) {
+    this.start = start
+    this.end = end
+  }
+}
+
+export class SearchResult {
+  public article: Article
+  public matchedTitle: boolean = false
+  public matchedTags: boolean = false
+  public matchedCategory: boolean = false
+  public titleMatchedRanges?: Range[]
+  public tagsMatched?: string[]
+  public categoryMatched?: string
+
+  constructor(article: Article, matchType: MatchType, data?: any) {
+    this.article = article
+    switch (matchType) {
+      case MatchType.Title:
+        this.matchedTitle = true
+        this.titleMatchedRanges = data
+        break
+      case MatchType.Tags:
+        this.matchedTags = true
+        this.tagsMatched = data
+        break
+      case MatchType.Category:
+        this.matchedCategory = true
+        this.categoryMatched = data
+        break
+    }
+  }
+}
+
 export const metaData = plainToInstance(MetaData, JSON.parse(rawMetaData), {})
 
 export const getArticle = (slug: string): Article | undefined => {
@@ -108,6 +153,61 @@ export const getArticle = (slug: string): Article | undefined => {
 
 export const getArticles = (): Article[] => {
   return metaData.articles
+}
+
+export const searchArticles = (keywords: string[]): SearchResult[] => {
+  const result: SearchResult[] = []
+  // Pre-process
+  let keyCategories: string[] = []
+  for (let j = 0; j < keywords.length; j++) {
+    if (getCategory(keywords[j])) {
+      keyCategories.push(keywords[j])
+      break
+    }
+  }
+
+  for (let i = 0; i < metaData.articles.length; i++) {
+    // Priority: Title > Tags > Category
+    const article = metaData.articles[i]
+    let matchType: MatchType | undefined = undefined
+    let matchData: any = undefined
+    // Match category
+    for (let j = 0; j < keyCategories.length; j++) {
+      if (keyCategories[j] === article.category) {
+        matchType = MatchType.Category
+        matchData = keyCategories[j]
+      }
+    }
+    // Match tags
+    keywords.forEach((kw) => {
+      if (article.tags.indexOf(kw) !== -1) {
+        if (!Array.isArray(matchData)) {
+          matchType = MatchType.Tags
+          matchData = [kw]
+          return
+        }
+        matchData.push(kw)
+      }
+    })
+    // Match title
+    for (let j = 0; j < keywords.length; j++) {
+      let index = article.title.indexOf(keywords[j])
+      if (index !== -1) {
+        matchType = MatchType.Title
+        const end = index + keywords[j].length
+        if (!Array.isArray(matchData) || (Array.isArray(matchData) && matchData.length > 0)) {
+          matchData = [new Range(index, end)]
+          continue
+        }
+        matchData.push(new Range(index, end))
+      }
+    }
+
+    if (matchType !== undefined) {
+      result.push(new SearchResult(article, matchType, matchData))
+    }
+  }
+  return result
 }
 
 export const getCategory = (name: string | undefined): Category | undefined => {
