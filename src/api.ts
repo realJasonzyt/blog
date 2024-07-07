@@ -220,7 +220,7 @@ export const getCategories = (): Category[] => {
 }
 
 export const utils = {
-  textToSlug: (text: string): string => {
+  textToSlug(text: string): string {
     return text
       .toLowerCase()
       .replace(/\s+/g, '-')
@@ -229,7 +229,7 @@ export const utils = {
       .replace(/^-+/, '')
       .replace(/-+$/, '')
   },
-  simplifyNumber: (num: number): string => {
+  simplifyNumber(num: number): string {
     if (num >= 1e9) {
       return (num / 1e9).toFixed(1) + 'B'
     }
@@ -241,12 +241,57 @@ export const utils = {
     }
     return num.toString()
   },
-  sortArticlesByTime: (articles: Article[], desc: boolean = true): Article[] => {
+  sortArticlesByTime(articles: Article[], desc: boolean = true): Article[] {
     return articles.sort((a: Article, b: Article) => {
       return desc
         ? Date.parse(b.createdAt) - Date.parse(a.createdAt)
         : Date.parse(a.createdAt) - Date.parse(b.createdAt)
     })
+  },
+  parseKeywords(str: string): string[] {
+    let result: string[] = []
+    let kw = ''
+    let inSingleQuote = false
+    let inDoubleQuote = false
+    for (let i = 0; i < str.length; i++) {
+      let ch = str[i]
+      if (ch === ' ' && !inSingleQuote && !inDoubleQuote) {
+        if (kw === '') {
+          continue
+        }
+        result.push(kw)
+        kw = ''
+        continue
+      }
+      if (ch === '"' && !inSingleQuote) {
+        if (inDoubleQuote) {
+          if (kw === '') {
+            inDoubleQuote = false
+            continue
+          }
+          result.push(kw)
+          kw = ''
+          inDoubleQuote = false
+          continue
+        }
+        inDoubleQuote = true
+      }
+      if (ch === "'" && !inDoubleQuote) {
+        if (inSingleQuote) {
+          if (kw == '') {
+            inSingleQuote = false
+            continue
+          }
+          result.push(kw)
+          kw = ''
+          inSingleQuote = false
+          continue
+        }
+        inSingleQuote = true
+      }
+      kw += ch
+    }
+    return result
   }
 }
 
