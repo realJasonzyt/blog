@@ -4,7 +4,6 @@ body {
   min-height: 100%;
   max-width: 100%;
   overflow-x: hidden;
-  background-color: #fff;
   color: var(--color-text);
   background: var(--color-background);
   transition:
@@ -48,7 +47,7 @@ body::-webkit-scrollbar-track {
 
 pre {
   font-family: 'JetBrains Mono', Consolas, monospace;
-  background-color: #f5f5f5;
+  background-color: var(--vt-c-white-mute);
   border-radius: 5px;
   padding: 0.8em;
   margin: 1em 0;
@@ -57,13 +56,13 @@ pre {
 
 code {
   font-family: 'JetBrains Mono', Consolas, monospace;
-  background-color: #f5f5f5;
+  background-color: var(--vt-c-white-mute);
 }
 
 :not(pre) > code {
   padding: 0.2em 0.4em;
   margin: 0;
-  background-color: #f5f5f5;
+  background-color: var(--vt-c-white-mute);
   border-radius: 3px;
 }
 

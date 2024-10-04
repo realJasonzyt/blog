@@ -80,12 +80,6 @@ img {
   margin: 0 auto;
 }
 
-@media screen and (max-width: 768px) {
-  .main {
-    padding: 100px 2rem 2rem;
-  }
-}
-
 .header {
   position: relative;
   padding: 20px;
@@ -144,5 +138,11 @@ img {
   margin-top: 2rem;
   color: #666;
   font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    padding: 100px 2rem 2rem;
+  }
 }
 </style>

@@ -13,6 +13,5 @@ import TheFooter from '@/components/TheFooter.vue'
 .bg-placeholder {
   display: block;
   height: 100vh;
-  background-color: #f5f5f5;
 }
 </style>

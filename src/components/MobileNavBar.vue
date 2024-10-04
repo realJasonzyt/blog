@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import NavBarTitle from './NavBarTitle.vue'
+import $config from '@/_config'
 
 defineProps<{ items: { index: string; text: string; icon: string }[], show: boolean }>()
 
@@ -34,7 +35,7 @@ const handleSelect = (index: string) => {
     <Transition name="fade">
       <div class="real-nav" v-if="realNavShow">
         <el-avatar :size="80">
-          <img src="https://avatars.githubusercontent.com/u/66063199" />
+          <img :src="$config.avatar" />
         </el-avatar>
         <h1>Jasonzyt</h1>
         <p class="quote">

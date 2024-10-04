@@ -42,7 +42,9 @@ const documentWidth = document.documentElement.clientWidth
       <p class="power-vue">
         Powered by
         <a href="https://vuejs.org/" class="vue">
-          <el-icon size="0.8em"><IconVue /></el-icon>ue.js
+          <el-icon size="0.8em">
+            <IconVue />
+          </el-icon>ue.js
         </a>
       </p>
     </div>
@@ -52,7 +54,6 @@ const documentWidth = document.documentElement.clientWidth
 <style scoped>
 .footer {
   height: 12rem;
-  background-color: #fff;
   color: #666;
   text-align: center;
   padding: 50px;
