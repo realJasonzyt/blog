@@ -24,6 +24,10 @@ const barActionList: NavBarActionList = {
     whenDownTo: document.documentElement.clientHeight * 0.8,
     action: NavBarAction.Pin
   },
+  '/about': {
+    whenDownTo: document.documentElement.clientHeight * 0.8,
+    action: NavBarAction.Pin
+  },
   '/articles/:slug+': {
     whenDownTo: document.documentElement.clientHeight * 0.3,
     action: NavBarAction.Unpin
@@ -58,6 +62,9 @@ const handleNavBarSelect = (index: string) => {
     case 'articles':
       router.push('/articles')
       break
+    case 'about':
+      barPinned.value = false
+      router.push('/about')
     default:
       break
   }
