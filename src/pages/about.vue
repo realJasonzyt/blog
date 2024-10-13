@@ -2,6 +2,10 @@
 import $config from '@/_config'
 import { IconSvgMap } from '@/icon';
 
+const birthTime = new Date(2007, 10, 18, 23, 4);
+
+const ageYear = (new Date().getFullYear() - birthTime.getFullYear())
+
 const gameList = [
   {
     name: 'Minecraft',
@@ -22,18 +26,12 @@ const gameList = [
   {
     name: '雨中冒险2',
     server: '-'
+  },
+  {
+    name: '微软模飞',
+    server: '2020'
   }
 ]
-
-const dualGameList: Array<Array<{ name: string, server: string }>> = []
-
-for (let i = 0; i < gameList.length; i += 2) {
-  if (i + 1 >= gameList.length) {
-    dualGameList.push(gameList.slice(i))
-    break
-  }
-  dualGameList.push(gameList.slice(i, i + 2))
-}
 
 const socialList = [
   {
@@ -46,11 +44,11 @@ const socialList = [
     icon: IconSvgMap.Bilibili,
     website: 'Bilibili',
     user: "@Jasonzyt",
-    url: "https://space.bilibili.com/" // TODO:
+    url: "https://space.bilibili.com/403482845"
   },
   {
     icon: IconSvgMap.Twitter,
-    website: 'Twitter(X)',
+    website: 'Twitter',
     user: "@Jasonzyt",
     url: "https://x.com/Jasonzyt"
   },
@@ -61,10 +59,74 @@ const socialList = [
     url: "https://t.me/Jasonzyt"
   },
   {
+    icon: IconSvgMap.Discord,
+    website: 'Discord',
+    user: "@jasonzyt",
+    url: "https://discord.com"
+  },
+  {
+    icon: IconSvgMap.Steam,
+    website: 'Steam',
+    user: "@jasonzytt",
+    url: "https://steamcommunity.com/id/jasonzytt"
+  },
+  {
+    icon: IconSvgMap.YouTube,
+    website: 'YouTube',
+    user: "@jasonzyt",
+    url: 'https://www.youtube.com/@jasonzyt'
+  },
+  {
     icon: IconSvgMap.Mail,
     website: 'Email',
-    user: "jasonzytt@gmail.com",
-    url: "mailto:jasonzytt@gmail.com"
+    user: "@jasonzytt",
+    url: 'mailto:jasonzytt@gmail.com'
+  }
+]
+
+const bangumiList = [
+  {
+
+  }
+]
+
+const experienceList = [
+  {
+    org: "LiteLDev",
+    position: "Developer",
+    time: "2021.7 - Now",
+    url: "https://github.com/LiteLDev",
+  }
+]
+
+const projectList = [
+  {
+    owner: "LiteLDev",
+    name: "LeviLamina",
+    url: "https://github.com/LiteLDev/LeviLamina",
+    lang: "C++",
+    desc: "Versatile mod loader for MCBE"
+  },
+  {
+    owner: "Jasonzyt",
+    name: "blog",
+    url: "https://github.com/realJasonzyt/blog",
+    lang: "Vue",
+    desc: "This blog, also my first Vue project"
+  },
+  {
+    owner: "Jasonzyt",
+    name: "exif4cpp",
+    url: "https://github.com/realJasonzyt/exif4cpp",
+    lang: "C++",
+    desc: "(WIP) Modern JPEG Exif metadata parser"
+  },
+  {
+    owner: "Majjcom",
+    name: "ncmpp",
+    url: "https://github.com/Majjcom/ncmpp",
+    lang: "C++",
+    desc: "Fastest Netease .ncm files cracker"
   }
 ]
 
@@ -73,99 +135,116 @@ const socialList = [
 <template>
   <!-- TODO: Birthday Party! -->
   <div class="cover"></div>
-  <div class="main">
-    <div class="avatar">
-      <el-avatar :size="200">
-        <img :src="$config.avatar" />
-      </el-avatar>
-    </div>
-    <h1 class="name">Jasonzyt <span class="pronoun">he/she🌈</span></h1>
-    <div class="brief">
-      非常感谢你能来到我的家里玩——<br />
-      我是Jason(aka ZYT)，17岁，来自武汉！是高中牲😢<br />
-      写代码👨‍💻是爱好，初一自学C++，曾经打过几年OI，<del>也算是蒟蒻OIer吧</del><br />
-      曾经为<a href="https://minecraft.wiki/w/Bedrock_Dedicated_Server">Minecraft BDS</a>圈子奉献<del>三年青春</del><br />
-      致力于<a href="https://github.com/LiteLDev/LeviLamina">LeviLamina</a>的开发和MCBE的研究<!--不要玩基岩版！基岩不行，加瓦行-->，也是<a
-        href="https://github.com/LiteLDev">LiteLDev</a>的一份子！<br />
-      除写码之外，我也很喜欢拍照📷~ 是风光佬，偶尔拍人文<br />
-      喜欢各种交通工具，尤其是飞机✈️和火车🚅！！有机会的话会拍！<br />
-      你可以在<RouterLink to="/gallery">Gallery(在建)</RouterLink>看到我的作品！谢谢你的喜欢！<br />
-      有时候会打电动，不是很擅长FPS游戏，想和我玩的话只要有空随时可以！<br />
-      喜欢看动画，<del>百合什么的最喜欢啦</del><br />
-      可以用中文/English与我交流，日语还在自学ing...<br />
-      <span class="spolier"></span>
-    </div>
-    <br />
-    <div class="games">
-      <h2>Games</h2>
-      <el-row :gutter="10" class="hidden-sm-and-down">
-        <el-col v-for="(game, index) in gameList" :key="index" :span="3">
-          <el-card class="game-card">
-            <h3 class="game-name">{{ game.name }}</h3>
-            <span class="game-server">{{ game.server }}</span>
-          </el-card>
-        </el-col>
-      </el-row>
-      <div class="hidden-md-and-up">
-        <el-row v-for="(dualGame, index) in dualGameList" :gutter="10">
-          <el-col v-for="(game, index) in dualGame" :key="index" :span="12">
-            <el-card class="game-card">
+  <el-row class="body">
+    <el-col class="main" :span="17" :xs="24" :sm="24">
+      <div class="avatar">
+        <el-avatar :size="200">
+          <img :src="$config.avatar" />
+        </el-avatar>
+      </div>
+      <h1 class="name">Jasonzyt <span class="pronoun">he/she🌈</span></h1>
+      <div class="brief">
+        非常感谢你能来到我的家里玩—— Orz<br />
+        我是Jason(aka ZYT)，{{ ageYear }}岁，来自武汉！是高中牲😢<br />
+        写代码👨‍💻是爱好，初一自学C++，曾经打过几年OI，<del>也算是蒟蒻OIer吧</del><br />
+        曾经为<a href="https://minecraft.wiki/w/Bedrock_Dedicated_Server">Minecraft BDS</a>圈子奉献<del>三年青春</del><br />
+        致力于<a href="https://github.com/LiteLDev/LeviLamina">LeviLamina</a>的开发和MCBE的研究<!--不要玩基岩版！基岩不行，加瓦行-->，也是<a
+          href="https://github.com/LiteLDev">LiteLDev</a>的一份子！<br />
+        除写码之外，我也很喜欢拍照📷~ 是风光佬，偶尔拍人文<br />
+        喜欢各种交通工具，尤其是飞机✈️和火车🚅！！有机会的话会拍！<br />
+        你可以在<RouterLink to="/gallery">Gallery(在建)</RouterLink>看到我的作品！谢谢你的喜欢！<br />
+        有时候会打电动，不是很擅长FPS游戏，想和我玩的话只要有空随时可以！<br />
+        喜欢看动画，<del>百合什么的最喜欢啦</del><br />
+        可以用中文/English与我交流，日语还在自学ing...<br />
+        我对所有人都很友好！不会主动与别人产生冲突<del>（除非太逆天忍不住骂两句）</del><br />
+        <br />
+        ⚠️ 不想讨论政治，反感魔怔人/鉴证人，不理解滥用药物<br />
+      </div>
+      <br />
+      <div class="social">
+        <h2>Social</h2>
+        <el-row :gutter="10">
+          <el-col v-for="(social, index) in socialList" :key="index" :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <a :href="social.url">
+              <el-card class="social-card" shadow="hover">
+                <el-row :gutter="8">
+                  <el-col :span="8" class="social-icon">
+                    <el-icon :size="40" v-html="social.icon">
+                    </el-icon>
+                  </el-col>
+                  <el-col :span="16">
+                    <h3 class="social-website">{{ social.website }}</h3>
+                    <span class="social-user">{{ social.user }}</span>
+                  </el-col>
+                </el-row>
+              </el-card>
+            </a>
+          </el-col>
+        </el-row>
+      </div>
+      <div class="games">
+        <h2>Games</h2>
+        <el-row :gutter="10">
+          <el-col v-for="(game, index) in gameList" :key="index" :xs="12" :sm="12" :md="4" :lg="4" :xl="4">
+            <el-card class="game-card" shadow="hover">
               <h3 class="game-name">{{ game.name }}</h3>
               <span class="game-server">{{ game.server }}</span>
             </el-card>
           </el-col>
         </el-row>
       </div>
-    </div>
-    <div class="languages">
-      <h2>Languages</h2>
-      <code><el-icon :size="16"><IconCPP/></el-icon>C++</code>&nbsp;
-      <code><el-icon :size="16"><IconVue/></el-icon>Vue</code>&nbsp;
-      <code><el-icon :size="16"><IconKotlin/></el-icon>Kotlin</code>&nbsp;
-      <code><el-icon :size="16"><IconPython/></el-icon>Python</code>&nbsp;
-      <code><el-icon :size="16"><IconGolang/></el-icon>Golang</code>
-    </div>
-    <div class="social">
-      <h2>Social</h2>
-      <el-row :gutter="10" class="hidden-sm-and-down">
-        <el-col v-for="(social, index) in socialList" :key="index" :span="5">
-          <a :href="social.url">
-            <el-card class="social-card">
-              <el-row>
-                <el-col :span="8" class="social-icon">
-                  <el-icon :size="40" v-html="social.icon">
-                  </el-icon>
-                </el-col>
-                <el-col :span="16">
-                  <h3 class="social-website">{{ social.website }}</h3>
-                  <span class="social-user">{{ social.user }}</span>
-                </el-col>
-              </el-row>
-            </el-card>
-          </a>
-        </el-col>
-      </el-row>
-      <div class="hidden-md-and-up">
-        <div v-for="(social, index) in socialList" :key="index">
-          <a :href="social.url">
-            <el-card class="social-card">
-              <el-row>
-                <el-col :span="8" class="social-icon">
-                  <el-icon :size="40" v-html="social.icon">
-                  </el-icon>
-                </el-col>
-                <el-col :span="16">
-                  <h3 class="social-website">{{ social.website }}</h3>
-                  <span class="social-user">{{ social.user }}</span>
-                </el-col>
-              </el-row>
-            </el-card>
-          </a>
+      <div class="languages">
+        <h2>Languages</h2>
+        <code><el-icon :size="16"><IconCPP/></el-icon>C++</code>&nbsp;
+        <code><el-icon :size="16"><IconVue/></el-icon>Vue</code>&nbsp;
+        <code><el-icon :size="16"><IconKotlin/></el-icon>Kotlin</code>&nbsp;
+        <code><el-icon :size="16"><IconPython/></el-icon>Python</code>&nbsp;
+        <code><el-icon :size="16"><IconGolang/></el-icon>Golang</code>
+      </div>
+      <div class="bangumi">
+        <h2>Bangumi</h2>
+        <!-- TODO: WIP -->
+      </div>
+      <br />
+    </el-col>
+    <el-col :span="1" class="divider"><el-divider :direction="'vertical'" /></el-col>
+    <el-col :span="6" class="hidden-sm-and-down">
+      <div class="sidebar">
+        <div class="experiences">
+          <h2>Experiences</h2>
+          <el-row>
+            <el-col v-for="(experience, index) in experienceList" :key="index">
+              <a :href="experience.url">
+                <el-card class="experience-card" shadow="hover">
+                  <h3 class="experience-name">{{ experience.org }}</h3>
+                  <p class="experience-position">{{ experience.position }}</p>
+                  <span class="experience-time">{{ experience.time }}</span>
+                </el-card>
+              </a>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="projects">
+          <h2>Projects</h2>
+          <el-row>
+            <el-col v-for="(project, index) in projectList" :key="index">
+              <a :href="project.url">
+                <el-card class="project-card" shadow="hover">
+                  <h3 class="project-name"><span>{{ project.owner }}/</span>{{ project.name }}</h3>
+                  <p class="project-desc">{{ project.desc }}</p>
+                  <!-- <p class="project-lang">{{ project.lang }}</p> -->
+                </el-card>
+              </a>
+            </el-col>
+          </el-row>
         </div>
       </div>
-    </div>
-    <br />
-  </div>
+    </el-col>
+  </el-row>
+  <el-row class="hidden-md-and-up">
+    <div></div>
+    <!-- TODO: WIP -->
+  </el-row>
   <div class="footer">
     <div class="footer-content">
       <p id="hitokoto">
@@ -197,6 +276,10 @@ h2 {
   padding-bottom: 8px;
 }
 
+h3 {
+  font-weight: 450;
+}
+
 .el-card {
   --el-card-border-radius: 10px;
 }
@@ -210,10 +293,54 @@ h2 {
   background-repeat: no-repeat;
 }
 
-.main {
-  padding: 25px 4rem 2rem;
-  max-width: 1200px;
+.body {
   margin: 0 auto;
+  max-width: 1200px;
+}
+
+.sidebar {
+  padding: 40px 0 0 1rem;
+  max-width: 300px;
+  margin: 0;
+}
+
+.sidebar>div {
+  margin-bottom: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.experience-card {
+  --el-card-padding: 1rem;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.experience-time {
+  color: #666;
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+.project-card {
+  margin-bottom: 10px;
+}
+
+.project-name span {
+  font-weight: normal;
+}
+
+.project-desc {
+  color: #666;
+  font-size: 14px;
+}
+
+.main {
+  padding: 25px 0 2rem 2rem;
+  max-width: 850px;
+  margin: 0;
 }
 
 .name {
@@ -233,10 +360,42 @@ h2 {
 .main a {
   color: rgb(23, 147, 255);
   text-decoration: none;
+  transition: 0.5s color;
 }
 
 .main a:hover {
   color: rgb(20, 111, 190);
+}
+
+.social {
+  margin-bottom: 20px;
+}
+
+.social>.el-row {
+  margin-bottom: 10px;
+}
+
+.social-card {
+  --el-card-padding: 15px;
+  margin-bottom: 10px;
+}
+
+.social-card .social-icon {
+  text-align: center;
+}
+
+.social-card .el-icon {
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.social-website {
+  font-size: 18px;
+}
+
+.social-user {
+  font-size: 12px;
+  color: #666;
 }
 
 .games {
@@ -249,6 +408,7 @@ h2 {
 
 .game-card {
   --el-card-padding: 15px;
+  margin-bottom: 10px;
 }
 
 .game-name {
@@ -278,34 +438,13 @@ h2 {
   margin-right: 4px;
 }
 
-.social {
-  margin-bottom: 20px;
-}
-
-.social>.el-row {
-  margin-bottom: 10px;
-}
-
-.social-card {
-  --el-card-padding: 15px;
-}
-
-.social-card .social-icon {
+.divider {
   text-align: center;
 }
 
-.social-card .el-icon {
-  display: inline-block;
-  margin-top: 4px;
-}
-
-.social-website {
-  font-size: 18px;
-}
-
-.social-user {
-  font-size: 12px;
-  color: #666;
+.divider .el-divider {
+  margin: 30px;
+  height: 100%;
 }
 
 .footer {
