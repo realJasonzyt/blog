@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import NavBarTitle from './NavBarTitle.vue'
 import $config from '@/_config'
+import SocialBar from './SocialBar.vue';
 
 defineProps<{ items: { index: string; text: string; icon: string }[], show: boolean }>()
 
@@ -47,6 +48,7 @@ const handleSelect = (index: string) => {
             <IconQuoteRight />
           </el-icon>
         </p>
+        <SocialBar class="social" :size="24" />
         <el-divider />
         <el-menu mode="vertical" @select="handleSelect">
           <el-menu-item index="home">

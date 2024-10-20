@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import $config from '@/_config'
+import SocialBar from './SocialBar.vue';
 
 const backgrounds = $config.Index.backgrounds
 
@@ -39,6 +40,7 @@ const handleClickDown = () => {
         <el-icon>
           <IconQuoteRight />
         </el-icon>
+        <SocialBar :size="24" />
       </div>
     </div>
     <div class="hello hidden-sm-and-up">
@@ -101,10 +103,10 @@ const handleClickDown = () => {
 .quote {
   border-radius: 10px;
   margin: 1rem auto;
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 1.2rem;
   width: fit-content;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .quote .el-icon+span,
