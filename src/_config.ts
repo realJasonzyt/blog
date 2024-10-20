@@ -24,7 +24,15 @@ const Config = {
       { path: '/assets/img/backgrounds/104805436_p0.jpg', props: ['horizontal', 'light'] },
       { path: '/assets/img/backgrounds/118020641_p0.jpg', props: ['vertical', 'light'] },
       { path: '/assets/img/backgrounds/109453105_p0.jpg', props: ['vertical', 'light'] },
-      { path: '/assets/img/backgrounds/107163970_p0.jpg', props: ['vertical', 'dark'] }
+      { path: '/assets/img/backgrounds/107163970_p0.jpg', props: ['vertical', 'dark'] },
+      { path: '/assets/img/backgrounds/73492598_p0.jpg', props: ['horizontal', 'light'] },
+      { path: '/assets/img/backgrounds/77353796_p0.jpg', props: ['horizontal', 'light'] },
+      { path: '/assets/img/backgrounds/104185807_p0.jpg', props: ['horizontal', 'light'] },
+      { path: '/assets/img/backgrounds/72114086_p0.jpg', props: ['horizontal', 'light'] },
+      { path: '/assets/img/backgrounds/109307377_p0.jpg', props: ['vertical', 'dark'] },
+      { path: '/assets/img/backgrounds/visual9.jpg', props: ['vertical', 'light'] },
+      { path: '/assets/img/backgrounds/wall09.jpg', props: ['vertical', 'light'] },
+      { path: '/assets/img/backgrounds/wall22.jpg', props: ['vertical', 'light'] }
     ]
   }
 }

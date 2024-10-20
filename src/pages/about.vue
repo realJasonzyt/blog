@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import $config from '@/_config'
+import { utils } from '@/api';
 import { IconSvgMap } from '@/icon';
 
 const birthTime = new Date(2007, 10, 18, 23, 4);
@@ -86,7 +87,24 @@ const socialList = [
 
 const bangumiList = [
   {
-
+    name: "摇曳露营△",
+    cover: "/assets/img/bangumi-covers/yurucamp/" + utils.randInt(1, 7).toString() + ".jpg",
+    url: "https://yurucamp.jp/"
+  },
+  {
+    name: "孤独摇滚！",
+    cover: "/assets/img/bangumi-covers/bocchitherock/" + utils.randInt(1, 2).toString() + ".jpg",
+    url: "https://bocchi.rocks/"
+  },
+  {
+    name: "CLANNAD",
+    cover: "/assets/img/bangumi-covers/clannad/" + utils.randInt(1, 7).toString() + ".jpg",
+    url: "https://zh.wikipedia.org/zh-cn/CLANNAD"
+  },
+  {
+    name: "天使降临到我身边",
+    cover: "/assets/img/bangumi-covers/wataten/" + utils.randInt(1, 5).toString() + ".jpg",
+    url: "https://zh.wikipedia.org/wiki/%E5%A4%A9%E4%BD%BF%E9%99%8D%E8%87%A8%E5%88%B0%E6%88%91%E8%BA%AB%E9%82%8A%EF%BC%81"
   }
 ]
 
@@ -108,6 +126,13 @@ const projectList = [
     desc: "Versatile mod loader for MCBE"
   },
   {
+    owner: "LiteLDev",
+    name: "HeaderOutput",
+    url: "https://github.com/LiteLDev/HeaderOutput",
+    lang: "Kotlin",
+    desc: "BDS headers generator"
+  },
+  {
     owner: "Jasonzyt",
     name: "blog",
     url: "https://github.com/realJasonzyt/blog",
@@ -120,6 +145,13 @@ const projectList = [
     url: "https://github.com/realJasonzyt/exif4cpp",
     lang: "C++",
     desc: "(WIP) Modern JPEG Exif metadata parser"
+  },
+  {
+    owner: "ddf8196",
+    name: "FakePlayer",
+    url: "https://github.com/ddf8196/FakePlayer",
+    lang: "Java",
+    desc: "Fake player client for MCBE"
   },
   {
     owner: "Majjcom",
@@ -153,16 +185,25 @@ const projectList = [
         除写码之外，我也很喜欢拍照📷~ 是风光佬，偶尔拍人文<br />
         喜欢各种交通工具，尤其是飞机✈️和火车🚅！！有机会的话会拍！<br />
         你可以在<RouterLink to="/gallery">Gallery(在建)</RouterLink>看到我的作品！谢谢你的喜欢！<br />
+        最近在研究业余无线电！入了一台泉盛UV-K6，还没有呼号ww<br />
         有时候会打电动，不是很擅长FPS游戏，想和我玩的话只要有空随时可以！<br />
         喜欢看动画，<del>百合什么的最喜欢啦</del><br />
         可以用中文/English与我交流，日语还在自学ing...<br />
-        我对所有人都很友好！不会主动与别人产生冲突<del>（除非太逆天忍不住骂两句）</del><br />
+        我对所有人都很友好！不会主动与别人产生冲突<br />
         <br />
-        ⚠️ 不想讨论政治，反感魔怔人/鉴证人，不理解滥用药物<br />
+        <span class="spoiler">🌈🏳️‍⚧️ LGBT+友好 ⚠️ 不想讨论政治，反感魔怔人/鉴证人，反对药物滥用和自伤！！</span><br />
       </div>
       <br />
+      <div class="languages">
+        <h2>Languages</h2>
+        <code><el-icon :size="16"><IconCPP/></el-icon>C++</code>&nbsp;
+        <code><el-icon :size="16"><IconVue/></el-icon>Vue</code>&nbsp;
+        <code><el-icon :size="16"><IconKotlin/></el-icon>Kotlin</code>&nbsp;
+        <code><el-icon :size="16"><IconPython/></el-icon>Python</code>&nbsp;
+        <code><el-icon :size="16"><IconGolang/></el-icon>Golang</code>
+      </div>
       <div class="social">
-        <h2>Social</h2>
+        <h2>Socials</h2>
         <el-row :gutter="10">
           <el-col v-for="(social, index) in socialList" :key="index" :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
             <a :href="social.url">
@@ -193,21 +234,22 @@ const projectList = [
           </el-col>
         </el-row>
       </div>
-      <div class="languages">
-        <h2>Languages</h2>
-        <code><el-icon :size="16"><IconCPP/></el-icon>C++</code>&nbsp;
-        <code><el-icon :size="16"><IconVue/></el-icon>Vue</code>&nbsp;
-        <code><el-icon :size="16"><IconKotlin/></el-icon>Kotlin</code>&nbsp;
-        <code><el-icon :size="16"><IconPython/></el-icon>Python</code>&nbsp;
-        <code><el-icon :size="16"><IconGolang/></el-icon>Golang</code>
-      </div>
       <div class="bangumi">
         <h2>Bangumi</h2>
-        <!-- TODO: WIP -->
+        <el-row :gutter="10">
+          <el-col v-for="(bangumi, index) in bangumiList" :key="index" :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+            <el-card class="bangumi-card" shadow="hover">
+              <div class="bangumi-cover" :style="{ 'background-image': `url(${bangumi.cover}` }"></div>
+              <div class="bangumi-card-main">
+                <h3 class="bangumi-name">{{ bangumi.name }}</h3>
+              </div>
+            </el-card>
+          </el-col>
+        </el-row>
       </div>
       <br />
     </el-col>
-    <el-col :span="1" class="divider"><el-divider :direction="'vertical'" /></el-col>
+    <el-col :span="1" :xs="0" :sm="0" class="divider hidden-sm-and-down"><el-divider :direction="'vertical'" /></el-col>
     <el-col :span="6" class="hidden-sm-and-down">
       <div class="sidebar">
         <div class="experiences">
@@ -225,7 +267,7 @@ const projectList = [
           </el-row>
         </div>
         <div class="projects">
-          <h2>Projects</h2>
+          <h2>Contributed to</h2>
           <el-row>
             <el-col v-for="(project, index) in projectList" :key="index">
               <a :href="project.url">
@@ -241,9 +283,35 @@ const projectList = [
       </div>
     </el-col>
   </el-row>
-  <el-row class="hidden-md-and-up">
-    <div></div>
-    <!-- TODO: WIP -->
+  <el-row class="main hidden-md-and-up" style="padding-top: 0;">
+    <div class="experiences">
+      <h2>Experiences</h2>
+      <el-row>
+        <el-col v-for="(experience, index) in experienceList" :key="index">
+          <a :href="experience.url">
+            <el-card class="experience-card" shadow="hover">
+              <h3 class="experience-name">{{ experience.org }}</h3>
+              <p class="experience-position">{{ experience.position }}</p>
+              <span class="experience-time">{{ experience.time }}</span>
+            </el-card>
+          </a>
+        </el-col>
+      </el-row>
+    </div>
+    <div class="projects">
+      <h2>Projects</h2>
+      <el-row>
+        <el-col v-for="(project, index) in projectList" :key="index">
+          <a :href="project.url">
+            <el-card class="project-card" shadow="hover">
+              <h3 class="project-name"><span>{{ project.owner }}/</span>{{ project.name }}</h3>
+              <p class="project-desc">{{ project.desc }}</p>
+              <!-- <p class="project-lang">{{ project.lang }}</p> -->
+            </el-card>
+          </a>
+        </el-col>
+      </el-row>
+    </div>
   </el-row>
   <div class="footer">
     <div class="footer-content">
@@ -299,7 +367,7 @@ h3 {
 }
 
 .sidebar {
-  padding: 40px 0 0 1rem;
+  padding: 40px 2rem 0 0.8rem;
   max-width: 300px;
   margin: 0;
 }
@@ -436,6 +504,23 @@ a {
 
 .languages img {
   margin-right: 4px;
+}
+
+.bangumi-card {
+  --el-card-padding: 0;
+  margin-bottom: 10px;
+}
+
+.bangumi-cover {
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bangumi-card-main {
+  padding: 10px 15px;
 }
 
 .divider {
