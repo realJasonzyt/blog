@@ -249,7 +249,8 @@ const projectList = [
       </div>
       <br />
     </el-col>
-    <el-col :span="1" :xs="0" :sm="0" class="divider hidden-sm-and-down"><el-divider :direction="'vertical'" /></el-col>
+    <el-col :span="1" :xs="0" :sm="0" :md="1" :lg="1" :xl="1" class="divider hidden-sm-and-down"><el-divider
+        :direction="'vertical'" /></el-col>
     <el-col :span="6" class="hidden-sm-and-down">
       <div class="sidebar">
         <div class="experiences">
@@ -367,9 +368,8 @@ h3 {
 }
 
 .sidebar {
-  padding: 40px 2rem 0 0.8rem;
   max-width: 300px;
-  margin: 0;
+  margin-top: 300px;
 }
 
 .sidebar>div {
@@ -528,8 +528,8 @@ a {
 }
 
 .divider .el-divider {
-  margin: 30px;
-  height: 100%;
+  margin-top: 300px;
+  height: 82%;
 }
 
 .footer {
@@ -567,7 +567,7 @@ a {
   }
 
   .main {
-    padding: 50px 2rem;
+    padding: 50px 2rem 0;
   }
 
   .name {
