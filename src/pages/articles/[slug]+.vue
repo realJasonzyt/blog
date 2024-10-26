@@ -5,7 +5,6 @@ import ArticleContent from '@/components/ArticleContent.vue'
 import TheFooter from '@/components/TheFooter.vue'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { utils } from '@/scripts/util'
 
 const route = useRoute()
 if (!route.params.slug || !route.params.slug[0]) {
@@ -131,7 +130,8 @@ img {
 
 .body {
   margin-top: 50px;
-  padding: auto 2rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
   font-size: 16px;
 }
 

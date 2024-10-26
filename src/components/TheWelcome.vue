@@ -124,19 +124,16 @@ const handleClickDown = () => {
 
 @keyframes float {
   0% {
-    -webkit-transform: translateY(0);
     -ms-transform: translateY(0);
     transform: translateY(0);
   }
 
   50% {
-    -webkit-transform: translateY(-8px);
     -ms-transform: translateY(-8px);
     transform: translateY(-8px);
   }
 
   100% {
-    -webkit-transform: translateY(0);
     -ms-transform: translateY(0);
     transform: translateY(0);
   }

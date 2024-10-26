@@ -1,5 +1,6 @@
 <script lang="ts">
 import { getArticle } from '@/scripts/article'
+import { textToSlug } from '@/scripts/util'
 import CodeBlock from '@/components/CodeBlock.vue'
 import AnchorHeader from './AnchorHeading.vue'
 
@@ -11,7 +12,6 @@ import MarkdownItKatex from '@vscode/markdown-it-katex'
 import { align as MarkdownItAlign } from "@mdit/plugin-align";
 
 import { h, type VNode } from 'vue'
-import { textToSlug } from '@/scripts/util'
 
 // TODO: Outline
 // const titles: Record<string, string> = {}

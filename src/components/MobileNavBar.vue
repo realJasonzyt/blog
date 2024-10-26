@@ -36,7 +36,7 @@ const handleSelect = (index: string) => {
     <Transition name="fade">
       <div class="real-nav" v-if="realNavShow">
         <el-avatar :size="80">
-          <img :src="$config.avatar" />
+          <img :src="$config.avatar" alt="avatar" />
         </el-avatar>
         <h1>Jasonzyt</h1>
         <p class="quote">
@@ -128,7 +128,7 @@ const handleSelect = (index: string) => {
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 5px;
   font-size: calc(100vw / 26);
-  font-family: Ubuntu;
+  font-family: Ubuntu, serif;
 }
 
 .quote .el-icon+span {

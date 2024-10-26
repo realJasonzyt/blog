@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import $config from '@/_config'
-import { utils } from '@/scripts/article';
 import { IconSvgMap } from '@/scripts/icon';
+import { randInt } from '@/scripts/util'
 
 const birthTime = new Date(2007, 10, 18, 23, 4);
 
@@ -88,22 +88,22 @@ const socialList = [
 const bangumiList = [
   {
     name: "摇曳露营△",
-    cover: "/assets/img/bangumi-covers/yurucamp/" + utils.randInt(1, 7).toString() + ".jpg",
+    cover: "/assets/img/bangumi-covers/yurucamp/" + randInt(1, 7).toString() + ".jpg",
     url: "https://yurucamp.jp/"
   },
   {
     name: "孤独摇滚！",
-    cover: "/assets/img/bangumi-covers/bocchitherock/" + utils.randInt(1, 2).toString() + ".jpg",
+    cover: "/assets/img/bangumi-covers/bocchitherock/" + randInt(1, 2).toString() + ".jpg",
     url: "https://bocchi.rocks/"
   },
   {
     name: "CLANNAD",
-    cover: "/assets/img/bangumi-covers/clannad/" + utils.randInt(1, 7).toString() + ".jpg",
+    cover: "/assets/img/bangumi-covers/clannad/" + randInt(1, 7).toString() + ".jpg",
     url: "https://zh.wikipedia.org/zh-cn/CLANNAD"
   },
   {
     name: "天使降临到我身边",
-    cover: "/assets/img/bangumi-covers/wataten/" + utils.randInt(1, 5).toString() + ".jpg",
+    cover: "/assets/img/bangumi-covers/wataten/" + randInt(1, 5).toString() + ".jpg",
     url: "https://zh.wikipedia.org/wiki/%E5%A4%A9%E4%BD%BF%E9%99%8D%E8%87%A8%E5%88%B0%E6%88%91%E8%BA%AB%E9%82%8A%EF%BC%81"
   }
 ]
@@ -171,7 +171,7 @@ const projectList = [
     <el-col class="main" :span="17" :xs="24" :sm="24">
       <div class="avatar">
         <el-avatar :size="200">
-          <img :src="$config.avatar" />
+          <img :src="$config.avatar" alt="avatar"/>
         </el-avatar>
       </div>
       <h1 class="name">Jasonzyt <span class="pronoun">he/she🌈</span></h1>

@@ -17,7 +17,7 @@
 
 .statuscode {
   font-size: 10rem;
-  font-family: 'Ubuntu';
+  font-family: 'Ubuntu',serif;
   color: #333;
 }
 

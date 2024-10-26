@@ -1,5 +1,3 @@
-import { Article } from '@/scripts/article'
-
 export function textToSlug(text: string): string {
   return text
     .toLowerCase()
