@@ -1,7 +1,7 @@
-import rawMetaData from '@/_meta.json?raw'
+import rawMetaData from '@/_meta_article.json?raw'
 import $config from '@/_config'
 
-import { Type, plainToInstance } from 'class-transformer'
+import { plainToInstance, Type } from 'class-transformer'
 
 export enum ContentFormat {
   Markdown = 'md'
@@ -100,7 +100,7 @@ export class Category {
   }
 }
 
-export class MetaData {
+export class ArticleMetaData {
   @Type(() => Article)
   public articles: Article[] = []
   @Type(() => Category)
@@ -145,7 +145,7 @@ export class SearchResult {
   }
 }
 
-export const metaData = plainToInstance(MetaData, JSON.parse(rawMetaData), {})
+export const metaData = plainToInstance(ArticleMetaData, JSON.parse(rawMetaData), {})
 
 export const getArticle = (slug: string): Article | undefined => {
   return metaData.articles.find((article: Article) => article.slug === slug)
@@ -158,7 +158,7 @@ export const getArticles = (): Article[] => {
 export const searchArticles = (keywords: string[]): SearchResult[] => {
   const result: SearchResult[] = []
   // Pre-process
-  let keyCategories: string[] = []
+  const keyCategories: string[] = []
   for (let j = 0; j < keywords.length; j++) {
     if (getCategory(keywords[j])) {
       keyCategories.push(keywords[j])
@@ -191,7 +191,7 @@ export const searchArticles = (keywords: string[]): SearchResult[] => {
     })
     // Match title
     for (let j = 0; j < keywords.length; j++) {
-      let index = article.title.indexOf(keywords[j])
+      const index = article.title.indexOf(keywords[j])
       if (index !== -1) {
         matchType = MatchType.Title
         const end = index + keywords[j].length
@@ -219,87 +219,10 @@ export const getCategories = (): Category[] => {
   return metaData.categories
 }
 
-export const utils = {
-  textToSlug(text: string): string {
-    return text
-      .toLowerCase()
-      .replace(/\s+/g, '-')
-      .replace(/[^\p{L}\p{N}-]+/gu, '')
-      .replace(/--+/g, '-')
-      .replace(/^-+/, '')
-      .replace(/-+$/, '')
-  },
-  simplifyNumber(num: number): string {
-    if (num >= 1e9) {
-      return (num / 1e9).toFixed(1) + 'B'
-    }
-    if (num >= 1e6) {
-      return (num / 1e6).toFixed(1) + 'M'
-    }
-    if (num >= 1e3) {
-      return (num / 1e3).toFixed(1) + 'K'
-    }
-    return num.toString()
-  },
-  sortArticlesByTime(articles: Article[], desc: boolean = true): Article[] {
-    return articles.sort((a: Article, b: Article) => {
-      return desc
-        ? Date.parse(b.createdAt) - Date.parse(a.createdAt)
-        : Date.parse(a.createdAt) - Date.parse(b.createdAt)
-    })
-  },
-  parseKeywords(str: string): string[] {
-    let result: string[] = []
-    let kw = ''
-    let inSingleQuote = false
-    let inDoubleQuote = false
-    for (let i = 0; i < str.length; i++) {
-      let ch = str[i]
-      if (ch === ' ' && !inSingleQuote && !inDoubleQuote) {
-        if (kw === '') {
-          continue
-        }
-        result.push(kw)
-        kw = ''
-        continue
-      }
-      if (ch === '"' && !inSingleQuote) {
-        if (inDoubleQuote) {
-          if (kw === '') {
-            inDoubleQuote = false
-            continue
-          }
-          result.push(kw)
-          kw = ''
-          inDoubleQuote = false
-          continue
-        }
-        inDoubleQuote = true
-      }
-      if (ch === "'" && !inDoubleQuote) {
-        if (inSingleQuote) {
-          if (kw == '') {
-            inSingleQuote = false
-            continue
-          }
-          result.push(kw)
-          kw = ''
-          inSingleQuote = false
-          continue
-        }
-        inSingleQuote = true
-      }
-      kw += ch
-    }
-    return result
-  },
-  randInt(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min + 1) + min)
-  }
-}
-
-export default {
-  metaData,
-  getArticle,
-  getCategory
+function sortArticlesByTime(articles: Article[], desc: boolean = true): Article[] {
+  return articles.sort((a: Article, b: Article) => {
+    return desc
+      ? Date.parse(b.createdAt) - Date.parse(a.createdAt)
+      : Date.parse(a.createdAt) - Date.parse(b.createdAt)
+  })
 }

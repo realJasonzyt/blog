@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import TheFooter from '@/components/TheFooter.vue';
-import { getArticles, searchArticles, utils } from '@/api';
+import { getArticles, searchArticles } from '@/scripts/article';
 import { ref } from 'vue';
 import $config from '@/_config'
+import { parseKeywords } from '@/scripts/util'
 
 
 const articles = getArticles();
@@ -29,7 +30,7 @@ const onChange = (_oldVal: string, newVal: string) => {
 
 const onSearch = () => {
   console.log(searchVal)
-  const keywords = utils.parseKeywords(searchVal)
+  const keywords = parseKeywords(searchVal)
   console.log(keywords)
   const res = searchArticles(keywords)
   console.log(res)

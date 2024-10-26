@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import $config from '@/_config'
-import { getArticle, getCategory, utils } from '@/api'
+import { getArticle, getCategory } from '@/scripts/article'
 import ArticleContent from '@/components/ArticleContent.vue'
 import TheFooter from '@/components/TheFooter.vue'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { utils } from '@/scripts/util'
 
 const route = useRoute()
 if (!route.params.slug || !route.params.slug[0]) {

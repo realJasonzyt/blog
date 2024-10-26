@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IconSvgMap } from '@/icon';
+import { IconSvgMap } from '@/scripts/icon';
 
 defineProps<{ size: number }>();
 

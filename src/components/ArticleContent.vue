@@ -1,5 +1,5 @@
 <script lang="ts">
-import { getArticle, utils } from '@/api'
+import { getArticle } from '@/scripts/article'
 import CodeBlock from '@/components/CodeBlock.vue'
 import AnchorHeader from './AnchorHeading.vue'
 
@@ -10,12 +10,13 @@ import MarkdownIt from 'markdown-it'
 import MarkdownItKatex from '@vscode/markdown-it-katex'
 import { align as MarkdownItAlign } from "@mdit/plugin-align";
 
-import { h, render, type VNode } from 'vue'
+import { h, type VNode } from 'vue'
+import { textToSlug } from '@/scripts/util'
 
 // TODO: Outline
 // const titles: Record<string, string> = {}
 const renderHeader = (el: Element) => {
-  const id = utils.textToSlug(el.textContent || '')
+  const id = textToSlug(el.textContent || '')
   // if (el.tagName === 'H1') {
   //   titles[el.innerHTML] = id
   // }

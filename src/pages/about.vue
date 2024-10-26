@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import $config from '@/_config'
-import { utils } from '@/api';
-import { IconSvgMap } from '@/icon';
+import { utils } from '@/scripts/article';
+import { IconSvgMap } from '@/scripts/icon';
 
 const birthTime = new Date(2007, 10, 18, 23, 4);
 

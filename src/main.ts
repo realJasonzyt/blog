@@ -1,5 +1,5 @@
 import '@/assets/css/main.scss'
-import Icon from '@/icon'
+import Icon from '@/scripts/icon'
 import 'github-markdown-css/github-markdown.css'
 
 import ElementPlus from 'element-plus'
