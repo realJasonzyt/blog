@@ -42,6 +42,7 @@
     ],
     "categories": [
         {
+            "id": "Test",
             "name": "Test",
             "description": "Test",
             "color": "#000000"
