@@ -1,5 +1,6 @@
 import rawMetaData from '@/_meta_gallery.json?raw'
 import { plainToInstance, Type } from 'class-transformer'
+import { formatDate } from './util'
 
 export class Camera {
   public make: string
@@ -97,24 +98,38 @@ export class Album {
   public id: string
   public name: string
   public description: string
-  public createdAt: string
-  public updatedAt: string
   public cover: string | null
 
-  constructor(
-    id: string,
-    name: string,
-    description: string,
-    createdAt: string,
-    updatedAt: string,
-    cover: string | null
-  ) {
+  constructor(id: string, name: string, description: string, cover: string | null) {
     this.id = id
     this.name = name
     this.description = description
-    this.createdAt = createdAt
-    this.updatedAt = updatedAt
     this.cover = cover
+  }
+
+  getPhotos() {
+    return getAlbumPhotos(this.id)
+  }
+
+  getPhotosByDate(desc: boolean = true) {
+    return sortPhotosByDate(getAlbumPhotos(this.id), desc)
+  }
+
+  getTimePeriod() {
+    let photos = sortPhotosByDate(getAlbumPhotos(this.id), false)
+
+    if (photos.length == 0) {
+      return ''
+    }
+    if (photos.length == 1) {
+      return formatDate(photos[0].details.shotAt)
+    }
+
+    return (
+      formatDate(photos[0].details.shotAt) +
+      ' - ' +
+      formatDate(photos[photos.length - 1].details.shotAt)
+    )
   }
 }
 
@@ -143,4 +158,30 @@ export const metaData = plainToInstance(GalleryMetaData, JSON.parse(rawMetaData)
 
 export function getPhotos(): Photo[] {
   return metaData.photos
+}
+
+export function getAlbums(): Album[] {
+  return metaData.albums
+}
+
+export function getAlbumPhotos(albumId: string): Photo[] {
+  return metaData.photos.filter((photo) => photo.album === albumId)
+}
+
+export function getCategoryPhotos(categoryId: string): Photo[] {
+  return metaData.photos.filter((photo) => photo.categories.includes(categoryId))
+}
+
+export function sortPhotosByDate(
+  photos: Photo[],
+  desc: boolean = true /* true: latest first */
+): Photo[] {
+  if (desc) {
+    return photos.sort(
+      (a, b) => new Date(b.details.shotAt).getTime() - new Date(a.details.shotAt).getTime()
+    )
+  }
+  return photos.sort(
+    (a, b) => new Date(a.details.shotAt).getTime() - new Date(b.details.shotAt).getTime()
+  )
 }

@@ -70,3 +70,8 @@ export function simplifyNumber(num: number): string {
   }
   return num.toString()
 }
+
+export function formatDate(date: string): string {
+  const d = new Date(date)
+  return d.toLocaleDateString()
+}
