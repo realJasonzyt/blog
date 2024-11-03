@@ -2,8 +2,7 @@
 
 const props = defineProps<{ height: number }>()
 
-setTimeout(() => {
-
+function doWaterfallize() {
   let mainDiv = document.querySelector('div.wf-main')
   if (!mainDiv) {
     console.log("failed to find main div")
@@ -47,7 +46,11 @@ setTimeout(() => {
       }
     }
   }
-}, 100);
+}
+
+setTimeout(doWaterfallize, 1500)
+window.addEventListener('resize', doWaterfallize)
+
 </script>
 
 <template>

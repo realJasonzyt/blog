@@ -29,6 +29,13 @@ let showInfo = ref(false)
   height: 300px;
   display: inline-block;
   margin-bottom: 20px;
+  border-radius: 15px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.photo-card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
 .photo {
@@ -37,17 +44,10 @@ let showInfo = ref(false)
   object-fit: cover;
   border-radius: 15px;
   border: 1px solid #eee;
-  border-radius: 15px;
-  transition: box-shadow 0.3s ease-in-out;
   z-index: -1;
   display: inline-block;
   overflow: hidden;
   position: relative;
-}
-
-.photo:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
 }
 
 .info {
