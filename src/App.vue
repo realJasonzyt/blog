@@ -62,15 +62,19 @@ const handleNavBarSelect = (index: string) => {
     case 'articles':
       router.push('/articles')
       break
+    case 'gallery':
+      router.push('/gallery')
+      break;
     case 'about':
       barPinned.value = false
       router.push('/about')
+      break
     default:
       break
   }
 }
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   refreshPin(to.matched)
   next()
 })
