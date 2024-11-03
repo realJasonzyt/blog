@@ -10,9 +10,8 @@ let showInfo = ref(false)
 </script>
 
 <template>
-  <div class="photo-card">
-    <img :src="photo.url.s" :alt="photo.description" class="photo" @click="$emit('click', photo)"
-      @mouseenter="showInfo = true" @mouseleave="showInfo = false" />
+  <div class="photo-card" @click="$emit('click', photo)" @mouseenter="showInfo = true" @mouseleave="showInfo = false">
+    <img :src="photo.url.s" :alt="photo.description" class="photo" />
     <div class="info" :style="{ opacity: showInfo ? 1 : 0 }">
       {{ photo.description }}
       <!-- <span class="album">
@@ -40,7 +39,7 @@ let showInfo = ref(false)
   border: 1px solid #eee;
   border-radius: 15px;
   transition: box-shadow 0.3s ease-in-out;
-  z-index: 0;
+  z-index: -1;
   display: inline-block;
   overflow: hidden;
   position: relative;
