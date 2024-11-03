@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
+
 
 const props = defineProps<{ height: number }>()
 
@@ -48,9 +50,11 @@ function doWaterfallize() {
   }
 }
 
-setTimeout(doWaterfallize, 1500)
 window.addEventListener('resize', doWaterfallize)
 
+onMounted(() => {
+  setTimeout(doWaterfallize, 500)
+})
 </script>
 
 <template>

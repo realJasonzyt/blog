@@ -24,6 +24,22 @@ const barActionList: NavBarActionList = {
     whenDownTo: document.documentElement.clientHeight * 0.8,
     action: NavBarAction.Pin
   },
+  '/gallery': {
+    whenDownTo: document.documentElement.clientHeight * 0.8,
+    action: NavBarAction.Unpin
+  },
+  '/gallery/': {
+    whenDownTo: document.documentElement.clientHeight * 0.8,
+    action: NavBarAction.Unpin
+  },
+  '/gallery/albums': {
+    whenDownTo: document.documentElement.clientHeight * 0.8,
+    action: NavBarAction.Unpin
+  },
+  '/gallery/categories': {
+    whenDownTo: document.documentElement.clientHeight * 0.8,
+    action: NavBarAction.Unpin
+  },
   '/about': {
     whenDownTo: document.documentElement.clientHeight * 0.3,
     action: NavBarAction.Pin
@@ -63,7 +79,9 @@ const handleNavBarSelect = (index: string) => {
       router.push('/articles')
       break
     case 'gallery':
-      router.push('/gallery')
+      let viewModeRecord = localStorage.getItem('gallery_viewMode') ?? ''
+      localStorage.setItem('gallery_viewMode', viewModeRecord)
+      router.push('/gallery/' + viewModeRecord)
       break;
     case 'about':
       barPinned.value = false
