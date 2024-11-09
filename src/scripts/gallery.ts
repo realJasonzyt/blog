@@ -59,11 +59,13 @@ export class PhotoURLs {
   public s: string
   public m: string
   public l: string
+  public squareThumbnail: string
 
-  constructor(s: string, m: string, l: string) {
+  constructor(s: string, m: string, l: string, squareS: string) {
     this.s = s
     this.m = m
     this.l = l
+    this.squareThumbnail = squareS
   }
 }
 

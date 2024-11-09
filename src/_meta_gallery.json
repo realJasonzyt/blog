@@ -4,7 +4,8 @@
             "url": {
                 "s": "/_gallery/wuhan2024/IMG_0156_s.webp",
                 "m": "/_gallery/wuhan2024/IMG_0156_m.webp",
-                "l": "/_gallery/wuhan2024/IMG_0156.jpg"
+                "l": "/_gallery/wuhan2024/IMG_0156.jpg",
+                "squareThumbnail": "/_gallery/wuhan2024/IMG_0156_square_s.webp"
             },
             "description": "Skyscraper",
             "album": "wuhan2024",
@@ -34,7 +35,8 @@
             "url": {
                 "s": "/_gallery/wuhan2024/IMG_1466_s.webp",
                 "m": "/_gallery/wuhan2024/IMG_1466_m.webp",
-                "l": "/_gallery/wuhan2024/IMG_1466.jpg"
+                "l": "/_gallery/wuhan2024/IMG_1466.jpg",
+                "squareThumbnail": "/_gallery/wuhan2024/IMG_1466_square_s.webp"
             },
             "description": "此地空余黄鹤楼",
             "album": "wuhan2024",
@@ -65,7 +67,8 @@
             "url": {
                 "s": "/_gallery/wuhan2024/IMG_1489_s.webp",
                 "m": "/_gallery/wuhan2024/IMG_1489_m.webp",
-                "l": "/_gallery/wuhan2024/IMG_1489.jpg"
+                "l": "/_gallery/wuhan2024/IMG_1489.jpg",
+                "squareThumbnail": "/_gallery/wuhan2024/IMG_1489_square_s.webp"
             },
             "description": "中华路码头",
             "album": "wuhan2024",
@@ -95,7 +98,8 @@
             "url": {
                 "s": "/_gallery/wuhan2024/IMG_1490_s.webp",
                 "m": "/_gallery/wuhan2024/IMG_1490_m.webp",
-                "l": "/_gallery/wuhan2024/IMG_1490.jpg"
+                "l": "/_gallery/wuhan2024/IMG_1490.jpg",
+                "squareThumbnail": "/_gallery/wuhan2024/IMG_1490_square_s.webp"
             },
             "description": "船上的烟囱",
             "album": "wuhan2024",
@@ -125,7 +129,8 @@
             "url": {
                 "s": "/_gallery/wuhan2024/IMG_1801_s.webp",
                 "m": "/_gallery/wuhan2024/IMG_1801_m.webp",
-                "l": "/_gallery/wuhan2024/IMG_1801.jpg"
+                "l": "/_gallery/wuhan2024/IMG_1801.jpg",
+                "squareThumbnail": "/_gallery/wuhan2024/IMG_1801_square_s.webp"
             },
             "description": "江边",
             "album": "wuhan2024",
@@ -154,7 +159,8 @@
             "url": {
                 "s": "/_gallery/wuhan2024/IMG_2133_s.webp",
                 "m": "/_gallery/wuhan2024/IMG_2133_m.webp",
-                "l": "/_gallery/wuhan2024/IMG_2133.jpg"
+                "l": "/_gallery/wuhan2024/IMG_2133.jpg",
+                "squareThumbnail": "/_gallery/wuhan2024/IMG_2133_square_s.webp"
             },
             "description": "晚霞",
             "album": "wuhan2024",
@@ -184,7 +190,8 @@
             "url": {
                 "s": "/_gallery/wuhan2024/IMG_2262_s.webp",
                 "m": "/_gallery/wuhan2024/IMG_2262_m.webp",
-                "l": "/_gallery/wuhan2024/IMG_2262.jpg"
+                "l": "/_gallery/wuhan2024/IMG_2262.jpg",
+                "squareThumbnail": "/_gallery/wuhan2024/IMG_2262_square_s.webp"
             },
             "description": "晚霞",
             "album": "wuhan2024",
@@ -214,7 +221,8 @@
             "url": {
                 "s": "/_gallery/wuhan2024/IMG_3030_s.webp",
                 "m": "/_gallery/wuhan2024/IMG_3030_m.webp",
-                "l": "/_gallery/wuhan2024/IMG_3030.jpg"
+                "l": "/_gallery/wuhan2024/IMG_3030.jpg",
+                "squareThumbnail": "/_gallery/wuhan2024/IMG_3030_square_s.webp"
             },
             "description": "晚霞和桥",
             "album": "wuhan2024",
@@ -244,7 +252,8 @@
             "url": {
                 "s": "/_gallery/wuhan2024/IMG_3252_s.webp",
                 "m": "/_gallery/wuhan2024/IMG_3252_m.webp",
-                "l": "/_gallery/wuhan2024/IMG_3252.jpg"
+                "l": "/_gallery/wuhan2024/IMG_3252.jpg",
+                "squareThumbnail": "/_gallery/wuhan2024/IMG_3252_square_s.webp"
             },
             "description": "落日",
             "album": "wuhan2024",
@@ -274,7 +283,8 @@
             "url": {
                 "s": "/_gallery/wuhan2024/IMG_1099_s.webp",
                 "m": "/_gallery/wuhan2024/IMG_1099_m.webp",
-                "l": "/_gallery/wuhan2024/IMG_1099.jpg"
+                "l": "/_gallery/wuhan2024/IMG_1099.jpg",
+                "squareThumbnail": "/_gallery/wuhan2024/IMG_1099_square_s.webp"
             },
             "description": "午后街道",
             "album": "wuhan2024",
@@ -304,7 +314,8 @@
             "url": {
                 "s": "/_gallery/wuhan2024/IMG_0156_s.webp",
                 "m": "/_gallery/wuhan2024/IMG_0156_m.webp",
-                "l": "/_gallery/wuhan2024/IMG_0156.jpg"
+                "l": "/_gallery/wuhan2024/IMG_0156.jpg",
+                "squareThumbnail": "/_gallery/wuhan2024/IMG_0156_square_s.webp"
             },
             "createdAt": "2024-06-01T00:00:00.000Z",
             "description": "Test p1",

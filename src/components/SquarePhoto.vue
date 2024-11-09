@@ -9,7 +9,7 @@ const emit = defineEmits(['click'])
 
 <template>
   <div class="square-photo">
-    <img :src="photo.url.s" :alt="photo.description" class="photo" @click="emit('click', photo)" />
+    <img :src="photo.url.squareThumbnail" :alt="photo.description" class="photo" @click="emit('click', photo)" />
   </div>
 </template>
 
