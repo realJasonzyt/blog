@@ -88,6 +88,10 @@ const handleSelect = (index: string) => {
   z-index: 10;
 }
 
+.el-divider {
+  margin: 12px 0;
+}
+
 .real-nav {
   position: fixed;
   top: 0;
