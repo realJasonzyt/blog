@@ -5,6 +5,8 @@ import { useRouter } from 'vue-router/auto';
 let router = useRouter()
 let viewMode = ref('')
 
+viewMode.value = localStorage.getItem('gallery_viewMode') || ''
+
 const handleChange = (v: string) => {
   localStorage.setItem('gallery_viewMode', v)
   router.push("/gallery/" + v)
