@@ -1,3 +1,5 @@
 <template>
-  <RouterView />
+  <KeepAlive>
+    <RouterView />
+  </KeepAlive>
 </template>

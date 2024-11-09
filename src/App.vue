@@ -105,7 +105,9 @@ refreshPin()
 
 <template>
   <NavBar @select="handleNavBarSelect" :pinned="barPinned" />
-  <RouterView />
+  <KeepAlive>
+    <RouterView />
+  </KeepAlive>
 </template>
 
 <style scoped></style>

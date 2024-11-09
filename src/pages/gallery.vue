@@ -19,7 +19,9 @@ const handleChange = (v: string) => {
       <el-radio-button label="Album" value="albums" />
       <el-radio-button label="Category" value="categories" />
     </el-radio-group>
-    <RouterView />
+    <KeepAlive>
+      <RouterView />
+    </KeepAlive>
   </div>
 </template>
 
