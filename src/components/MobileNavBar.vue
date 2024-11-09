@@ -142,19 +142,4 @@ const handleSelect = (index: string) => {
 .quote span+.el-icon {
   margin-left: 0.5rem;
 }
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-.fade-enter-to,
-.fade-leave-from {
-  opacity: 1;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s;
-}
 </style>
