@@ -25,19 +25,19 @@ const barActionList: NavBarActionList = {
     action: NavBarAction.Pin
   },
   '/gallery': {
-    whenDownTo: document.documentElement.clientHeight * 0.8,
+    whenDownTo: document.documentElement.clientHeight * 0.5,
     action: NavBarAction.Unpin
   },
   '/gallery/': {
-    whenDownTo: document.documentElement.clientHeight * 0.8,
+    whenDownTo: document.documentElement.clientHeight * 0.5,
     action: NavBarAction.Unpin
   },
   '/gallery/albums': {
-    whenDownTo: document.documentElement.clientHeight * 0.8,
+    whenDownTo: document.documentElement.clientHeight * 0.5,
     action: NavBarAction.Unpin
   },
   '/gallery/categories': {
-    whenDownTo: document.documentElement.clientHeight * 0.8,
+    whenDownTo: document.documentElement.clientHeight * 0.5,
     action: NavBarAction.Unpin
   },
   '/about': {

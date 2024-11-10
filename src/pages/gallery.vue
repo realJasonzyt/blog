@@ -41,4 +41,10 @@ const handleChange = (v: string) => {
 .photo-card {
   margin-right: 10px;
 }
+
+@media screen and (max-width: 768px) {
+  .main {
+    padding: 80px 20px;
+  }
+}
 </style>

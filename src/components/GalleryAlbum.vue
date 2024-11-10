@@ -21,24 +21,24 @@ window.addEventListener('resize', calcAfterPhotos)
 </script>
 
 <template>
-  <el-card class="album">
-    <div class="title">
+  <el-card class="album" shadow="hover">
+    <div class="header">
       <h1>{{ album.name }}</h1>
-      <span class="description">{{ album.description }}</span>
-    </div>
-    <div class="info">
-      <span class="info-count">
-        <el-icon :size="13">
-          <IconImage />
-        </el-icon>
-        {{ album.getPhotos().length }} photos
-      </span>
-      <span class="time-period">
-        <el-icon :size="13">
-          <IconClock />
-        </el-icon>
-        {{ album.getTimePeriod() }}
-      </span>
+      <span class="description hidden-md-and-down">{{ album.description }}</span>
+      <div class="info">
+        <span class="info-count">
+          <el-icon :size="13">
+            <IconImage />
+          </el-icon>
+          {{ album.getPhotos().length }} <span class="hidden-md-and-down">photos</span>
+        </span>
+        <span class="time-period hidden-md-and-down">
+          <el-icon :size="13">
+            <IconClock />
+          </el-icon>
+          {{ album.getTimePeriod() }}
+        </span>
+      </div>
     </div>
     <div class="photos">
       <SquarePhoto v-for="p in album.getPhotosByDate().slice(0, 10)" :photo="p" :size="128"></SquarePhoto>
@@ -49,10 +49,15 @@ window.addEventListener('resize', calcAfterPhotos)
 <style scoped>
 .el-card {
   --el-card-border-radius: 15px;
+  margin-bottom: 20px;
 }
 
 h1 {
   display: inline-block;
+}
+
+.header {
+  margin-bottom: 10px;
 }
 
 .description {
@@ -62,7 +67,7 @@ h1 {
 }
 
 .album {
-  height: 280px;
+  height: 240px;
   width: 100%;
   padding: 0 10px;
 }
@@ -81,7 +86,8 @@ h1 {
 }
 
 .info {
-  margin-bottom: 25px;
+  float: right;
+  margin-top: 10px;
 }
 
 .info span {
@@ -91,5 +97,20 @@ h1 {
 
 .time-period {
   margin-left: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .el-card {
+    --el-card-padding: 12px;
+  }
+
+  .album {
+    height: 160px;
+  }
+
+  .square-photo {
+    width: 64px;
+    height: 64px;
+  }
 }
 </style>
