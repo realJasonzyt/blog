@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import TheWelcome from '@/components/TheWelcome.vue'
 import TheFooter from '@/components/TheFooter.vue'
-import { getArticle } from '@/scripts/article';
+import ArticleList from '@/components/ArticleList.vue';
+import { getArticle, getArticles, sortArticlesByTime } from '@/scripts/article';
 import { ref } from 'vue';
 
 const pinnedArticleNames = [
@@ -17,31 +18,44 @@ const pinnedArticles = pinnedArticleNames.map(name => {
   }
   return { ...a, show: ref(false) }
 })
+
+const recentArticles = sortArticlesByTime(getArticles()).slice(0, 10)
 </script>
 
 <template>
   <TheWelcome />
   <div class="main">
-    <h2>
-      <el-icon :size="20">
-        <IconAnchor />
-      </el-icon>
-      Pinned
-    </h2>
-    <el-row :gutter="20" class="pinned">
-      <el-col v-for="a in pinnedArticles" :key="a.slug" :span="8">
-        <RouterLink :to="`/articles/${a.slug}`">
-          <el-card class="pinned-card" :style="{ backgroundImage: `url(${a.cover})` }" @mouseenter="a.show.value = true"
-            @mouseleave="a.show.value = false">
-            <Transition name="fade">
-              <div class="title" v-show="a.show.value">
-                <h1>{{ a.title }}</h1>
-              </div>
-            </Transition>
-          </el-card>
-        </RouterLink>
-      </el-col>
-    </el-row>
+    <section class="pinned">
+      <h2>
+        <el-icon :size="20">
+          <IconAnchor />
+        </el-icon>
+        Pinned
+      </h2>
+      <el-row :gutter="20">
+        <el-col v-for="a in pinnedArticles" :key="a.slug" :span="8">
+          <RouterLink :to="`/articles/${a.slug}`">
+            <el-card class="pinned-card" :style="{ backgroundImage: `url(${a.cover})` }"
+              @mouseenter="a.show.value = true" @mouseleave="a.show.value = false">
+              <Transition name="fade">
+                <div class="title" v-show="a.show.value">
+                  <h1>{{ a.title }}</h1>
+                </div>
+              </Transition>
+            </el-card>
+          </RouterLink>
+        </el-col>
+      </el-row>
+    </section>
+    <section class="recent">
+      <h2>
+        <el-icon :size="20">
+          <IconNews />
+        </el-icon>
+        Recent
+      </h2>
+      <ArticleList :articles="recentArticles" :columns="2" />
+    </section>
   </div>
   <TheFooter />
 </template>
@@ -53,11 +67,15 @@ const pinnedArticles = pinnedArticleNames.map(name => {
   max-width: 1200px;
 }
 
+section {
+  margin-bottom: 30px;
+}
+
 h2 {
   font-weight: bold;
   margin-bottom: 10px;
-  color: #444;
-  font-size: 24px;
+  color: #555;
+  font-size: 20px;
 }
 
 a {
@@ -88,5 +106,11 @@ a {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.article-card {
+  --el-card-border-radius: 15px;
+  --el-card-padding: 0;
+  height: 200px;
 }
 </style>

@@ -66,7 +66,7 @@ let searchBarFocused = ref(false)
         </template> -->
       </el-input>
     </div>
-    <ArticleList :articles="currentArticles"></ArticleList>
+    <ArticleList :articles="currentArticles" :columns="1"></ArticleList>
   </div>
   <TheFooter />
 </template>
