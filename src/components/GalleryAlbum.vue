@@ -24,15 +24,15 @@ window.addEventListener('resize', calcAfterPhotos)
   <el-card class="album" shadow="hover">
     <div class="header">
       <h1>{{ album.name }}</h1>
-      <span class="description hidden-md-and-down">{{ album.description }}</span>
+      <span class="description hidden-sm-and-down">{{ album.description }}</span>
       <div class="info">
         <span class="info-count">
           <el-icon :size="13">
             <IconImage />
           </el-icon>
-          {{ album.getPhotos().length }} <span class="hidden-md-and-down">photos</span>
+          {{ album.getPhotos().length }} <span class="hidden-sm-and-down">photos</span>
         </span>
-        <span class="time-period hidden-md-and-down">
+        <span class="time-period hidden-sm-and-down">
           <el-icon :size="13">
             <IconClock />
           </el-icon>

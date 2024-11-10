@@ -75,3 +75,7 @@ export function formatDate(date: string): string {
   const d = new Date(date)
   return d.toLocaleDateString()
 }
+
+export function isTouchScreen(): boolean {
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0
+}

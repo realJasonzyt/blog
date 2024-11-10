@@ -3,6 +3,7 @@ import TheWelcome from '@/components/TheWelcome.vue'
 import TheFooter from '@/components/TheFooter.vue'
 import ArticleList from '@/components/ArticleList.vue';
 import { getArticle, getArticles, sortArticlesByTime } from '@/scripts/article';
+import { isTouchScreen } from '@/scripts/util';
 import { ref } from 'vue';
 
 const pinnedArticleNames = [
@@ -16,10 +17,27 @@ const pinnedArticles = pinnedArticleNames.map(name => {
   if (!a) {
     throw new Error(`article ${name} not found`)
   }
+  if (isTouchScreen()) {
+    return { ...a, show: ref(true) }
+  }
   return { ...a, show: ref(false) }
 })
 
 const recentArticles = sortArticlesByTime(getArticles()).slice(0, 10)
+
+const handleMouseEnter = (a: any) => {
+  if (isTouchScreen()) {
+    return
+  }
+  a.show.value = true
+}
+
+const handleMouseLeave = (a: any) => {
+  if (isTouchScreen()) {
+    return
+  }
+  a.show.value = false
+}
 </script>
 
 <template>
@@ -33,10 +51,10 @@ const recentArticles = sortArticlesByTime(getArticles()).slice(0, 10)
         Pinned
       </h2>
       <el-row :gutter="20">
-        <el-col v-for="a in pinnedArticles" :key="a.slug" :span="8">
+        <el-col v-for="a in pinnedArticles" :key="a.slug" :span="8" :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
           <RouterLink :to="`/articles/${a.slug}`">
             <el-card class="pinned-card" :style="{ backgroundImage: `url(${a.cover})` }"
-              @mouseenter="a.show.value = true" @mouseleave="a.show.value = false">
+              @mouseenter="handleMouseEnter(a)" @mouseleave="handleMouseLeave(a)">
               <Transition name="fade">
                 <div class="title" v-show="a.show.value">
                   <h1>{{ a.title }}</h1>
@@ -106,11 +124,26 @@ a {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  margin-bottom: 20px;
 }
 
 .article-card {
   --el-card-border-radius: 15px;
   --el-card-padding: 0;
-  height: 200px;
+  height: 150px;
+}
+
+@media screen and (max-width: 1000px) {
+  .main {
+    padding: 20px 40px;
+  }
+
+  .pinned-card {
+    height: 150px;
+  }
+
+  .title {
+    margin-top: 34px;
+  }
 }
 </style>

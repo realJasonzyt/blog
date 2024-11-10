@@ -65,13 +65,13 @@ props.article.fetchStringifiedViews().then(r => displayViews.value = r)
 
 .title {
   height: 75%;
-  padding: 12px 25px;
+  padding: 15px 25px;
   overflow-y: hidden;
 }
 
 .info {
   height: 25%;
-  padding: 8px 25px;
+  padding: 6px 25px;
   color: #555;
   font-size: 18px;
 }

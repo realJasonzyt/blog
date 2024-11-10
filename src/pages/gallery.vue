@@ -42,7 +42,7 @@ const handleChange = (v: string) => {
   margin-right: 10px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
   .main {
     padding: 80px 20px;
   }
