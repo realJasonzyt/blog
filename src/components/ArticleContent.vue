@@ -87,6 +87,7 @@ export default {
       if (hljs.getLanguage(lang)) {
         continue
       }
+      // TODO: Rewrite this
       const language = await fetch(
         `https://cdn.staticfile.net/highlight.js/11.9.0/es/languages/${lang}.min.js`
       )

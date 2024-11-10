@@ -52,4 +52,6 @@ const onAnchorClick = (e: Event) => {
 .anchor .el-icon {
   color: #000;
 }
+
+/* TODO: adapt mobile */
 </style>

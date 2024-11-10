@@ -2,6 +2,7 @@ import rawMetaData from '@/_meta_article.json?raw'
 import $config from '@/_config'
 
 import { plainToInstance, Type } from 'class-transformer'
+import { simplifyNumber } from './util'
 
 export enum ContentFormat {
   Markdown = 'md'
@@ -59,6 +60,18 @@ export class Article {
   ) {
     const now = new Date().toISOString()
     return new Article(slug, title, cover, tags, category, content, author, now, now)
+  }
+
+  public async fetchStats(): Promise<ArticleStats> {
+    return fetchArticleStats(this.slug)
+  }
+
+  public async fetchStringifiedViews(): Promise<string> {
+    let stats = await this.fetchStats()
+    if (stats.views == -1) {
+      return '-'
+    }
+    return simplifyNumber(stats.views)
   }
 }
 
@@ -147,6 +160,10 @@ export class SearchResult {
   }
 }
 
+export type ArticleStats = {
+  views: number
+}
+
 export const metaData = plainToInstance(ArticleMetaData, JSON.parse(rawMetaData), {})
 
 export const getArticle = (slug: string): Article | undefined => {
@@ -221,10 +238,28 @@ export const getCategories = (): Category[] => {
   return metaData.categories
 }
 
-function sortArticlesByTime(articles: Article[], desc: boolean = true): Article[] {
+export function sortArticlesByTime(articles: Article[], desc: boolean = true): Article[] {
   return articles.sort((a: Article, b: Article) => {
     return desc
       ? Date.parse(b.createdAt) - Date.parse(a.createdAt)
       : Date.parse(a.createdAt) - Date.parse(b.createdAt)
   })
+}
+
+export async function fetchArticleStats(slug: string): Promise<ArticleStats> {
+  if (!$config.api.articles.stats.enable) {
+    return { views: -1 }
+  }
+  // /api/articles/stats?action=query&slug={slug}
+  let resp = await fetch(
+    $config.apiBase + $config.api.articles.stats.endpoint + `?action=query&slug=${slug}`
+  )
+  if (resp.ok) {
+    let json = await resp.json()
+    if (json?.data?.stats) {
+      return json.data.stats
+    }
+  }
+  console.error('Failed to fetch article stats', resp.status, resp.body)
+  return { views: -1 }
 }

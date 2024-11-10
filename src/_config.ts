@@ -3,11 +3,13 @@ const Config = {
   avatar: '/assets/img/avatar.jpg',
   footer: `&copy;Jasonzyt&nbsp;&nbsp;${new Date().getFullYear()}`,
   articlesBase: '/_articles/',
+  apiBase: '/api',
   api: {
-    base: '/api/',
-    stats: {
-      enable: true,
-      endpoint: 'stats'
+    articles: {
+      stats: {
+        enable: false,
+        endpoint: '/articles/stats'
+      }
     }
   },
   Index: {
