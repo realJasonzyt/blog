@@ -24,6 +24,7 @@ const onResolve = () => {
 
 <template>
   <div v-show="show">
+    <div class="cover" :style="{ backgroundImage: `url(${article?.cover})` }"></div>
     <div class="main">
       <div class="header">
         <h1>{{ article?.title }}</h1>
@@ -35,6 +36,7 @@ const onResolve = () => {
             <time :datetime="article?.createdAt">{{ new Date(article?.createdAt ?? '').toLocaleDateString() }}</time>
           </span>
           <span class="category">
+            <!-- TODO: link to category -->
             <el-icon>
               <IconFolder />
             </el-icon>
@@ -75,7 +77,7 @@ img {
 
 <style scoped>
 .main {
-  padding: 150px 4rem 2rem;
+  padding: 375px 4rem 2rem;
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -83,18 +85,29 @@ img {
 .header {
   position: relative;
   padding: 20px;
-  text-align: center;
+}
+
+.cover {
+  position: absolute;
+  width: 100%;
+  height: 500px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .header h1 {
-  font-size: 3rem;
+  font-size: 2rem;
   margin: 0;
+  color: #fff;
+  text-shadow: #666 2px 2px 10px;
 }
 
 .info {
-  margin-top: 1rem;
-  color: #666;
+  margin-top: 0.5rem;
+  color: #fff;
   font-size: 18px;
+  text-shadow: #666 2px 2px 10px;
 }
 
 .info span,
@@ -115,14 +128,6 @@ img {
   margin-left: 1rem;
 }
 
-.category span {
-  transition: color 0.3s;
-}
-
-.category span:hover {
-  color: v-bind("category?.color");
-}
-
 .views {
   text-align: left;
   min-width: 3em;
@@ -130,8 +135,7 @@ img {
 
 .body {
   margin-top: 50px;
-  padding-right: 2rem;
-  padding-left: 2rem;
+  padding: 0 2rem;
   font-size: 16px;
 }
 
@@ -142,8 +146,21 @@ img {
 }
 
 @media screen and (max-width: 768px) {
+  .cover {
+    height: 400px;
+  }
+
   .main {
-    padding: 100px 2rem 2rem;
+    padding: 250px 20px 2rem;
+  }
+
+  .body {
+    padding: 0 10px;
+  }
+
+  .header h1 {
+    height: 4.8rem;
+    font-size: 1.5rem;
   }
 }
 </style>
