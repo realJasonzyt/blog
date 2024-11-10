@@ -38,6 +38,25 @@
                 "test2"
             ],
             "category": "Test"
+        },
+        {
+            "slug": "test3",
+            "createdAt": "2024-06-02T00:00:00.000Z",
+            "updatedAt": "2024-06-02T00:00:00.000Z",
+            "title": "Test3",
+            "cover": "/assets/img/bangumi-covers/yurucamp/2.jpg",
+            "author": {
+                "name": "Jasonzyt",
+                "avatar": "https://avatars.githubusercontent.com/u/66063199"
+            },
+            "content": {
+                "format": "md",
+                "url": "test3.md"
+            },
+            "tags": [
+                "test3"
+            ],
+            "category": "Test"
         }
     ],
     "categories": [

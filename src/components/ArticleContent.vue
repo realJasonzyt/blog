@@ -61,6 +61,10 @@ const renderHTML = (elements: HTMLCollection): VNode[] => {
     for (let i = 0; i < attrNames.length; i++) {
       attrs[attrNames[i]] = child.getAttribute(attrNames[i]) ?? ""
     }
+    if (child.children.length == 0) {
+      vnodes.push(h(child.tagName, attrs, { default: () => child.innerHTML }))
+      continue
+    }
     let inner = renderHTML(child.children);
     vnodes.push(h(child.tagName, attrs, { default: () => inner }))
   }

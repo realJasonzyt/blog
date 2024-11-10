@@ -42,7 +42,7 @@ const onResolve = () => {
             </el-icon>
             <span>{{ article?.category }}</span>
           </span>
-          <span class="views" v-if="$config.api.stats.enable">
+          <span class="views" v-if="$config.api.articles.stats.enable">
             <el-icon>
               <IconEye />
             </el-icon>
