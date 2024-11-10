@@ -145,6 +145,14 @@ export class Category {
     this.name = name
     this.description = description
   }
+
+  getPhotos() {
+    return getCategoryPhotos(this.id)
+  }
+
+  getPhotosByDate(desc: boolean = true) {
+    return sortPhotosByDate(getCategoryPhotos(this.id), desc)
+  }
 }
 
 export class GalleryMetaData {
@@ -164,6 +172,10 @@ export function getPhotos(): Photo[] {
 
 export function getAlbums(): Album[] {
   return metaData.albums
+}
+
+export function getCategories(): Category[] {
+  return metaData.categories
 }
 
 export function getAlbumPhotos(albumId: string): Photo[] {
