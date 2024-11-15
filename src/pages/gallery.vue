@@ -31,7 +31,7 @@ const handleChange = (v: string) => {
 .main {
   padding: 100px;
   margin: 0 auto;
-  max-width: 1600px;
+  max-width: 1400px;
 }
 
 .el-radio-group {

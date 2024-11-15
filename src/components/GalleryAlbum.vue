@@ -9,19 +9,22 @@ let right = ref(0)
 
 function calcAfterPhotos() {
   let albumCards = document.querySelectorAll('.album')
-  for (let i = 0; i < albumCards.length; i++) {
-    let width = albumCards[i].clientWidth
-    right.value = (window.innerWidth - width) / 2 // padding
+  if (albumCards.length == 0) {
+    return
   }
+  let width = albumCards[0].clientWidth
+  right.value = (window.innerWidth - width) / 2 // padding
 }
 
 onMounted(calcAfterPhotos)
 window.addEventListener('resize', calcAfterPhotos)
 
+let expand = ref(false)
+
 </script>
 
 <template>
-  <el-card class="album" shadow="hover">
+  <el-card class="album" shadow="hover" @click="expand = !expand">
     <div class="header">
       <h1>{{ album.name }}</h1>
       <span class="description hidden-sm-and-down">{{ album.description }}</span>
@@ -40,8 +43,16 @@ window.addEventListener('resize', calcAfterPhotos)
         </span>
       </div>
     </div>
-    <div class="photos">
+    <div class="photos" v-show="!expand">
+      <!-- TODO: href -->
       <SquarePhoto v-for="p in album.getPhotosByDate().slice(0, 10)" :photo="p" :size="128"></SquarePhoto>
+    </div>
+    <div class="expansion" v-show="expand">
+      <el-row>
+        <el-col v-for="p in album.getPhotosByDate()" :xs="6" :sm="6" :md="4" :lg="3" :xl="3">
+          <SquarePhoto :photo="p" :size="128"></SquarePhoto>
+        </el-col>
+      </el-row>
     </div>
   </el-card>
 </template>
@@ -67,7 +78,6 @@ h1 {
 }
 
 .album {
-  height: 240px;
   width: 100%;
   padding: 0 10px;
 }
@@ -99,13 +109,13 @@ h1 {
   margin-left: 10px;
 }
 
+.expansion .square-photo {
+  margin-bottom: 20px;
+}
+
 @media screen and (max-width: 768px) {
   .el-card {
     --el-card-padding: 12px;
-  }
-
-  .album {
-    height: 160px;
   }
 
   .square-photo {

@@ -135,7 +135,7 @@ a {
 
 @media screen and (max-width: 1000px) {
   .main {
-    padding: 20px 40px;
+    padding: 40px 40px;
   }
 
   .pinned-card {

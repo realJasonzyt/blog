@@ -186,6 +186,10 @@ export function getCategoryPhotos(categoryId: string): Photo[] {
   return metaData.photos.filter((photo) => photo.categories.includes(categoryId))
 }
 
+export function getAlbum(albumId: string): Album {
+  return metaData.albums.find((album) => album.id === albumId)!
+}
+
 export function sortPhotosByDate(
   photos: Photo[],
   desc: boolean = true /* true: latest first */
