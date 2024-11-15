@@ -38,8 +38,8 @@ const socialList = [
   {
     icon: IconSvgMap.GitHub,
     website: 'GitHub',
-    user: "@realJasonzyt",
-    url: "https://github.com/realJasonzyt"
+    user: "@Jasonzyt",
+    url: "https://github.com/Jasonzyt"
   },
   {
     icon: IconSvgMap.Bilibili,
@@ -135,14 +135,14 @@ const projectList = [
   {
     owner: "Jasonzyt",
     name: "blog",
-    url: "https://github.com/realJasonzyt/blog",
+    url: "https://github.com/Jasonzyt/blog",
     lang: "Vue",
     desc: "This blog, also my first Vue project"
   },
   {
     owner: "Jasonzyt",
     name: "exif4cpp",
-    url: "https://github.com/realJasonzyt/exif4cpp",
+    url: "https://github.com/Jasonzyt/exif4cpp",
     lang: "C++",
     desc: "(WIP) Modern JPEG Exif metadata parser"
   },
@@ -171,7 +171,7 @@ const projectList = [
     <el-col class="main" :span="17" :xs="24" :sm="24">
       <div class="avatar">
         <el-avatar :size="200">
-          <img :src="$config.avatar" alt="avatar"/>
+          <img :src="$config.avatar" alt="avatar" />
         </el-avatar>
       </div>
       <h1 class="name">Jasonzyt <span class="pronoun">he/she🌈</span></h1>
