@@ -179,12 +179,14 @@ const projectList = [
         非常感谢你能来到我的家里玩—— Orz<br />
         我是Jason(aka ZYT)，{{ ageYear }}岁，来自武汉！是高中牲😢<br />
         写代码👨‍💻是爱好，初一自学C++，曾经打过几年OI，<del>也算是蒟蒻OIer吧</del><br />
-        曾经为<a href="https://minecraft.wiki/w/Bedrock_Dedicated_Server">Minecraft BDS</a>圈子奉献<del>三年青春</del><br />
-        致力于<a href="https://github.com/LiteLDev/LeviLamina">LeviLamina</a>的开发和MCBE的研究<!--不要玩基岩版！基岩不行，加瓦行-->，也是<a
-          href="https://github.com/LiteLDev">LiteLDev</a>的一份子！<br />
+        曾经为<a class="link" href="https://minecraft.wiki/w/Bedrock_Dedicated_Server">Minecraft
+          BDS</a>圈子奉献<del>三年青春</del><br />
+        致力于<a class="link"
+          href="https://github.com/LiteLDev/LeviLamina">LeviLamina</a>的开发和MCBE的研究<!--不要玩基岩版！基岩不行，加瓦行-->，也是<a
+          class="link" href="https://github.com/LiteLDev">LiteLDev</a>的一份子！<br />
         除写码之外，我也很喜欢拍照📷~ 是风光佬，偶尔拍人文<br />
         喜欢各种交通工具，尤其是飞机✈️和火车🚅！！有机会的话会拍！<br />
-        你可以在<RouterLink to="/gallery">Gallery(在建)</RouterLink>看到我的作品！谢谢你的喜欢！<br />
+        你可以在<RouterLink class="link" to="/gallery">Gallery(在建)</RouterLink>看到我的作品！谢谢你的喜欢！<br />
         最近在研究业余无线电！入了一台泉盛UV-K6，还没有呼号ww<br />
         有时候会打电动，不是很擅长FPS游戏，想和我玩的话只要有空随时可以！<br />
         喜欢看动画，<del>百合什么的最喜欢啦</del><br />
@@ -376,10 +378,6 @@ h3 {
   margin-bottom: 10px;
 }
 
-a {
-  text-decoration: none;
-}
-
 .experience-card {
   --el-card-padding: 1rem;
   width: 100%;
@@ -423,16 +421,6 @@ a {
 
 .brief {
   font-size: 18px;
-}
-
-.main a {
-  color: rgb(23, 147, 255);
-  text-decoration: none;
-  transition: 0.5s color;
-}
-
-.main a:hover {
-  color: rgb(20, 111, 190);
 }
 
 .social {

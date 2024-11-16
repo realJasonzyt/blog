@@ -104,3 +104,13 @@ code {
   color: inherit; /* 悬停时显示原色 */
   filter: blur(0); /* 悬停消除模糊效果 */
 }
+
+a.link {
+  color: #409eff;
+  text-decoration: none;
+  transition: 0.5s color;
+}
+
+a.link:hover {
+  color: #005fb1;
+}

@@ -96,10 +96,6 @@ h2 {
   font-size: 20px;
 }
 
-a {
-  text-decoration: none;
-}
-
 .title {
   width: 100%;
   height: 80px;

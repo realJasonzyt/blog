@@ -21,7 +21,7 @@ const onAnchorClick = (e: Event) => {
 </script>
 
 <template>
-  <div class="flex-container" @mouseover="anchorShow = true" @mouseleave="anchorShow = false">
+  <div class="flex-container heading-box" @mouseover="anchorShow = true" @mouseleave="anchorShow = false">
     <a class="anchor" :href="href" :style="{ opacity: anchorShow ? '1' : '0' }" @click="onAnchorClick">
       <el-icon size="18px">
         <IconAnchorLink />
@@ -40,7 +40,11 @@ const onAnchorClick = (e: Event) => {
 
 .heading {
   flex: 1;
-  margin: 0 42px;
+  margin: 0 42px 8px 42px;
+}
+
+.heading-box {
+  margin-top: 15px;
 }
 
 .anchor {
