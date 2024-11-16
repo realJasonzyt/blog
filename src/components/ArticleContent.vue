@@ -60,6 +60,15 @@ const renderHTML = (nodes: NodeListOf<ChildNode>): VNode[] => {
         }
         // Normal
         const attrs = getElementAttributes(child)
+        // Special
+        if (child.tagName == 'A') {
+          if (attrs['class']) {
+            attrs['class'] += ' link'
+          }
+          else {
+            attrs['class'] = 'link'
+          }
+        }
         if (child.children.length == 0) {
           vnodes.push(h(child.tagName, attrs, { default: () => child.innerHTML }))
           continue

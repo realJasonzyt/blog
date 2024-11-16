@@ -94,7 +94,11 @@ li p {
 
 ul,
 ol {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+code {
+  font-size: 0.85em;
 }
 </style>
 
