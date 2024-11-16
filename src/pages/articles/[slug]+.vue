@@ -73,6 +73,29 @@ const onResolve = () => {
 img {
   max-width: 100%;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+p {
+  margin-bottom: 8px;
+}
+
+li p {
+  margin-bottom: 4px;
+}
+
+ul,
+ol {
+  margin-bottom: 5px;
+}
 </style>
 
 <style scoped>

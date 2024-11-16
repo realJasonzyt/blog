@@ -79,3 +79,12 @@ export function formatDate(date: string): string {
 export function isTouchScreen(): boolean {
   return 'ontouchstart' in window || navigator.maxTouchPoints > 0
 }
+
+export function getElementAttributes(el: Element): Record<string, string> {
+  const attrs: Record<string, string> = {}
+  for (let i = 0; i < el.attributes.length; i++) {
+    const attr = el.attributes[i]
+    attrs[attr.name] = attr.value
+  }
+  return attrs
+}

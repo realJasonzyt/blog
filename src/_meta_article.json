@@ -57,6 +57,27 @@
                 "test3"
             ],
             "category": "Test"
+        },
+        {
+            "slug": "bad-win11-experience",
+            "createdAt": "2024-08-14T12:07:35.000Z",
+            "updatedAt": "2024-08-14T12:07:35.000Z",
+            "title": "一次痛苦的Win11使用体验——登录无限循环",
+            "cover": "/assets/img/bangumi-covers/yurucamp/2.jpg",
+            "author": {
+                "name": "Jasonzyt",
+                "avatar": "https://avatars.githubusercontent.com/u/66063199"
+            },
+            "content": {
+                "format": "md",
+                "url": "bad-win11-experience.md"
+            },
+            "tags": [
+                "windows",
+                "os",
+                "fix"
+            ],
+            "category": "Tech"
         }
     ],
     "categories": [
@@ -65,6 +86,12 @@
             "name": "Test",
             "description": "Test",
             "color": "#000000"
+        },
+        {
+            "id": "Tech",
+            "name": "Tech",
+            "description": "Technology articles",
+            "color": "#278fcf"
         }
     ]
 }

@@ -1,6 +1,6 @@
 <script lang="ts">
 import { getArticle } from '@/scripts/article'
-import { textToSlug } from '@/scripts/util'
+import { getElementAttributes, textToSlug } from '@/scripts/util'
 import CodeBlock from '@/components/CodeBlock.vue'
 import AnchorHeader from './AnchorHeading.vue'
 
@@ -41,32 +41,36 @@ const renderOverrides: Record<string, (el: Element) => VNode | VNode[]> = {
   H3: renderHeader
 }
 
-const renderHTML = (elements: HTMLCollection): VNode[] => {
+const renderHTML = (nodes: NodeListOf<ChildNode>): VNode[] => {
   let vnodes: VNode[] = []
-  for (let i = 0; i < elements.length; i++) {
-    const child = elements[i];
-    // Override
-    if (renderOverrides[child.tagName]) {
-      const result = renderOverrides[child.tagName](child)
-      if (Array.isArray(result)) {
-        vnodes.push(...result);
-        continue;
-      }
-      vnodes.push(result);
-      continue;
+  for (let i = 0; i < nodes.length; i++) {
+    const childNode = nodes[i];
+    switch (childNode.nodeType) {
+      case Node.ELEMENT_NODE:
+        const child = childNode as Element
+        // Override
+        if (renderOverrides[child.tagName]) {
+          const result = renderOverrides[child.tagName](child)
+          if (Array.isArray(result)) {
+            vnodes.push(...result);
+            continue;
+          }
+          vnodes.push(result);
+          continue;
+        }
+        // Normal
+        const attrs = getElementAttributes(child)
+        if (child.children.length == 0) {
+          vnodes.push(h(child.tagName, attrs, { default: () => child.innerHTML }))
+          continue
+        }
+        let inner = renderHTML(child.childNodes);
+        vnodes.push(h(child.tagName, attrs, { default: () => inner }))
+        break;
+      case Node.TEXT_NODE:
+        vnodes.push(h('span', {}, { default: () => childNode.textContent }))
+        break;
     }
-    // Normal
-    const attrs: Record<string, string> = {};
-    const attrNames = child.getAttributeNames();
-    for (let i = 0; i < attrNames.length; i++) {
-      attrs[attrNames[i]] = child.getAttribute(attrNames[i]) ?? ""
-    }
-    if (child.children.length == 0) {
-      vnodes.push(h(child.tagName, attrs, { default: () => child.innerHTML }))
-      continue
-    }
-    let inner = renderHTML(child.children);
-    vnodes.push(h(child.tagName, attrs, { default: () => inner }))
   }
   return vnodes;
 }
@@ -122,7 +126,7 @@ export default {
     const content = md.render(text)
     const parser = new DOMParser()
     const doc = parser.parseFromString(content, 'text/html')
-    const blocks: VNode[] = renderHTML(doc.body.children)
+    const blocks: VNode[] = renderHTML(doc.body.childNodes)
     return () => h('div', blocks)
   }
 }
