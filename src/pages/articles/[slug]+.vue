@@ -50,7 +50,7 @@ const onResolve = () => {
           </span>
         </div>
       </div>
-      <div class="body">
+      <div class="article-body">
         <Suspense @resolve="onResolve">
           <ArticleContent :slug="slug" />
         </Suspense>
@@ -74,31 +74,35 @@ img {
   max-width: 100%;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.article-body h1,
+.article-body h2,
+.article-body h3,
+.article-body h4,
+.article-body h5,
+.article-body h6 {
   margin-top: 20px;
   font-weight: bold;
 }
 
-p {
+.article-body p {
   margin-bottom: 8px;
 }
 
-li p {
+.article-body li p {
   margin-bottom: 4px;
 }
 
-ul,
-ol {
+.article-body ul,
+.article-body ol {
   margin-bottom: 10px;
 }
 
-code {
+.article-body code {
   font-size: 0.85em;
+}
+
+code {
+  overflow-wrap: anywhere;
 }
 </style>
 
@@ -160,7 +164,7 @@ code {
   min-width: 3em;
 }
 
-.body {
+.article-body {
   margin-top: 50px;
   padding: 0 2rem;
   font-size: 16px;
@@ -181,7 +185,7 @@ code {
     padding: 250px 20px 2rem;
   }
 
-  .body {
+  .article-body {
     padding: 0 10px;
   }
 
