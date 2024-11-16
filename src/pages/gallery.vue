@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import TheFooter from '@/components/TheFooter.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router/auto';
 
@@ -25,6 +26,7 @@ const handleChange = (v: string) => {
       <RouterView />
     </KeepAlive>
   </div>
+  <TheFooter />
 </template>
 
 <style scoped>

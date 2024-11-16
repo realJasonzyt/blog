@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import TheFooter from '@/components/TheFooter.vue';
+</script>
 <template>
   <div class="main">
     <p class="statuscode">404</p>
@@ -6,6 +8,7 @@
     <RouterLink to="/"><el-button class="back-btn">Go back to Home</el-button></RouterLink>
   </div>
   <!-- TODO: Suggest random photo in gallery -->
+  <TheFooter />
 </template>
 
 <style scoped>
@@ -17,7 +20,7 @@
 
 .statuscode {
   font-size: 10rem;
-  font-family: 'Ubuntu',serif;
+  font-family: 'Ubuntu', serif;
   color: #333;
 }
 

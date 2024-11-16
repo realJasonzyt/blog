@@ -1,26 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import axios from 'axios'
 import $config from '@/_config'
-
-const hitokoto = ref({
-  hitokoto: '合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。',
-  from: '《老子》'
-})
-
-const updateHitokoto = () => {
-  axios
-    .get('https://v1.hitokoto.cn?c=a&c=b&c=c&c=d&c=h&c=i&c=k')
-    .then((response) => {
-      hitokoto.value = response.data
-    })
-    .catch((error) => {
-      console.error(error)
-    })
-}
+import { updateHitokoto } from '@/scripts/util';
 
 // setInterval(updateHitokoto, 5 * 60 * 1000)
-updateHitokoto()
+const hitokoto = updateHitokoto()
 
 const documentWidth = document.documentElement.clientWidth
 </script>
