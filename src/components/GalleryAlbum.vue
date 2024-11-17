@@ -3,21 +3,34 @@ import { Album } from '@/scripts/gallery';
 import SquarePhoto from './SquarePhoto.vue';
 import { onMounted, ref } from 'vue';
 
-defineProps<{ album: Album }>()
+const props = defineProps<{ album: Album }>()
 
+const squareSize = (window.innerWidth < 768 ? 64 : 128)
 let right = ref(0)
+let gutter = ref(10)
+let expansionHeight = ref(squareSize)
 
-function calcAfterPhotos() {
+function calculate() {
   let albumCards = document.querySelectorAll('.album')
   if (albumCards.length == 0) {
     return
   }
   let width = albumCards[0].clientWidth
-  right.value = (window.innerWidth - width) / 2 // padding
+  right.value = (window.innerWidth - width) / 2 // window padding
+
+  let albumCardBodies = document.querySelectorAll('.el-card__body')
+  width = albumCardBodies[0].clientWidth
+  let paddingLeft = albumCardBodies[0].computedStyleMap().get('padding-left') as CSSUnitValue
+  let paddingRight = albumCardBodies[0].computedStyleMap().get('padding-right') as CSSUnitValue
+  let innerPadding = paddingLeft.value + paddingRight.value
+  let capacity = Math.floor((width - innerPadding) / (squareSize + 5))
+  gutter.value = Math.floor((width - innerPadding - capacity * squareSize) / capacity)
+  let rowCount = Math.ceil(props.album.getPhotos().length / capacity)
+  expansionHeight.value = (squareSize + 10) * rowCount - 10
 }
 
-onMounted(calcAfterPhotos)
-window.addEventListener('resize', calcAfterPhotos)
+onMounted(calculate)
+window.addEventListener('resize', calculate)
 
 let expand = ref(false)
 
@@ -43,16 +56,10 @@ let expand = ref(false)
         </span>
       </div>
     </div>
-    <div class="photos" v-show="!expand">
+    <div class="photos">
       <!-- TODO: href -->
+      <!-- TODO: load more -->
       <SquarePhoto v-for="p in album.getPhotosByDate().slice(0, 10)" :photo="p" :size="128"></SquarePhoto>
-    </div>
-    <div class="expansion" v-show="expand">
-      <el-row>
-        <el-col v-for="p in album.getPhotosByDate()" :xs="6" :sm="6" :md="4" :lg="3" :xl="3">
-          <SquarePhoto :photo="p" :size="128"></SquarePhoto>
-        </el-col>
-      </el-row>
     </div>
   </el-card>
 </template>
@@ -83,7 +90,9 @@ h1 {
 }
 
 .photos {
-  white-space: nowrap;
+  white-space: v-bind('expand ? "normal" : "nowrap"');
+  transition: all 0.5s;
+  max-height: v-bind('(expand ? expansionHeight : squareSize) + "px"');
 }
 
 .photos::after {
@@ -93,6 +102,11 @@ h1 {
   width: 100px;
   height: 128px;
   background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  display: v-bind('expand ? "none" : "inline-block"');
+}
+
+.square-photo {
+  margin-right: v-bind('gutter + "px"');
 }
 
 .info {
