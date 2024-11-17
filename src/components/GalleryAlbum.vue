@@ -1,30 +1,30 @@
 <script lang="ts" setup>
 import { Album } from '@/scripts/gallery';
 import SquarePhoto from './SquarePhoto.vue';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, useTemplateRef, type ComponentPublicInstance } from 'vue';
 
 const props = defineProps<{ album: Album }>()
 
 let squareSize = (window.innerWidth < 768 ? 64 : 128)
-let right = ref(0)
-let gutter = ref(10)
-let expansionHeight = ref(squareSize)
+const right = ref(0)
+const gutter = ref(10)
+const expansionHeight = ref(squareSize)
 let capacity = 5
 let rowCount = 1
+const albumRef = useTemplateRef<ComponentPublicInstance>('album')
 
 function calculate() {
   squareSize = (window.innerWidth < 768 ? 64 : 128)
-  let albumCards = document.querySelectorAll('.album')
-  if (albumCards.length == 0) {
+  if (!albumRef.value) {
     return
   }
-  let width = albumCards[0].clientWidth
+  const el = albumRef.value.$el
+  let width = el.clientWidth
   right.value = (window.innerWidth - width) / 2 // window padding
-
-  let albumCardBodies = document.querySelectorAll('.el-card__body')
-  width = albumCardBodies[0].clientWidth
-  let paddingLeft = albumCardBodies[0].computedStyleMap().get('padding-left') as CSSUnitValue
-  let paddingRight = albumCardBodies[0].computedStyleMap().get('padding-right') as CSSUnitValue
+  const cardBody = el.children[0]
+  width = cardBody.clientWidth
+  let paddingLeft = cardBody.computedStyleMap().get('padding-left') as CSSUnitValue
+  let paddingRight = cardBody.computedStyleMap().get('padding-right') as CSSUnitValue
   let innerPadding = paddingLeft.value + paddingRight.value
   capacity = Math.floor((width - innerPadding) / (squareSize + 5))
   gutter.value = Math.floor((width - innerPadding - capacity * squareSize) / (capacity - 1))
@@ -33,7 +33,7 @@ function calculate() {
 }
 
 function setSideMargins(marginRight: number) {
-  let thisPhotos = document.querySelectorAll(`#${props.album.id} .photos`)[0]
+  let thisPhotos = document.querySelector(`#${props.album.id} .photos`) as HTMLElement
   for (let i = 1; i <= rowCount; i++) {
     let idx = i * capacity - 1
     if (idx <= thisPhotos.children.length - 1) {
@@ -65,7 +65,7 @@ const handleExpand = () => {
 </script>
 
 <template>
-  <el-card class="album" shadow="hover" @click="handleExpand">
+  <el-card class="album" ref="album" shadow="hover" @click="handleExpand">
     <div class="header">
       <h1>{{ album.name }}</h1>
       <span class="description hidden-sm-and-down">{{ album.description }}</span>

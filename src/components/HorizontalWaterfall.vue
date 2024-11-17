@@ -1,17 +1,18 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
-
+import { onMounted, useTemplateRef, type ComponentPublicInstance } from 'vue';
 
 const props = defineProps<{ height: number }>()
 
+const waterfallRef = useTemplateRef('waterfall')
+
 function doWaterfallize() {
-  let mainDiv = document.querySelector('div.wf-main')
-  if (!mainDiv) {
-    console.log("failed to find main div")
+  if (!waterfallRef.value) {
+    console.error("waterfallRef not found")
   } else {
-    let gutter = 10
-    let width = mainDiv.clientWidth
-    let children = mainDiv.children
+    const el = waterfallRef.value
+    const gutter = 10
+    const width = el.clientWidth
+    const children = el.children
 
     let curLineWidth = 0
     let curLine = []
@@ -58,7 +59,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="wf-main">
+  <div class="wf-main" ref="waterfall">
     <slot></slot>
   </div>
 </template>

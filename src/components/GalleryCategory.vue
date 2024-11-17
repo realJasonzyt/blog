@@ -18,6 +18,7 @@ function calcAfterPhotos() {
 onMounted(calcAfterPhotos)
 window.addEventListener('resize', calcAfterPhotos)
 
+// TODO: REWRTIE
 </script>
 
 <template>

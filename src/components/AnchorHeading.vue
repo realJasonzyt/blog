@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, useTemplateRef } from 'vue';
 
 const props = defineProps<{
   id: string
@@ -8,12 +8,13 @@ const props = defineProps<{
 }>()
 
 const href = `#${props.id}`
+const headingRef = useTemplateRef<HTMLHeadingElement>("heading")
 
 let anchorShow = ref(false)
 
 const onAnchorClick = (e: Event) => {
   e.preventDefault()
-  const target = document.querySelector(href)
+  const target = headingRef.value
   if (target) {
     target.scrollIntoView({ behavior: 'smooth' })
   }
@@ -27,7 +28,7 @@ const onAnchorClick = (e: Event) => {
         <IconAnchorLink />
       </el-icon>
     </a>
-    <component class="heading" :is="tag" :id="id">
+    <component class="heading" :is="tag" :id="id" ref="heading">
       {{ heading }}
     </component>
   </div>

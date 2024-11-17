@@ -5,7 +5,34 @@ import { randInt } from '@/scripts/util'
 
 const birthTime = new Date(2007, 10, 18, 23, 4);
 
-const ageYear = (new Date().getFullYear() - birthTime.getFullYear())
+const now = new Date();
+
+const age = (() => {
+  let age = {
+    year: now.getFullYear() - birthTime.getFullYear(),
+    month: now.getMonth() - birthTime.getMonth(),
+    day: now.getDate() - birthTime.getDate(),
+    hour: now.getHours() - birthTime.getHours(),
+    minute: now.getMinutes() - birthTime.getMinutes()
+  }
+  if (age.hour < 0) {
+    age.hour = 24 + age.hour
+    age.day -= 1
+  }
+  if (age.minute < 0) {
+    age.minute = 60 + age.minute
+    age.hour -= 1
+  }
+  if (age.day < 0) {
+    age.day = 30 + age.day
+    age.month -= 1
+  }
+  if (age.month < 0) {
+    age.month = 12 + age.month
+    age.year -= 1
+  }
+  return age
+})()
 
 const gameList = [
   {
@@ -177,7 +204,7 @@ const projectList = [
       <h1 class="name">Jasonzyt <span class="pronoun">he/she🌈</span></h1>
       <div class="brief">
         非常感谢你能来到我的家里玩—— Orz<br />
-        我是Jason(aka ZYT)，{{ ageYear }}岁，来自武汉！是高中牲😢<br />
+        我是Jason(aka ZYT)，{{ age.year }}岁，来自武汉！是高中牲😢<br />
         写代码👨‍💻是爱好，初一自学C++，曾经打过几年OI，<del>也算是蒟蒻OIer吧</del><br />
         曾经为<a class="link" href="https://minecraft.wiki/w/Bedrock_Dedicated_Server">Minecraft
           BDS</a>圈子奉献<del>三年青春</del><br />

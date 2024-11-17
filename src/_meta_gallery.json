@@ -319,7 +319,7 @@
             },
             "createdAt": "2024-06-01T00:00:00.000Z",
             "description": "Test p1",
-            "album": "Test",
+            "album": "test",
             "categories": [],
             "author": "Jasonzyt",
             "details": {
@@ -345,6 +345,12 @@
             "id": "wuhan2024",
             "name": "Wuhan·2024",
             "description": "The Wuhan in 2024",
+            "cover": null
+        },
+        {
+            "id": "test",
+            "name": "Test",
+            "description": "For test only",
             "cover": null
         }
     ],
