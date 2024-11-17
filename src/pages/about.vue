@@ -134,8 +134,8 @@ const projectList = [
   },
   {
     owner: "Jasonzyt",
-    name: "blog",
-    url: "https://github.com/Jasonzyt/blog",
+    name: "campu",
+    url: "https://github.com/Jasonzyt/campu",
     lang: "Vue",
     desc: "This blog, also my first Vue project"
   },
@@ -186,14 +186,15 @@ const projectList = [
           class="link" href="https://github.com/LiteLDev">LiteLDev</a>的一份子！<br />
         除写码之外，我也很喜欢拍照📷~ 是风光佬，偶尔拍人文<br />
         喜欢各种交通工具，尤其是飞机✈️和火车🚅！！有机会的话会拍！<br />
-        你可以在<RouterLink class="link" to="/gallery">Gallery(在建)</RouterLink>看到我的作品！谢谢你的喜欢！<br />
+        你可以在<RouterLink class="link" to="/gallery">Gallery</RouterLink>看到我的作品！谢谢你的喜欢！<br />
         最近在研究业余无线电！入了一台泉盛UV-K6，还没有呼号ww<br />
+        摇曳露营△大好き，正在筹备户外装备，也许2024/25年冬能实装摇曳露营(?)<br />
         有时候会打电动，不是很擅长FPS游戏，想和我玩的话只要有空随时可以！<br />
         喜欢看动画，<del>百合什么的最喜欢啦</del><br />
         可以用中文/English与我交流，日语还在自学ing...<br />
         我对所有人都很友好！不会主动与别人产生冲突<br />
         <br />
-        <span class="spoiler">🌈🏳️‍⚧️ LGBT+友好 ⚠️ 不想讨论政治，反感魔怔人/鉴证人，反对药物滥用和自伤！！</span><br />
+        <span class="spoiler">🌈🏳️‍⚧️ LGBT+友好 ⚠️ 不想讨论政治，反感魔怔人，反对药物滥用和自伤！！</span><br />
       </div>
       <br />
       <div class="languages">
