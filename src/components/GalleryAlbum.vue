@@ -5,12 +5,15 @@ import { onMounted, ref } from 'vue';
 
 const props = defineProps<{ album: Album }>()
 
-const squareSize = (window.innerWidth < 768 ? 64 : 128)
+let squareSize = (window.innerWidth < 768 ? 64 : 128)
 let right = ref(0)
 let gutter = ref(10)
 let expansionHeight = ref(squareSize)
+let capacity = 5
+let rowCount = 1
 
 function calculate() {
+  squareSize = (window.innerWidth < 768 ? 64 : 128)
   let albumCards = document.querySelectorAll('.album')
   if (albumCards.length == 0) {
     return
@@ -23,10 +26,21 @@ function calculate() {
   let paddingLeft = albumCardBodies[0].computedStyleMap().get('padding-left') as CSSUnitValue
   let paddingRight = albumCardBodies[0].computedStyleMap().get('padding-right') as CSSUnitValue
   let innerPadding = paddingLeft.value + paddingRight.value
-  let capacity = Math.floor((width - innerPadding) / (squareSize + 5))
-  gutter.value = Math.floor((width - innerPadding - capacity * squareSize) / capacity)
-  let rowCount = Math.ceil(props.album.getPhotos().length / capacity)
+  capacity = Math.floor((width - innerPadding) / (squareSize + 5))
+  gutter.value = Math.floor((width - innerPadding - capacity * squareSize) / (capacity - 1))
+  rowCount = Math.ceil(props.album.getPhotos().length / capacity)
   expansionHeight.value = (squareSize + 10) * rowCount - 10
+}
+
+function setSideMargins(marginRight: number) {
+  let thisPhotos = document.querySelectorAll(`#${props.album.id} .photos`)[0]
+  for (let i = 1; i <= rowCount; i++) {
+    let idx = i * capacity - 1
+    if (idx <= thisPhotos.children.length - 1) {
+      let child = thisPhotos.children[idx] as HTMLElement
+      child.style.marginRight = `${marginRight}px`
+    }
+  }
 }
 
 onMounted(calculate)
@@ -38,13 +52,16 @@ let wrap = ref(false)
 const handleExpand = () => {
   expand.value = !expand.value
   if (wrap.value) {
-    setTimeout(() => wrap.value = false, 500)
+    setTimeout(() => {
+      setSideMargins(gutter.value)
+      wrap.value = false
+    }, 500)
   }
   else {
+    setSideMargins(0)
     wrap.value = true
   }
 }
-
 </script>
 
 <template>
