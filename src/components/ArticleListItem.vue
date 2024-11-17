@@ -38,7 +38,7 @@ props.article.fetchStringifiedViews().then(r => displayViews.value = r)
             <el-icon>
               <IconEye />
             </el-icon>
-            <span v-html="displayViews.value"></span>
+            <span v-html="displayViews"></span>
           </span>
         </div>
       </div>
