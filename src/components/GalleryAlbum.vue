@@ -33,11 +33,22 @@ onMounted(calculate)
 window.addEventListener('resize', calculate)
 
 let expand = ref(false)
+let wrap = ref(false)
+
+const handleExpand = () => {
+  expand.value = !expand.value
+  if (wrap.value) {
+    setTimeout(() => wrap.value = false, 500)
+  }
+  else {
+    wrap.value = true
+  }
+}
 
 </script>
 
 <template>
-  <el-card class="album" shadow="hover" @click="expand = !expand">
+  <el-card class="album" shadow="hover" @click="handleExpand">
     <div class="header">
       <h1>{{ album.name }}</h1>
       <span class="description hidden-sm-and-down">{{ album.description }}</span>
@@ -90,7 +101,7 @@ h1 {
 }
 
 .photos {
-  white-space: v-bind('expand ? "normal" : "nowrap"');
+  white-space: v-bind('wrap ? "normal" : "nowrap"');
   transition: all 0.5s;
   max-height: v-bind('(expand ? expansionHeight : squareSize) + "px"');
 }
