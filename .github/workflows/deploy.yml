@@ -7,13 +7,16 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout  ️ 
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Install and Build
         run: |
           npm install
           npm run build
+
+      - name: Duplicate index.html
+        run: cp dist/index.html dist/404.html
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.3.3
