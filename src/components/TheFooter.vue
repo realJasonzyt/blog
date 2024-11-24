@@ -22,8 +22,15 @@ const documentWidth = document.documentElement.clientWidth
       <br />
       <br />
       <p v-html="$config.footer"></p>
-      <p class="power-vue">
+      <p class="powered-by">
         Powered by
+        <a href="https://github.com/Jasonzyt/campu" class="campu">
+          <el-icon size="0.8em">
+            <IconCampu />
+          </el-icon>
+          Campu
+        </a>
+        with
         <a href="https://vuejs.org/" class="vue">
           <el-icon size="0.8em">
             <IconVue />
@@ -54,13 +61,21 @@ const documentWidth = document.documentElement.clientWidth
   display: inline-block;
 }
 
-.power-vue a {
-  color: #42b883;
-  text-decoration: none;
+.powered-by a.campu {
+  color: #5e7296;
   transition: color 0.4s ease-in-out;
 }
 
-.power-vue a:hover {
+.powered-by a.campu:hover {
+  color: #43526d;
+}
+
+.powered-by a.vue {
+  color: #42b883;
+  transition: color 0.4s ease-in-out;
+}
+
+.powered-by a.vue:hover {
   color: #35495e;
 }
 </style>
