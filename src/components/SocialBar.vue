@@ -8,7 +8,7 @@ const socialList = [
     icon: IconSvgMap.GitHub,
     website: 'GitHub',
     user: "@realJasonzyt",
-    url: "https://github.com/realJasonzyt"
+    url: "https://github.com/Jasonzyt"
   },
   {
     icon: IconSvgMap.Bilibili,
