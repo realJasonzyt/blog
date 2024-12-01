@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import $config from '@/_config'
-import SocialBar from './SocialBar.vue';
+import $config from '~/utils/_config'
 
 const backgrounds = $config.Index.backgrounds
 
@@ -33,14 +31,12 @@ const handleClickDown = () => {
       <h1>{{ $config.Index.welcome }}</h1>
       <div class="quote">
         <el-icon>
-          <IconQuoteLeft />
+          <MyIcon name="QuoteLeft" />
         </el-icon>
         <span>{{ $config.Index.quote }}</span>
         <!-- <span>個性捨てたら，死んでるのと一緒だよ</span> -->
-        <el-icon>
-          <IconQuoteRight />
-        </el-icon>
-        <SocialBar :size="24" />
+        <MyIcon name="QuoteRight" />
+        <NavSocialBar :size="24" />
       </div>
     </div>
     <div class="hello hidden-sm-and-up">
@@ -49,7 +45,7 @@ const handleClickDown = () => {
   </div>
   <div class="chevron-down" @click="handleClickDown">
     <el-icon>
-      <IconChevronDown />
+      <MyIcon name="ChevronDown" />
     </el-icon>
   </div>
 </template>

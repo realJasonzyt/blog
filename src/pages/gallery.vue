@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import TheFooter from '@/components/TheFooter.vue';
-import { ref } from 'vue';
-import { useRouter } from 'vue-router/auto';
-
 let router = useRouter()
 let viewMode = ref('')
 

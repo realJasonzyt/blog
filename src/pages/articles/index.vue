@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import TheFooter from '@/components/TheFooter.vue';
+import TheFooter from '~/components/my/Footer.vue';
 import ArticleList from '@/components/ArticleList.vue';
-import { getArticles, searchArticles } from '@/scripts/article';
+import { getArticles, searchArticles } from '@/utils/article';
 import { ref } from 'vue';
-import $config from '@/_config'
-import { parseKeywords } from '@/scripts/util'
+import $config from '@/utils/_config'
+import { parseKeywords } from '~/utils'
 
 
 const articles = getArticles();
@@ -54,14 +54,14 @@ let searchBarFocused = ref(false)
         <template #prepend>
           <el-button @click="onSearch">
             <el-icon>
-              <IconSearch />
+              <MyIcon name="Search" />
             </el-icon>
           </el-button>
         </template>
         <!-- TODO: filter
         <template #append>
           <el-icon>
-            <IconFilter />
+            <MyIcon name="Filter" />
           </el-icon>
         </template> -->
       </el-input>

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import GalleryCategory from '@/components/GalleryCategory.vue';
-import { getCategories } from '@/scripts/gallery';
+import { getCategories } from '@/utils/gallery';
 </script>
 
 <template>

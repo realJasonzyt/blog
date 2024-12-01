@@ -27,10 +27,10 @@ const onMouseLeave = () => {
     <slot></slot>
     <el-button v-show="showButton || showCheck" class="copy" type="info" @click="onClick" @mouseleave="onMouseLeave">
       <el-icon size="1.2rem" v-show="!showCheck">
-        <IconCopy />
+        <MyIcon name="Copy" />
       </el-icon>
       <el-icon size="1.2rem" color="#1a7f37" v-show="showCheck">
-        <IconLightCheck />
+        <MyIcon name="LightCheck" />
       </el-icon>
     </el-button>
     <span v-show="!showButton" class="lang">{{ language }}</span>

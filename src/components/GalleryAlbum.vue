@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Album } from '@/scripts/gallery';
+import { Album } from '@/utils/gallery';
 import SquarePhoto from './SquarePhoto.vue';
 import { onMounted, ref, useTemplateRef, type ComponentPublicInstance } from 'vue';
 
@@ -72,13 +72,13 @@ const handleExpand = () => {
       <div class="info">
         <span class="info-count">
           <el-icon :size="13">
-            <IconImage />
+            <MyIcon name="Image" />
           </el-icon>
           {{ album.getPhotos().length }} <span class="hidden-sm-and-down">photos</span>
         </span>
         <span class="time-period hidden-sm-and-down">
           <el-icon :size="13">
-            <IconClock />
+            <MyIcon name="Clock" />
           </el-icon>
           {{ album.getTimePeriod() }}
         </span>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Photo } from '@/scripts/gallery';
+import { Photo } from '@/utils/gallery';
 
 defineProps<{ size: number, photo: Photo }>()
 

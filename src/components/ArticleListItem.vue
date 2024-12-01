@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { Article } from '@/scripts/article'
-import $config from '@/_config'
+import { Article } from '@/utils/article'
+import $config from '@/utils/_config'
 import { ref } from 'vue'
 
 const props = defineProps<{ article: Article, coverPos: 'left' | 'right' }>()
@@ -23,20 +23,20 @@ props.article.fetchStringifiedViews().then(r => displayViews.value = r)
         <div class="info" dir="ltr" :style="{ 'text-align': coverPos }">
           <span class="date">
             <el-icon>
-              <IconClock />
+              <MyIcon name="Clock" />
             </el-icon>
             <time :datetime="article?.createdAt">{{ new Date(article?.createdAt ?? '').toLocaleDateString()
               }}</time>
           </span>
           <span class="category">
             <el-icon>
-              <IconFolder />
+              <MyIcon name="Folder" />
             </el-icon>
             <span>{{ article?.category }}</span>
           </span>
           <span class="views" v-if="$config.api.articles.stats.enable">
             <el-icon>
-              <IconEye />
+              <MyIcon name="Eye" />
             </el-icon>
             <span v-html="displayViews"></span>
           </span>

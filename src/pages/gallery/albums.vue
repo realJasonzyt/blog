@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import GalleryAlbum from '@/components/GalleryAlbum.vue';
-import { getAlbums } from '@/scripts/gallery';
+import { getAlbums } from '@/utils/gallery';
 </script>
 
 <template>

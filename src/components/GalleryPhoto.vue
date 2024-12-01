@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Photo } from '@/scripts/gallery';
+import type { Photo } from '@/utils/gallery';
 import { ref } from 'vue';
 
 defineProps<{ photo: Photo }>()
@@ -16,7 +16,7 @@ let showInfo = ref(false)
       {{ photo.description }}
       <!-- <span class="album">
         <el-icon>
-          <IconImage />
+          <MyIcon name="Image" />
         </el-icon>
         {{ photo.album }}
       </span> -->

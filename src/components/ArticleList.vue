@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ArticleListItem from '@/components/ArticleListItem.vue'
-import type { Article } from '@/scripts/article';
+import type { Article } from '@/utils/article';
 
 const props = defineProps<{ articles: Article[], columns: number }>()
 

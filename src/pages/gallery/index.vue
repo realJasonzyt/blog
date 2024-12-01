@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import GalleryPhoto from '@/components/GalleryPhoto.vue';
 import HorizontalWaterfall from '@/components/HorizontalWaterfall.vue';
-import { getPhotos, sortPhotosByDate } from '@/scripts/gallery';
+import { getPhotos, sortPhotosByDate } from '@/utils/gallery';
 
 </script>
 

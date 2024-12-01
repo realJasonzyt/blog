@@ -1,29 +1,5 @@
 <script setup lang="ts">
-import TheWelcome from '@/components/TheWelcome.vue'
-import TheFooter from '@/components/TheFooter.vue'
-import ArticleList from '@/components/ArticleList.vue';
-import { getArticle, getArticles, sortArticlesByTime } from '@/scripts/article';
-import { isTouchScreen } from '@/scripts/util';
-import { ref } from 'vue';
-
-const pinnedArticleNames = [
-  'hello-world',
-  'test2',
-  'hello-world'
-]
-
-const pinnedArticles = pinnedArticleNames.map(name => {
-  let a = getArticle(name)
-  if (!a) {
-    throw new Error(`article ${name} not found`)
-  }
-  if (isTouchScreen()) {
-    return { ...a, show: ref(true) }
-  }
-  return { ...a, show: ref(false) }
-})
-
-const recentArticles = sortArticlesByTime(getArticles()).slice(0, 10)
+import { isTouchScreen } from '~/utils';
 
 const handleMouseEnter = (a: any) => {
   if (isTouchScreen()) {
@@ -43,7 +19,7 @@ const handleMouseLeave = (a: any) => {
 <template>
   <TheWelcome />
   <div class="main">
-    <section class="pinned">
+    <!-- <section class="pinned">
       <h2>
         <el-icon :size="20">
           <IconAnchor />
@@ -73,9 +49,8 @@ const handleMouseLeave = (a: any) => {
         Recent
       </h2>
       <ArticleList :articles="recentArticles" :columns="2" />
-    </section>
+    </section> -->
   </div>
-  <TheFooter />
 </template>
 
 <style scoped>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Category } from '@/scripts/gallery';
+import { Category } from '@/utils/gallery';
 import SquarePhoto from './SquarePhoto.vue';
 import { onMounted, ref } from 'vue';
 
@@ -29,7 +29,7 @@ window.addEventListener('resize', calcAfterPhotos)
       <div class="info">
         <span class="info-count">
           <el-icon :size="13">
-            <IconImage />
+            <MyIcon name="Image" />
           </el-icon>
           {{ category.getPhotos().length }} <span class="hidden-md-and-down">photos</span>
         </span>

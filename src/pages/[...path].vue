@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TheFooter from '@/components/TheFooter.vue';
+import TheFooter from '~/components/my/Footer.vue';
 </script>
 <template>
   <div class="main">

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref, useTemplateRef } from 'vue';
-
 const props = defineProps<{
   id: string
   tag: string
@@ -25,7 +23,7 @@ const onAnchorClick = (e: Event) => {
   <div class="flex-container heading-box" @mouseover="anchorShow = true" @mouseleave="anchorShow = false">
     <a class="anchor" :href="href" :style="{ opacity: anchorShow ? '1' : '0' }" @click="onAnchorClick">
       <el-icon size="18px">
-        <IconAnchorLink />
+        <MyIcon name="AnchorLink" />
       </el-icon>
     </a>
     <component class="heading" :is="tag" :id="id" ref="heading">
