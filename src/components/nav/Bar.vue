@@ -22,23 +22,19 @@ import $config from '@/utils/_config'
 const router = useRouter()
 
 const items = [
-  { index: 'articles', text: 'Articles', icon: 'Feather' },
+  { index: 'blog', text: 'Blog', icon: 'Feather' },
   { index: 'gallery', text: 'Gallery', icon: 'Image' },
   { index: 'about', text: 'About', icon: 'User' }
 ]
 
 const barPinned = ref(false)
 
-const itemShow = ref(barPinned)
+const itemShow = ref(barPinned.value)
 function handleMouseOver() {
-  if (!barPinned) {
-    itemShow.value = true
-  }
+  itemShow.value = true
 }
 const handleMouseLeave = () => {
-  if (!barPinned) {
-    itemShow.value = false
-  }
+  itemShow.value = false
 }
 
 
@@ -79,7 +75,7 @@ const barActionList: NavBarActionList = {
     whenDownTo: document.documentElement.clientHeight * 0.3,
     action: NavBarAction.Pin
   },
-  '/articles/:slug+': {
+  '/blog/:slug': {
     whenDownTo: document.documentElement.clientHeight * 0.3,
     action: NavBarAction.Unpin
   }
@@ -110,8 +106,8 @@ const handleNavBarSelect = (index: string) => {
     case 'logo':
       router.push('/')
       break
-    case 'articles':
-      router.push('/articles')
+    case 'blog':
+      router.push('/blog')
       break
     case 'gallery':
       let viewModeRecord = localStorage.getItem('gallery_viewMode') ?? ''
@@ -126,6 +122,8 @@ const handleNavBarSelect = (index: string) => {
       break
   }
 }
+
+console.log(router.currentRoute.value)
 
 router.beforeEach((to, _from, next) => {
   refreshPin(to.matched)

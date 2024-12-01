@@ -327,7 +327,7 @@ const projectList = [
     name: "campu",
     url: "https://github.com/Jasonzyt/campu",
     lang: "Vue",
-    desc: "This blog, also my first Vue project"
+    desc: "This blog, also my first Nuxt project"
   },
   {
     owner: "Jasonzyt",

@@ -29,12 +29,11 @@ const documentWidth = document.documentElement.clientWidth
       <p class="powered-by">
         Powered by
         <a href="https://github.com/Jasonzyt/campu" class="campu">
-          <MyIcon name="Campu" size="0.8em" />
-          Campu
+          <Icon name="my:campu-logo" size="0.8em" />
         </a>
         with
-        <a href="https://vuejs.org/" class="vue">
-          <MyIcon name="Vue" size="0.8em" />ue.js
+        <a href="https://vuejs.org/" class="nuxt">
+          <Icon name="logos:nuxt" size="0.8em" />
         </a>
       </p>
     </div>
@@ -44,7 +43,7 @@ const documentWidth = document.documentElement.clientWidth
 <style scoped>
 .footer {
   height: 12rem;
-  color: #666;
+  color: #444;
   text-align: center;
   padding: 50px;
 }
@@ -56,26 +55,7 @@ const documentWidth = document.documentElement.clientWidth
 
 #hitokoto {
   font-size: 16px;
-  color: #666;
   width: fit-content;
   display: inline-block;
-}
-
-.powered-by a.campu {
-  color: #5e7296;
-  transition: color 0.4s ease-in-out;
-}
-
-.powered-by a.campu:hover {
-  color: #43526d;
-}
-
-.powered-by a.vue {
-  color: #42b883;
-  transition: color 0.4s ease-in-out;
-}
-
-.powered-by a.vue:hover {
-  color: #35495e;
 }
 </style>

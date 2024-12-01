@@ -1,68 +1,46 @@
 <script setup lang="ts">
 import $config from '@/utils/_config'
-import { getArticle, getCategory } from '@/utils/article'
-import ArticleContent from '@/components/ArticleContent.vue'
-import TheFooter from '~/components/my/Footer.vue'
-import { ref } from 'vue'
-import { useRoute } from 'vue-router'
 
-const route = useRoute()
-if (!route.params.slug || !route.params.slug[0]) {
-  console.error('Invalid slug')
-}
-const slug = route.params.slug[0]
-const article = getArticle(slug)
-const category = getCategory(article?.category)
-
-const displayViews = ref('-')
-
-const show = ref(false)
-const onResolve = () => {
-  show.value = true
-}
 </script>
 
 <template>
-  <div v-show="show">
-    <div class="cover" :style="{ backgroundImage: `url(${article?.cover})` }"></div>
+  <ContentDoc v-slot="{ doc }">
+    <div class="cover" :style="{ backgroundImage: `url(${doc?.cover})` }"></div>
     <div class="main">
       <div class="header">
-        <h1>{{ article?.title }}</h1>
+        <h1>{{ doc.title }}</h1>
         <div class="info">
           <span class="date">
             <el-icon>
               <MyIcon name="Clock" />
             </el-icon>
-            <time :datetime="article?.createdAt">{{ new Date(article?.createdAt ?? '').toLocaleDateString() }}</time>
+            <time :datetime="doc?.created">{{ new Date(doc?.created ?? '').toLocaleDateString() }}</time>
           </span>
           <span class="category">
             <!-- TODO: link to category -->
             <el-icon>
               <MyIcon name="Folder" />
             </el-icon>
-            <span>{{ article?.category }}</span>
+            <span>{{ doc?.category }}</span>
           </span>
           <span class="views" v-if="$config.api.articles.stats.enable">
             <el-icon>
               <MyIcon name="Eye" />
             </el-icon>
-            <span v-html="displayViews"></span>
+            <span v-html="123"></span>
           </span>
         </div>
       </div>
       <div class="article-body">
-        <Suspense @resolve="onResolve">
-          <ArticleContent :slug="slug" />
-        </Suspense>
+        <ContentRenderer :value="doc" />
         <div class="note">
-          <p v-if="article?.updatedAt != article?.createdAt">
-            Updated at {{ new Date(article?.updatedAt ?? '').toLocaleDateString() }}
+          <p v-if="doc?.updated != doc?.created">
+            Updated at {{ new Date(doc?.updatedAt ?? '').toLocaleDateString() }}
           </p>
         </div>
       </div>
     </div>
-    <TheFooter />
-  </div>
+  </ContentDoc>
 </template>
 
 <style>
@@ -81,6 +59,14 @@ img {
 .article-body h5,
 .article-body h6 {
   margin-top: 20px;
+}
+
+.article-body h1 a,
+.article-body h2 a,
+.article-body h3 a,
+.article-body h4 a,
+.article-body h5 a,
+.article-body h6 a {
   font-weight: bold;
 }
 
@@ -99,6 +85,20 @@ img {
 
 .article-body code {
   font-size: 0.85em;
+}
+
+.article-body a {
+  color: #303133
+}
+
+.article-body p a {
+  color: #409eff;
+  text-decoration: none;
+  transition: 0.5s color;
+}
+
+.article-body p a:hover {
+  color: #005fb1;
 }
 
 code {

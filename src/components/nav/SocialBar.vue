@@ -10,9 +10,11 @@
 <script setup lang="ts">
 defineProps<{ size: number }>();
 
+const route = useRoute()
+
 const socialList = [
   {
-    icon: IconSvgMap.GitHub,
+    icon: route.path == "/" ? IconSvgMap.GitHubWhite : IconSvgMap.GitHub,
     website: 'GitHub',
     user: "@Jasonzyt",
     url: "https://github.com/Jasonzyt"
