@@ -4,13 +4,12 @@ const Config = {
   footer: {
     copyright: `&copy;Jasonzyt&nbsp;&nbsp;${new Date().getFullYear()}`,
   },
-  articlesBase: "/_articles/",
   apiBase: "/api",
   api: {
-    articles: {
+    blog: {
       stats: {
         enable: false,
-        endpoint: "/articles/stats",
+        endpoint: "/blog/stats",
       },
     },
   },

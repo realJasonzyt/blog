@@ -1,4 +1,5 @@
 ---
+slug: bad-win11-experience
 title: 一次痛苦的Win11使用体验——登录无限循环
 description: Windows 11 登录微软账户后无法进入系统，通过修改注册表删除与微软账户相关项，成功恢复
 cover: /assets/img/bangumi-covers/yurucamp/2.jpg

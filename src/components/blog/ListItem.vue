@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-import { Article } from '@/utils/article'
-import $config from '@/utils/_config'
-import { ref } from 'vue'
+import $config from '@/utils/_config';
+import type { ParsedContent } from '@nuxt/content';
 
-const props = defineProps<{ article: Article, coverPos: 'left' | 'right' }>()
+defineProps<{ blog: ParsedContent, coverPos: 'left' | 'right' }>()
 
 const displayViews = ref('-')
-props.article.fetchStringifiedViews().then(r => displayViews.value = r)
+// props.blog.fetchStringifiedViews().then(r => displayViews.value = r)
 
 </script>
 
@@ -14,30 +13,25 @@ props.article.fetchStringifiedViews().then(r => displayViews.value = r)
   <el-card shadow="hover">
     <el-row :dir="coverPos == 'right' ? 'rtl' : 'ltr'">
       <!-- TODO: Lazy load img-->
-      <img class="cover" :src="article.cover" />
-      <div class="article">
-        <div class="title">
-          <h1>{{ article.title }}</h1>
+      <img class="cover" :src="blog.cover" />
+      <div class="blog" :style="{ 'text-align': coverPos }">
+        <div class=" title">
+          <h1 dir="ltr">{{ blog.title }}</h1>
         </div>
         <!-- TODO: Show brief-->
-        <div class="info" dir="ltr" :style="{ 'text-align': coverPos }">
+        <div class="info" dir="ltr">
           <span class="date">
-            <el-icon>
-              <MyIcon name="Clock" />
-            </el-icon>
-            <time :datetime="article?.createdAt">{{ new Date(article?.createdAt ?? '').toLocaleDateString()
-              }}</time>
+            <Icon name="ic:sharp-access-time-filled" />
+            <time :datetime="blog?.created">
+              {{ new Date(blog?.created ?? '').toLocaleDateString() }}
+            </time>
           </span>
           <span class="category">
-            <el-icon>
-              <MyIcon name="Folder" />
-            </el-icon>
-            <span>{{ article?.category }}</span>
+            <Icon name="ic:round-folder" />
+            <span>{{ blog?.category }}</span>
           </span>
-          <span class="views" v-if="$config.api.articles.stats.enable">
-            <el-icon>
-              <MyIcon name="Eye" />
-            </el-icon>
+          <span class="views" v-if="$config.api.blog.stats.enable">
+            <Icon name="ic:round-local-fire-department" />
             <span v-html="displayViews"></span>
           </span>
         </div>
@@ -59,7 +53,7 @@ props.article.fetchStringifiedViews().then(r => displayViews.value = r)
   overflow: hidden;
 }
 
-.article {
+.blog {
   width: 60%;
 }
 
@@ -74,6 +68,7 @@ props.article.fetchStringifiedViews().then(r => displayViews.value = r)
   padding: 6px 25px;
   color: #555;
   font-size: 18px;
+  ;
 }
 
 .info span,
@@ -81,12 +76,12 @@ props.article.fetchStringifiedViews().then(r => displayViews.value = r)
   display: inline-block;
 }
 
-.info .el-icon {
-  vertical-align: middle;
+.info .iconify {
+  vertical-align: text-top;
 }
 
-.info .el-icon+time,
-.info .el-icon+span {
+.info .iconify+time,
+.info .iconify+span {
   margin-left: 4px;
 }
 

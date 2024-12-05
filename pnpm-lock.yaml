@@ -39,6 +39,9 @@ importers:
         specifier: latest
         version: 4.5.0(vue@3.5.13(typescript@5.7.2))
     devDependencies:
+      '@iconify-json/ic':
+        specifier: ^1.2.1
+        version: 1.2.1
       '@iconify-json/logos':
         specifier: ^1.2.3
         version: 1.2.3
@@ -513,6 +516,9 @@ packages:
 
   '@floating-ui/utils@0.2.8':
     resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
+
+  '@iconify-json/ic@1.2.1':
+    resolution: {integrity: sha512-UjL/bjJP/T5EV881+hTzcfTKVo0KEUjhnMiJcLtPzNgPtU2KZZmRx8BSKKR61H4CN/5FTEbyawGyG0aEt3SwGQ==}
 
   '@iconify-json/logos@1.2.3':
     resolution: {integrity: sha512-JLHS5hgZP1b55EONAWNeqBUuriRfRNKWXK4cqYx0PpVaJfIIMiiMxFfvoQiX/bkE9XgkLhcKmDUqL3LXPdXPwQ==}
@@ -4257,6 +4263,10 @@ snapshots:
       '@floating-ui/utils': 0.2.8
 
   '@floating-ui/utils@0.2.8': {}
+
+  '@iconify-json/ic@1.2.1':
+    dependencies:
+      '@iconify/types': 2.0.0
 
   '@iconify-json/logos@1.2.3':
     dependencies:

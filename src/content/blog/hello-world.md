@@ -1,3 +1,17 @@
+---
+slug: hello-world
+title: Hello, World!
+description: 你好，世界！
+cover: /assets/img/bangumi-covers/yurucamp/3.jpg
+author:
+  name: Jasonzyt
+  avatar: /assets/img/avatar.jpg
+tags: [test, hello]
+category: Test
+created: 2024-06-01T12:00:00.000Z
+updated: 2024-08-01T12:00:00.000Z
+---
+
 # Hello World
 
 ## h2

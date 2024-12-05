@@ -11,22 +11,16 @@ import $config from '@/utils/_config'
         <h1>{{ doc.title }}</h1>
         <div class="info">
           <span class="date">
-            <el-icon>
-              <MyIcon name="Clock" />
-            </el-icon>
+            <Icon name="ic:sharp-access-time-filled" />
             <time :datetime="doc?.created">{{ new Date(doc?.created ?? '').toLocaleDateString() }}</time>
           </span>
           <span class="category">
             <!-- TODO: link to category -->
-            <el-icon>
-              <MyIcon name="Folder" />
-            </el-icon>
+            <Icon name="ic:round-folder" />
             <span>{{ doc?.category }}</span>
           </span>
-          <span class="views" v-if="$config.api.articles.stats.enable">
-            <el-icon>
-              <MyIcon name="Eye" />
-            </el-icon>
+          <span class="views" v-if="$config.api.blog.stats.enable">
+            <Icon name="ic:round-local-fire-department" />
             <span v-html="123"></span>
           </span>
         </div>
@@ -35,7 +29,7 @@ import $config from '@/utils/_config'
         <ContentRenderer :value="doc" />
         <div class="note">
           <p v-if="doc?.updated != doc?.created">
-            Updated at {{ new Date(doc?.updatedAt ?? '').toLocaleDateString() }}
+            Updated at {{ new Date(doc?.updated ?? '').toLocaleDateString() }}
           </p>
         </div>
       </div>
@@ -52,13 +46,15 @@ img {
   max-width: 100%;
 }
 
-.article-body h1,
-.article-body h2,
-.article-body h3,
-.article-body h4,
-.article-body h5,
-.article-body h6 {
+.article-body h1 {
   margin-top: 20px;
+  font-weight: bold;
+}
+
+.article-body h2,
+.article-body h3 {
+  margin-top: 10px;
+  font-weight: bold;
 }
 
 .article-body h1 a,
@@ -116,6 +112,7 @@ code {
 .header {
   position: relative;
   padding: 20px;
+  font-weight: bold;
 }
 
 .cover {
@@ -146,12 +143,12 @@ code {
   display: inline-block;
 }
 
-.info .el-icon {
-  vertical-align: middle;
+.info .iconify {
+  vertical-align: text-top;
 }
 
-.info .el-icon+time,
-.info .el-icon+span {
+.info .iconify+time,
+.info .iconify+span {
   margin-left: 4px;
 }
 
