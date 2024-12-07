@@ -5,7 +5,8 @@
       <Icon name="ic:round-content-copy" size="1.2rem" v-show="!showCheck" />
       <Icon name="uil:check" size="1.2rem" color="#1a7f37" v-show="showCheck" />
     </el-button>
-    <span v-show="!showButton" class="lang">{{ language }}</span>
+    <span v-if="filename == null" v-show="!showButton" class="lang">{{ language }}</span>
+    <span v-if="filename != null" v-show="!showButton" class="filename">{{ filename }}</span>
   </div>
 </template>
 
@@ -97,10 +98,11 @@ span.line::before {
   background-color: #e0e0e0;
 }
 
-.lang {
+.lang,
+.filename {
   position: absolute;
-  right: 1em;
-  top: 0.5em;
+  right: 1.2em;
+  top: 0.8em;
   padding: 0;
   margin: 0;
   border: none;
@@ -109,6 +111,9 @@ span.line::before {
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
+}
+
+.lang {
   text-transform: uppercase;
 }
 </style>
