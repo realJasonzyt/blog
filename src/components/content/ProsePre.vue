@@ -1,6 +1,6 @@
 <template>
   <div class="block" @mouseenter="showButton = true" @mouseleave="showButton = false">
-    <pre :class="$props.class"><slot /></pre>
+    <pre ref="pre" :class="$props.class"><slot /></pre>
     <el-button v-show="showButton || showCheck" class="copy" type="info" @click="onClick" @mouseleave="onMouseLeave">
       <Icon name="ic:round-content-copy" size="1.2rem" v-show="!showCheck" />
       <Icon name="uil:check" size="1.2rem" color="#1a7f37" v-show="showCheck" />
@@ -52,6 +52,16 @@ const onMouseLeave = () => {
   }, 2000)
 }
 
+const preRef = useTemplateRef('pre')
+
+onMounted(() => {
+  if (!preRef.value) {
+    throw new Error('pre not found')
+  }
+  for (let i = 0; i < props.highlights.length; i++) {
+    preRef.value.querySelector(`span.line[line="${props.highlights[i]}]"`)?.classList.add('highlight');
+  }
+})
 </script>
 
 <style>
@@ -59,8 +69,12 @@ span.line::before {
   content: attr(line);
   text-align: right;
   width: 1.5em;
-  margin-right: 30px;
+  margin: 0 30px 0 5px;
   display: inline-block;
+}
+
+.highlight {
+  background-color: rgb(255, 255, 164) !important;
 }
 </style>
 

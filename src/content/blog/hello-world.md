@@ -26,7 +26,7 @@ updated: 2024-08-01T12:00:00.000Z
 
 This is a test `article`.
 
-```cpp {3.4}
+```cpp {3,4}
 #include <iostream>
 int main() {
     std::cout << "I love C++" << std::endl;
