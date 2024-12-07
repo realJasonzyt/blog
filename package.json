@@ -18,6 +18,7 @@
     "class-transformer": "^0.5.1",
     "element-plus": ">=2",
     "nuxt": "^3.14.1592",
+    "ufo": "^1.5.4",
     "vue": "latest",
     "vue-router": "latest"
   },

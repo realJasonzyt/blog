@@ -26,7 +26,7 @@ updated: 2024-08-01T12:00:00.000Z
 
 This is a test `article`.
 
-```cpp [4,5]
+```cpp {3.4}
 #include <iostream>
 int main() {
     std::cout << "I love C++" << std::endl;
@@ -44,7 +44,7 @@ $CH_2=CH_2+HCl\overset{}{\rightarrow} CH_3-CH_2Cl$
 import vue from "vue";
 ```
 
-```html
+```html [App.vue]
 <!DOCTYPE html>
 <html>
   <head>
@@ -59,9 +59,9 @@ import vue from "vue";
 
 # HTML
 
-::: center
-![img](/assets/img/illustrations/112981252_p0.jpg)
-:::
+![](/assets/img/illustrations/112981252_p0.jpg)
+![左对齐](/assets/img/illustrations/112981252_p0.jpg){align=left}
+![右对齐](/assets/img/illustrations/112981252_p0.jpg){align=right}
 
 ```python
 from PIL import Image
