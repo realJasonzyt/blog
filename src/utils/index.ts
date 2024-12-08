@@ -1,115 +1,117 @@
-import axios from 'axios'
-import { ref, type Ref } from 'vue'
+import axios from "axios";
 
 export function textToSlug(text: string): string {
   return text
     .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^\p{L}\p{N}-]+/gu, '')
-    .replace(/--+/g, '-')
-    .replace(/^-+/, '')
-    .replace(/-+$/, '')
+    .replace(/\s+/g, "-")
+    .replace(/[^\p{L}\p{N}-]+/gu, "")
+    .replace(/--+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "");
 }
 
 export function parseKeywords(str: string): string[] {
-  const result: string[] = []
-  let kw = ''
-  let inSingleQuote = false
-  let inDoubleQuote = false
+  const result: string[] = [];
+  let kw = "";
+  let inSingleQuote = false;
+  let inDoubleQuote = false;
   for (let i = 0; i < str.length; i++) {
-    const ch = str[i]
-    if (ch === ' ' && !inSingleQuote && !inDoubleQuote) {
-      if (kw === '') {
-        continue
+    const ch = str[i];
+    if (ch === " " && !inSingleQuote && !inDoubleQuote) {
+      if (kw === "") {
+        continue;
       }
-      result.push(kw)
-      kw = ''
-      continue
+      result.push(kw);
+      kw = "";
+      continue;
     }
     if (ch === '"' && !inSingleQuote) {
       if (inDoubleQuote) {
-        if (kw === '') {
-          inDoubleQuote = false
-          continue
+        if (kw === "") {
+          inDoubleQuote = false;
+          continue;
         }
-        result.push(kw)
-        kw = ''
-        inDoubleQuote = false
-        continue
+        result.push(kw);
+        kw = "";
+        inDoubleQuote = false;
+        continue;
       }
-      inDoubleQuote = true
+      inDoubleQuote = true;
     }
     if (ch === "'" && !inDoubleQuote) {
       if (inSingleQuote) {
-        if (kw == '') {
-          inSingleQuote = false
-          continue
+        if (kw == "") {
+          inSingleQuote = false;
+          continue;
         }
-        result.push(kw)
-        kw = ''
-        inSingleQuote = false
-        continue
+        result.push(kw);
+        kw = "";
+        inSingleQuote = false;
+        continue;
       }
-      inSingleQuote = true
+      inSingleQuote = true;
     }
-    kw += ch
+    kw += ch;
   }
-  return result
+  return result;
 }
 
 export function randInt(min: number, max: number): number {
-  return Math.floor(Math.random() * (max - min + 1) + min)
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 export function simplifyNumber(num: number): string {
   if (num >= 1e9) {
-    return (num / 1e9).toFixed(1) + 'B'
+    return (num / 1e9).toFixed(1) + "B";
   }
   if (num >= 1e6) {
-    return (num / 1e6).toFixed(1) + 'M'
+    return (num / 1e6).toFixed(1) + "M";
   }
   if (num >= 1e3) {
-    return (num / 1e3).toFixed(1) + 'K'
+    return (num / 1e3).toFixed(1) + "K";
   }
-  return num.toString()
+  return num.toString();
 }
 
 export function formatDate(date: string): string {
-  const d = new Date(date)
-  return d.toLocaleDateString()
+  const d = new Date(date);
+  return d.toLocaleDateString();
 }
 
 export function isTouchScreen(): boolean {
-  return 'ontouchstart' in window || navigator.maxTouchPoints > 0
+  return "ontouchstart" in window || navigator.maxTouchPoints > 0;
 }
 
 export function getElementAttributes(el: Element): Record<string, string> {
-  const attrs: Record<string, string> = {}
+  const attrs: Record<string, string> = {};
   for (let i = 0; i < el.attributes.length; i++) {
-    const attr = el.attributes[i]
-    attrs[attr.name] = attr.value
+    const attr = el.attributes[i];
+    attrs[attr.name] = attr.value;
   }
-  return attrs
+  return attrs;
 }
 
-let lastUpdateHitokoto = 0
+let lastUpdateHitokoto = 0;
 const curHitokoto = ref({
-  hitokoto: '合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。',
-  from: '《老子》'
-})
+  hitokoto: "合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。",
+  from: "《老子》",
+});
 
 export function updateHitokoto(): Ref<{ hitokoto: string; from: string }> {
   if (Date.now() - lastUpdateHitokoto < 5 * 1000) {
-    return curHitokoto
+    return curHitokoto;
   }
-  lastUpdateHitokoto = Date.now()
+  lastUpdateHitokoto = Date.now();
   axios
-    .get('https://v1.hitokoto.cn?c=a&c=b&c=c&c=d&c=h&c=i&c=k')
+    .get("https://v1.hitokoto.cn?c=a&c=b&c=c&c=d&c=h&c=i&c=k")
     .then((response) => {
-      curHitokoto.value = response.data
+      curHitokoto.value = response.data;
     })
     .catch((error) => {
-      console.error(error)
-    })
-  return curHitokoto
+      console.error(error);
+    });
+  return curHitokoto;
 }
+
+import * as types from "./type";
+export { types };
