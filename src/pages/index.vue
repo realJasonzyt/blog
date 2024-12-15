@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { isTouchScreen } from '~/utils';
+useHead({
+  title: null
+})
 
 const handleMouseEnter = (a: any) => {
   if (isTouchScreen()) {

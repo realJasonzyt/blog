@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import TheFooter from '~/components/my/Footer.vue';
-import { ref } from 'vue';
-
-const contents = queryContent("blog")
+useHead({
+  title: 'Blogs'
+})
 
 // TODO: autocomplete
 // const onSelect = () => {

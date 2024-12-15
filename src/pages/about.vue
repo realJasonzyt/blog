@@ -162,6 +162,10 @@
 <script setup lang="ts">
 import $config from '@/utils/_config'
 
+useHead({
+  title: 'About Me'
+})
+
 definePageMeta({
   layout: 'no-footer'
 })

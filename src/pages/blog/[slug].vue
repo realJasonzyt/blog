@@ -21,6 +21,7 @@ import $config from '@/utils/_config'
           </span>
           <span class="views" v-if="$config.api.blog.stats.enable">
             <Icon name="ic:round-local-fire-department" />
+            <!-- TODO: views -->
             <span v-html="123"></span>
           </span>
         </div>

@@ -44,9 +44,7 @@ const handleClickDown = () => {
     </div>
   </div>
   <div class="chevron-down" @click="handleClickDown">
-    <el-icon>
-      <MyIcon name="ChevronDown" />
-    </el-icon>
+    <Icon name="my:chevron-down" />
   </div>
 </template>
 
@@ -144,13 +142,9 @@ const handleClickDown = () => {
   animation: float 3s ease-in-out infinite;
 }
 
-.chevron-down .el-icon {
+.chevron-down .iconify {
   font-size: 3rem;
   color: #fff;
   cursor: pointer;
-}
-
-.chevron-down svg {
-  transform: scale(1, 0.6);
 }
 </style>
