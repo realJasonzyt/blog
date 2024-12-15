@@ -1,6 +1,7 @@
 <template>
   <div class="img-container">
-    <img ref="img" :src="refinedSrc" :alt="props.alt" :width="props.width" :height="props.height" />
+    <NuxtImg ref="img" loading="lazy" :src="refinedSrc" :alt="props.alt" :width="props.width" :height="props.height"
+      @load="onImgLoaded" />
     <p v-if="props.alt">{{ props.alt }}</p>
   </div>
 </template>
@@ -44,14 +45,9 @@ const refinedSrc = computed(() => {
 const imgRef = useTemplateRef('img')
 const imgActualWidth = ref('100%')
 
-onMounted(() => {
-  if (!imgRef.value) {
-    throw new Error('img not found')
-  }
-  imgRef.value.onload = () => {
-    imgActualWidth.value = imgRef.value?.clientWidth + 'px'
-  }
-})
+const onImgLoaded = () => {
+  imgActualWidth.value = imgRef?.value?.$el?.clientWidth + 'px'
+}
 
 </script>
 

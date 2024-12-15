@@ -113,7 +113,6 @@ code {
 .header {
   position: relative;
   padding: 20px;
-  font-weight: bold;
 }
 
 .cover {

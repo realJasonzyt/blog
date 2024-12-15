@@ -44,7 +44,7 @@ const handleClickDown = () => {
     </div>
   </div>
   <div class="chevron-down" @click="handleClickDown">
-    <Icon name="my:chevron-down" />
+    <Icon name="my:chevron-down" style="color: #fff;" />
   </div>
 </template>
 

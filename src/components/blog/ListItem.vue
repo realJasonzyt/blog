@@ -14,7 +14,7 @@ const displayViews = ref('-')
       <el-col class="cover" :span="12">
         <!-- TODO: Lazy load img-->
         <NuxtLink :to="`/blog/${blog.slug}`">
-          <img :src="blog.cover" />
+          <NuxtImg :src="blog.cover" alt="cover" loading="lazy" />
         </NuxtLink>
       </el-col>
       <el-col class="content" :span="12">
