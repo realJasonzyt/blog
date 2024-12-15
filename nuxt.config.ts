@@ -15,6 +15,12 @@ export default defineNuxtConfig({
     ],
   },
   content: {
+    markdown: {
+      remarkPlugins: {
+        "remark-math": {},
+      },
+      rehypePlugins: ["rehype-katex"],
+    },
     highlight: {
       theme: {
         default: "one-light",

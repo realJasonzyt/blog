@@ -24,6 +24,12 @@ updated: 2024-08-01T12:00:00.000Z
 
 ###### h6
 
+- list1
+  - a
+  - b
+- list2
+- list3
+
 This is a test `article`.
 
 ```cpp {3,4}
@@ -34,7 +40,9 @@ int main() {
 }
 ```
 
-$e^{i\pi}=-1$
+```math
+e^{i\pi}=-1
+```
 
 $\sqrt{x^2+y^2}$
 

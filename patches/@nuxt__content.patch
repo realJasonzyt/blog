@@ -1,0 +1,13 @@
+diff --git a/package.json b/package.json
+index a1c4ea84897a51d41dfaec1e45cabd207473f1b8..e6c602daa2c9daeb8fa942a462474477c60c8b5f 100644
+--- a/package.json
++++ b/package.json
+@@ -46,7 +46,7 @@
+   },
+   "dependencies": {
+     "@nuxt/kit": "^3.13.2",
+-    "@nuxtjs/mdc": "^0.9.2",
++    "@nuxtjs/mdc": "^0.11.1",
+     "@vueuse/core": "^11.1.0",
+     "@vueuse/head": "^2.0.0",
+     "@vueuse/nuxt": "^11.1.0",
