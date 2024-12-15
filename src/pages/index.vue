@@ -17,7 +17,7 @@ const handleMouseLeave = (a: any) => {
 </script>
 
 <template>
-  <TheWelcome />
+  <MyWelcome />
   <div class="main">
     <!-- <section class="pinned">
       <h2>
