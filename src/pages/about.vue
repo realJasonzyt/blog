@@ -9,7 +9,7 @@
         </el-avatar>
       </div>
       <h1 class="name">Jasonzyt <span class="pronoun">he/she🌈</span></h1>
-      <div class="brief">
+      <div class="brief" id="brief">
         非常感谢你能来到我的家里玩—— Orz<br />
         我是Jason(aka ZYT)，{{ age.year }}岁，来自武汉！是高中牲😢<br />
         写代码👨‍💻是爱好，初一自学C++，曾经打过几年OI，<del>也算是蒟蒻OIer吧</del><br />
@@ -31,7 +31,7 @@
         <span class="spoiler">🌈🏳️‍⚧️ LGBT+友好 ⚠️ 不想讨论政治，反感魔怔人，反对药物滥用和自伤！！</span><br />
       </div>
       <br />
-      <div class="languages">
+      <div class="languages" id="languages">
         <h2>Languages</h2>
         <code><MyIcon name="CPP" size="16px" />C++</code>&nbsp;
         <code><MyIcon name="Vue" size="16px" />Vue</code>&nbsp;
@@ -39,7 +39,7 @@
         <code><MyIcon name="Python" size="16px" />Python</code>&nbsp;
         <code><MyIcon name="Golang" size="16px" />Golang</code>
       </div>
-      <div class="social">
+      <div class="social" id="social">
         <h2>Socials</h2>
         <el-row :gutter="10">
           <el-col v-for="(social, index) in socialList" :key="index" :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
@@ -60,7 +60,7 @@
           </el-col>
         </el-row>
       </div>
-      <div class="games">
+      <div class="games" id="games">
         <h2>Games</h2>
         <el-row :gutter="10">
           <el-col v-for="(game, index) in gameList" :key="index" :xs="12" :sm="12" :md="4" :lg="4" :xl="4">
@@ -71,7 +71,7 @@
           </el-col>
         </el-row>
       </div>
-      <div class="bangumi">
+      <div class="bangumi" id="bangumi">
         <h2>Bangumi</h2>
         <el-row :gutter="10">
           <el-col v-for="(bangumi, index) in bangumiList" :key="index" :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
@@ -439,6 +439,7 @@ h3 {
 .pronoun {
   margin: 0 10px;
   font-size: 24px;
+  font-weight: normal;
 }
 
 .brief {

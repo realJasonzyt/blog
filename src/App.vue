@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import 'assets/css/main.scss'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/display.css'
