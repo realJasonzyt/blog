@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import TheFooter from '~/components/my/Footer.vue';
+import type { NuxtError } from '#app'
+
+const props = defineProps({
+  error: Object as () => NuxtError
+})
 </script>
+
 <template>
   <div class="main">
-    <p class="statuscode">404</p>
-    <p class="status">Not Found</p>
-    <RouterLink to="/"><el-button class="back-btn">Go back to Home</el-button></RouterLink>
+    <p class="statuscode">{{ error?.statusCode }}</p>
+    <p class="status">{{ error?.statusMessage }}</p>
+    <NuxtLink to="/"><el-button class="back-btn">Go back to Home</el-button></NuxtLink>
   </div>
   <!-- TODO: Suggest random photo in gallery -->
-  <TheFooter />
+  <MyFooter />
 </template>
 
 <style scoped>
