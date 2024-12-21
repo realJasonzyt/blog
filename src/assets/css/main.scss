@@ -47,15 +47,6 @@ body::-webkit-scrollbar-track {
   background-color: #eee;
 }
 
-pre {
-  font-family: 'JetBrains Mono', Consolas, monospace;
-  background-color: var(--vt-c-white-mute);
-  border-radius: 5px;
-  padding: 0.8em;
-  margin: 1em 0;
-  overflow: auto;
-}
-
 code {
   font-family: 'JetBrains Mono', Consolas, monospace;
   background-color: var(--vt-c-white-mute);
