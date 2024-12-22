@@ -8,9 +8,11 @@ const props = defineProps({
 
 <template>
   <div class="main">
-    <p class="statuscode">{{ error?.statusCode }}</p>
-    <p class="status">{{ error?.statusMessage }}</p>
-    <NuxtLink to="/"><el-button class="back-btn">Go back to Home</el-button></NuxtLink>
+    <p class="statuscode text-gray text-[10rem]">{{ error?.statusCode }}</p>
+    <p class="text-5xl text-gray">{{ error?.statusMessage }}</p>
+    <NuxtLink to="/">
+      <UButton class="mt-4">Go back to Home</UButton>
+    </NuxtLink>
   </div>
   <!-- TODO: Suggest random photo in gallery -->
   <MyFooter />
@@ -24,17 +26,6 @@ const props = defineProps({
 }
 
 .statuscode {
-  font-size: 10rem;
   font-family: 'Ubuntu', serif;
-  color: #333;
-}
-
-.status {
-  font-size: 3rem;
-  color: #444;
-}
-
-.back-btn {
-  margin-top: 1rem;
 }
 </style>

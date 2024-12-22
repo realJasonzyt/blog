@@ -12,16 +12,16 @@ const documentWidth = document.documentElement.clientWidth
   <div class="footer">
     <div class="footer-content">
       <slot name="default">
-        <el-popover :placement="documentWidth < 768 ? 'bottom' : 'right'" trigger="hover">
-          <template #reference>
-            <p id="hitokoto" ref="hitokotoPopOver">
-              {{ hitokoto.hitokoto }}
-            </p>
+        <UPopover mode="hover" :popper="{ placement: documentWidth >= 640 ? 'right' : 'bottom' }"
+          :ui="{ trigger: 'inline-block w-fit' }">
+          <span class="text-[16px]">
+            {{ hitokoto.hitokoto }}
+          </span>
+          <template #panel>
+            <div class="px-3 py-2 text-sm">——{{ hitokoto.from }}</div>
           </template>
-          <template #default> ——{{ hitokoto.from }}</template>
-        </el-popover>
+        </UPopover>
       </slot>
-      <br />
       <br />
       <slot name="copyright">
         <p v-html="$config.footer.copyright"></p>
@@ -51,11 +51,5 @@ const documentWidth = document.documentElement.clientWidth
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
-}
-
-#hitokoto {
-  font-size: 16px;
-  width: fit-content;
-  display: inline-block;
 }
 </style>
