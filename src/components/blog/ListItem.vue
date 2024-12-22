@@ -9,15 +9,15 @@ const displayViews = ref('-')
 </script>
 
 <template>
-  <el-card shadow="hover">
-    <el-row :style="{ flexDirection: coverPos == 'right' ? 'row-reverse' : 'row' }">
-      <el-col class="cover" :span="12">
+  <UCard class="transition-shadow hover:shadow-md" :ui="{ body: { padding: 'p-0 sm:p-0' } }">
+    <div class="flex" :class="coverPos == 'right' ? 'flex-row-reverse' : 'flex-row'">
+      <div class="cover">
         <!-- TODO: Lazy load img-->
         <NuxtLink :to="`/blog/${blog.slug}`">
           <NuxtImg :src="blog.cover" alt="cover" loading="lazy" />
         </NuxtLink>
-      </el-col>
-      <el-col class="content" :span="12">
+      </div>
+      <div class="content" :span="12">
         <div class="blog-content">
           <div class="header-and-info">
             <div class="header">
@@ -51,17 +51,12 @@ const displayViews = ref('-')
             <Icon name="ic:round-more-horiz" size="30px" />
           </NuxtLink>
         </div>
-      </el-col>
-    </el-row>
-  </el-card>
+      </div>
+    </div>
+  </UCard>
 </template>
 
 <style scoped>
-.el-card {
-  --el-card-padding: 0;
-  --el-card-border-radius: 10px;
-}
-
 .blog-content {
   height: 85%;
 }
@@ -73,17 +68,17 @@ const displayViews = ref('-')
 }
 
 .more-btn .iconify {
+  color: #111;
   transition: color 0.3s;
 }
 
 .more-btn .iconify:hover {
-  color: var(--el-color-primary);
+  color: rgb(var(--color-primary-500));
 }
 
 .cover {
   width: 50%;
   height: 280px;
-  object-fit: cover;
   overflow: hidden;
 }
 
@@ -119,7 +114,7 @@ const displayViews = ref('-')
 }
 
 .header h1:hover {
-  color: var(--el-color-primary);
+  color: rgb(var(--color-primary-500));
 }
 
 .preview {

@@ -1,26 +1,27 @@
 <template>
-  <el-row class="list" :gutter="10">
-    <ContentList path="/blog" v-slot="{ list }">
-      <el-col v-for="(blog, index) in list" :key="blog.slug" class="item" :span="24 / columns">
+  <div class="grid gap-4" :class="`grid-cols-${columns}`">
+    <ContentList :query="query" v-slot="{ list }">
+      <div v-for="(blog, index) in list" :key="blog.slug">
         <BlogListItem :blog="blog as ParsedBlog" :cover-pos="index % 2 != 0 ? 'left' : 'right'" />
-      </el-col>
+      </div>
     </ContentList>
-  </el-row>
+  </div>
 </template>
 
-<script lang="ts">
-export default {
-  props: {
-    columns: {
-      type: Number,
-      default: 1
-    }
+<script lang="ts" setup>
+import type { QueryBuilderParams } from '@nuxt/content'
+
+defineProps({
+  columns: {
+    type: Number,
+    default: 1
+  },
+  query: {
+    type: Object,
+    default: { path: '/blog' } as QueryBuilderParams
   }
-}
+})
+
 </script>
 
-<style scoped>
-.el-col {
-  margin-bottom: 20px;
-}
-</style>
+<style scoped></style>

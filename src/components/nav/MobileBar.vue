@@ -27,8 +27,7 @@ const links = [{ label: 'Home', icon: 'i-my-home', to: '/', color: '#666' }].con
       </div>
     </Transition>
     <div class="expand" @click="handleExpand">
-      <Icon :name="realNavShow ? 'uil:multiply' : 'my:options'" size="1.8rem" style="color:#666; fill: #666"
-        mode="svg" />
+      <Icon :name="realNavShow ? 'uil:multiply' : 'my:options'" size="1.8rem" style="color:#666" />
     </div>
     <Transition name="fade">
       <div class="real-nav" v-if="realNavShow">
@@ -84,11 +83,6 @@ const links = [{ label: 'Home', icon: 'i-my-home', to: '/', color: '#666' }].con
   margin-top: 1rem;
   font-size: 1.5rem;
   font-weight: bold;
-}
-
-.real-nav .el-menu-item {
-  font-size: 1rem;
-  color: #666;
 }
 
 .quote {

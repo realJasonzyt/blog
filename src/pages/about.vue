@@ -82,7 +82,7 @@
           <div class="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
             <div v-for="bangumi in bangumiList">
               <UCard class="hover:shadow-lg transition-shadow" :ui="{ body: { padding: 'p-0 sm:p-0' } }">
-                <NuxtImg class="w-full aspect-[4/3] rounded-t-lg" :src="bangumi.cover" alt="bangumi cover" />
+                <NuxtImg class="w-full aspect-[4/3]" :src="bangumi.cover" alt="bangumi cover" />
                 <h3 class="text-lg px-3 py-2 overflow-hidden text-ellipsis text-nowrap">{{ bangumi.name }}</h3>
               </UCard>
             </div>
