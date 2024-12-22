@@ -3,18 +3,11 @@ import $config from '@/utils/_config'
 
 const props = defineProps<{ items: { index: string; text: string; icon: string }[], show: boolean }>()
 
-const $emit = defineEmits<{ select: [index: string] }>()
-
-let realNavShow = ref(false)
+let realNavShow = ref(false) // real navigation, which is fixed on the top, actually is not a bar in this case; menu button is always visible
 
 const handleExpand = () => {
   realNavShow.value = !realNavShow.value
   document.body.style.overflow = realNavShow.value ? 'hidden' : 'auto'
-}
-
-const handleSelect = (index: string) => {
-  $emit('select', index)
-  handleExpand()
 }
 
 const links = [{ label: 'Home', icon: 'i-my-home', to: '/', color: '#666' }].concat(props.items.map(it => ({
@@ -41,23 +34,13 @@ const links = [{ label: 'Home', icon: 'i-my-home', to: '/', color: '#666' }].con
       <div class="real-nav" v-if="realNavShow">
         <UAvatar size="2xl" :src="$config.avatar" alt="avatar" />
         <h1>Jasonzyt</h1>
-        <p class="quote">
+        <p class="quote select-none">
           <Icon class="align-text-top" name="ic:round-format-quote" size="1.2em" style="transform: rotate(180deg);" />
           <span>Do the right thing, wait to get fired.</span>
           <Icon class="align-text-top" name="ic:round-format-quote" size="1.2em" />
         </p>
         <NavSocialBar class="my-2" size="1.2rem" />
         <UDivider class="py-4" />
-        <!-- <el-menu mode="vertical" @select="handleSelect">
-          <el-menu-item index="home">
-            <Icon name="my:home" style="fill: #666" />
-            Home
-          </el-menu-item>
-          <el-menu-item v-for="item in items" :key="item.index" :index="item.index">
-            <MyIcon :name="item.icon"></MyIcon>
-            {{ item.text }}
-          </el-menu-item>
-        </el-menu> -->
         <UVerticalNavigation :links="links"
           :ui="{ padding: 'px-6 py-3', size: 'text-xl', icon: { base: 'mr-4 fill-gray-600' }, label: 'text-gray-600' }" />
       </div>
@@ -84,10 +67,6 @@ const links = [{ label: 'Home', icon: 'i-my-home', to: '/', color: '#666' }].con
   z-index: 10;
 }
 
-.el-divider {
-  margin: 12px 0;
-}
-
 .real-nav {
   position: fixed;
   top: 0;
@@ -101,18 +80,10 @@ const links = [{ label: 'Home', icon: 'i-my-home', to: '/', color: '#666' }].con
   z-index: 9;
 }
 
-.real-nav .el-avatar {
-  display: inline-block;
-}
-
 .real-nav h1 {
   margin-top: 1rem;
   font-size: 1.5rem;
   font-weight: bold;
-}
-
-.real-nav .el-menu {
-  --el-menu-border-color: rgba(0, 0, 0, 0);
 }
 
 .real-nav .el-menu-item {
@@ -129,17 +100,5 @@ const links = [{ label: 'Home', icon: 'i-my-home', to: '/', color: '#666' }].con
   border-radius: 5px;
   font-size: calc(100vw / 26);
   font-family: Ubuntu, serif;
-}
-
-.quote .el-icon+span {
-  margin-left: 0.5rem;
-}
-
-.quote span {
-  user-select: none;
-}
-
-.quote span+.el-icon {
-  margin-left: 0.5rem;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="title" :class="show ? 'show' : 'hidden'">
+  <div class="title select-none" :class="show ? 'show' : 'hidden'">
     <slot></slot>
   </div>
 </template>
@@ -17,9 +17,5 @@ defineProps({
   font-weight: bold;
   font-size: 1.1rem;
   transition: opacity 0.4s ease-in-out;
-}
-
-.el-avatar+.title {
-  margin-left: 1rem;
 }
 </style>

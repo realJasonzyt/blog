@@ -1,19 +1,20 @@
 <template>
-  <NavMobileBar :items="items" :show="barPinned" @select="handleNavBarSelect" />
-  <el-menu class="navbar hidden-xs-only" mode="horizontal" :ellipsis="false" @select="handleNavBarSelect"
-    @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
-    <el-menu-item class="avatar" index="logo">
-      <el-avatar>
-        <img :src="$config.avatar" />
-      </el-avatar>
-      <NavBarTitle :show="itemShow || barPinned">{{ $config.title }}</NavBarTitle>
-    </el-menu-item>
+  <NavMobileBar :items="items" :show="barPinned" />
+  <ul class="navbar flex px-4 max-sm:hidden" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
+    <li class="inline-flex px-4 justify-center items-center cursor-pointer" index="logo" @click="handleClick('')">
+      <UAvatar class="inline-block mr-4" size="md" :src="$config.avatar" alt="avatar" />
+      <Transition name="fade">
+        <NavBarTitle :show="itemShow || barPinned">{{ $config.title }}</NavBarTitle>
+      </Transition>
+    </li>
     <div class="flex-grow" />
-    <NavBarItem v-for="item in items" :show="itemShow || barPinned" :index="item.index" :key="item.index">
-      <MyIcon :name="item.icon" />
-      {{ item.text }}
-    </NavBarItem>
-  </el-menu>
+    <Transition name="fade" v-for="item in items">
+      <NavBarItem :show="itemShow || barPinned" :index="item.index" :key="item.index" @click="handleClick">
+        <Icon class="mr-2" :name="item.icon" />
+        {{ item.text }}
+      </NavBarItem>
+    </Transition>
+  </ul>
 </template>
 
 <script setup lang="ts">
@@ -22,21 +23,24 @@ import $config from '@/utils/_config'
 const router = useRouter()
 
 const items = [
-  { index: 'blog', text: 'Blog', icon: 'Feather' },
-  { index: 'gallery', text: 'Gallery', icon: 'Image' },
-  { index: 'about', text: 'About', icon: 'User' }
+  { index: 'blog', text: 'Blog', icon: 'i-my-feather' },
+  { index: 'gallery', text: 'Gallery', icon: 'i-my-photo' },
+  { index: 'about', text: 'About', icon: 'i-my-user' }
 ]
 
 const barPinned = ref(false)
 
 const itemShow = ref(barPinned.value)
-function handleMouseOver() {
+const handleMouseOver = () => {
   itemShow.value = true
 }
 const handleMouseLeave = () => {
   itemShow.value = false
 }
 
+const handleClick = (index: string) => {
+  router.push(`/${index}`)
+}
 
 enum NavBarAction {
   Pin = 1,
@@ -98,33 +102,6 @@ const refreshPin = (matches = router.currentRoute.value.matched) => {
   }
 }
 
-const handleNavBarSelect = (index: string) => {
-  switch (index) {
-    case 'home':
-      router.push('/')
-      break
-    case 'logo':
-      router.push('/')
-      break
-    case 'blog':
-      router.push('/blog')
-      break
-    case 'gallery':
-      let viewModeRecord = localStorage.getItem('gallery_viewMode') ?? ''
-      localStorage.setItem('gallery_viewMode', viewModeRecord)
-      router.push('/gallery/' + viewModeRecord)
-      break;
-    case 'about':
-      barPinned.value = false
-      router.push('/about')
-      break
-    default:
-      break
-  }
-}
-
-console.log(router.currentRoute.value)
-
 router.beforeEach((to, _from, next) => {
   refreshPin(to.matched)
   next()
@@ -137,19 +114,9 @@ refreshPin()
 </script>
 
 <style scoped>
-.el-menu {
-  box-shadow: none;
-}
-
 .navbar {
-  --el-menu-active-color: #666;
-  --el-menu-hover-text-color: #409eff;
-  --el-menu-text-color: #666;
-  /* --el-menu-bg-color: #fff; */
-  --el-menu-hover-bg-color: rgba(0, 0, 0, 0);
-  --el-menu-border-color: rgba(0, 0, 0, 0);
-  padding: 0 1rem 0 1rem;
   width: 100vw;
+  height: 60px;
   position: fixed;
   border-bottom: 0;
   background-color: v-bind("itemShow || barPinned ? '#fff' : 'rgba(0, 0, 0, 0)'");
@@ -163,10 +130,5 @@ refreshPin()
 .navbar:hover {
   background-color: #fff;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2) !important;
-}
-
-.el-menu--horizontal>.el-menu-item,
-.el-menu--horizontal>.el-menu-item.is-active {
-  border-bottom: 0;
 }
 </style>

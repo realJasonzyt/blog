@@ -29,7 +29,7 @@ const handleClickDown = () => {
   <div class="background" :style="{ 'background-image': `url('${background.path}')` }">
     <div class="hello hidden-xs-only">
       <h1>{{ $config.Index.welcome }}</h1>
-      <div class="quote text-2xl text-center select-none">
+      <div class="quote mx-auto my-6 px-5 py-3 text-2xl text-center select-none">
         <Icon class="align-text-top" name="ic:round-format-quote" style="transform: rotate(180deg);" />
         <span>{{ $config.Index.quote }}</span>
         <!-- <span>個性捨てたら，死んでるのと一緒だよ</span> -->
@@ -94,22 +94,9 @@ const handleClickDown = () => {
 
 .quote {
   border-radius: 10px;
-  margin: 1rem auto;
-  padding: 0.8rem 1.2rem;
   width: fit-content;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.4);
-}
-
-.quote .el-icon+span,
-.quote span+.el-icon {
-  margin-left: 0.5rem;
-}
-
-.quote span {
-  user-select: none;
-  margin: 0;
-  padding: 0;
 }
 
 @keyframes float {

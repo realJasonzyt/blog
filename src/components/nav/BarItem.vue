@@ -1,9 +1,9 @@
 <template>
-  <ElMenuItem class="item" :class="show ? 'show' : 'hidden'"
-    :style="{ '--border-width': borderWidth, '--el-menu-active-color': textColor }" :index="index"
-    @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
+  <li class="item inline-flex justify-center items-center" :class="show ? 'show' : 'hidden'"
+    :style="{ '--border-width': borderWidth }" :index="index" @mouseover="handleMouseOver"
+    @mouseleave="handleMouseLeave" @click="$emit('click', index)">
     <slot></slot>
-  </ElMenuItem>
+  </li>
 </template>
 
 <script lang="ts" setup>
@@ -12,16 +12,15 @@ defineProps({
   index: String
 })
 
+defineEmits(['click'])
+
 let borderWidth = ref('0')
-let textColor = ref('#666')
 
 const handleMouseOver = () => {
   borderWidth.value = '90%'
-  textColor.value = '#409eff'
 }
 const handleMouseLeave = () => {
   borderWidth.value = '0'
-  textColor.value = '#666'
 }
 </script>
 
@@ -30,6 +29,9 @@ const handleMouseLeave = () => {
   font-size: 1.05rem;
   margin-top: 1px !important;
   padding: 0 10px;
+  color: #666;
+  position: relative;
+  cursor: pointer;
   transition:
     border-bottom 0.4s ease-in-out,
     color 0.4s ease-in-out,
@@ -47,5 +49,9 @@ const handleMouseLeave = () => {
   max-width: var(--border-width, 0);
   transition: max-width 0.25s ease-in-out;
   box-sizing: inherit;
+}
+
+.item:hover {
+  color: #409eff;
 }
 </style>
