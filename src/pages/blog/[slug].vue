@@ -7,9 +7,9 @@ import $config from '@/utils/_config'
   <ContentDoc v-slot="{ doc }">
     <div class="cover" :style="{ backgroundImage: `url(${doc?.cover})` }"></div>
     <div class="main">
-      <div class="header">
-        <h1>{{ doc.title }}</h1>
-        <div class="info">
+      <div class="relative p-5">
+        <h1 class="m-0 text-[2rem] text-white">{{ doc.title }}</h1>
+        <div class="info mt-2 text-lg text-white">
           <span class="date">
             <Icon name="ic:sharp-access-time-filled" />
             <time :datetime="doc?.created">{{ new Date(doc?.created ?? '').toLocaleDateString() }}</time>
@@ -19,16 +19,16 @@ import $config from '@/utils/_config'
             <Icon name="ic:round-folder" />
             <span>{{ doc?.category }}</span>
           </span>
-          <span class="views" v-if="$config.api.blog.stats.enable">
+          <span class="text-left min-w-10" v-if="$config.api.blog.stats.enable">
             <Icon name="ic:round-local-fire-department" />
             <!-- TODO: views -->
             <span v-html="123"></span>
           </span>
         </div>
       </div>
-      <div class="article-body">
+      <div class="article-body mt-14 px-2 text-[16px] md:px-8">
         <ContentRenderer :value="doc" />
-        <div class="note">
+        <div class="mt-8 text-sm text-gray-600">
           <p v-if="doc?.updated != doc?.created">
             Updated at {{ new Date(doc?.updated ?? '').toLocaleDateString() }}
           </p>
@@ -39,10 +39,6 @@ import $config from '@/utils/_config'
 </template>
 
 <style>
-.katex-html {
-  display: none;
-}
-
 img {
   max-width: 100%;
 }
@@ -99,7 +95,7 @@ img {
 }
 
 code {
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 </style>
 
@@ -110,11 +106,6 @@ code {
   margin: 0 auto;
 }
 
-.header {
-  position: relative;
-  padding: 20px;
-}
-
 .cover {
   position: absolute;
   width: 100%;
@@ -122,20 +113,6 @@ code {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-.header h1 {
-  font-size: 2rem;
-  margin: 0;
-  color: #fff;
-  text-shadow: #666 2px 2px 10px;
-}
-
-.info {
-  margin-top: 0.5rem;
-  color: #fff;
-  font-size: 18px;
-  text-shadow: #666 2px 2px 10px;
 }
 
 .info span,
@@ -156,23 +133,6 @@ code {
   margin-left: 1rem;
 }
 
-.views {
-  text-align: left;
-  min-width: 3em;
-}
-
-.article-body {
-  margin-top: 50px;
-  padding: 0 2rem;
-  font-size: 16px;
-}
-
-.note {
-  margin-top: 2rem;
-  color: #666;
-  font-size: 14px;
-}
-
 @media screen and (max-width: 768px) {
   .cover {
     height: 400px;
@@ -180,10 +140,6 @@ code {
 
   .main {
     padding: 250px 20px 2rem;
-  }
-
-  .article-body {
-    padding: 0 10px;
   }
 
   .header h1 {

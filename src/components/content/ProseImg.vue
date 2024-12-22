@@ -1,7 +1,8 @@
 <template>
   <div class="img-container">
-    <NuxtImg ref="img" loading="lazy" :src="refinedSrc" :alt="props.alt" :width="props.width" :height="props.height"
-      @load="onImgLoaded" />
+    <NuxtImg class="inline-block" ref="img" loading="lazy" :src="refinedSrc" :alt="props.alt" :width="props.width"
+      :height="props.height" @load="onImgLoaded" />
+    <br />
     <p v-if="props.alt">{{ props.alt }}</p>
   </div>
 </template>
