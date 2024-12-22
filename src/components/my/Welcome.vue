@@ -29,14 +29,12 @@ const handleClickDown = () => {
   <div class="background" :style="{ 'background-image': `url('${background.path}')` }">
     <div class="hello hidden-xs-only">
       <h1>{{ $config.Index.welcome }}</h1>
-      <div class="quote">
-        <el-icon>
-          <MyIcon name="QuoteLeft" />
-        </el-icon>
+      <div class="quote text-2xl text-center select-none">
+        <Icon class="align-text-top" name="ic:round-format-quote" style="transform: rotate(180deg);" />
         <span>{{ $config.Index.quote }}</span>
         <!-- <span>個性捨てたら，死んでるのと一緒だよ</span> -->
-        <MyIcon name="QuoteRight" />
-        <NavSocialBar :size="24" />
+        <Icon class="align-text-top" name="ic:round-format-quote" />
+        <NavSocialBar class="mt-3 mb-2" size="1.5rem" tone="white" />
       </div>
     </div>
     <div class="hello hidden-sm-and-up">
@@ -69,13 +67,13 @@ const handleClickDown = () => {
   z-index: 1;
   max-width: 1280px;
   padding: 0 1rem;
-  line-height: 1.5;
   transition: opacity 0.4s ease-in-out;
 }
 
 .hello h1 {
   color: #fff;
   font-size: 5.5rem;
+  line-height: 5.5rem;
   font-family: 'Ubuntu', sans-serif;
   font-weight: 600;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -109,8 +107,6 @@ const handleClickDown = () => {
 }
 
 .quote span {
-  font-size: 1.5rem;
-  text-align: center;
   user-select: none;
   margin: 0;
   padding: 0;

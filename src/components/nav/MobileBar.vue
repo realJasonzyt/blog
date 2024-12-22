@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import $config from '@/utils/_config'
 
-defineProps<{ items: { index: string; text: string; icon: string }[], show: boolean }>()
+const props = defineProps<{ items: { index: string; text: string; icon: string }[], show: boolean }>()
 
 const $emit = defineEmits<{ select: [index: string] }>()
 
@@ -16,47 +16,50 @@ const handleSelect = (index: string) => {
   $emit('select', index)
   handleExpand()
 }
+
+const links = [{ label: 'Home', icon: 'i-my-home', to: '/', color: '#666' }].concat(props.items.map(it => ({
+  label: it.text,
+  icon: it.icon,
+  to: it.index,
+  color: '#666'
+})))
+
 </script>
 
 <template>
-  <div class="hidden-sm-and-up">
+  <div class="sm:hidden">
     <Transition name="fade">
       <div class="logo" v-show="show">
         <NavBarTitle :show="true">Jasonzyt's Blog</NavBarTitle>
       </div>
     </Transition>
     <div class="expand" @click="handleExpand">
-      <MyIcon :name="realNavShow ? 'Close' : 'Options'" size="1.5rem" color="#666" />
+      <Icon :name="realNavShow ? 'uil:multiply' : 'my:options'" size="1.8rem" style="color:#666; fill: #666"
+        mode="svg" />
     </div>
     <Transition name="fade">
       <div class="real-nav" v-if="realNavShow">
-        <el-avatar :size="80">
-          <img :src="$config.avatar" alt="avatar" />
-        </el-avatar>
+        <UAvatar size="2xl" :src="$config.avatar" alt="avatar" />
         <h1>Jasonzyt</h1>
         <p class="quote">
-          <el-icon>
-            <MyIcon name="QuoteLeft" />
-          </el-icon>
+          <Icon class="align-text-top" name="ic:round-format-quote" size="1.2em" style="transform: rotate(180deg);" />
           <span>Do the right thing, wait to get fired.</span>
-          <el-icon>
-            <MyIcon name="QuoteRight" />
-          </el-icon>
+          <Icon class="align-text-top" name="ic:round-format-quote" size="1.2em" />
         </p>
-        <NavSocialBar class="social" :size="24" />
-        <el-divider />
-        <el-menu mode="vertical" @select="handleSelect">
+        <NavSocialBar class="my-2" size="1.2rem" />
+        <UDivider class="py-4" />
+        <!-- <el-menu mode="vertical" @select="handleSelect">
           <el-menu-item index="home">
-            <el-icon>
-              <MyIcon name="Home" />
-            </el-icon>
+            <Icon name="my:home" style="fill: #666" />
             Home
           </el-menu-item>
           <el-menu-item v-for="item in items" :key="item.index" :index="item.index">
             <MyIcon :name="item.icon"></MyIcon>
             {{ item.text }}
           </el-menu-item>
-        </el-menu>
+        </el-menu> -->
+        <UVerticalNavigation :links="links"
+          :ui="{ padding: 'px-6 py-3', size: 'text-xl', icon: { base: 'mr-4 fill-gray-600' }, label: 'text-gray-600' }" />
       </div>
     </Transition>
   </div>
