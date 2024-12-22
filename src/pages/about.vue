@@ -4,9 +4,10 @@
   <div class="body p-6">
     <div class="w-full">
       <div class="avatar">
-        <UAvatar size="3xl" :src="$config.avatar" :ui="{ size: { '3xl': 'w-56 h-56 text-4xl' } }" />
+        <UAvatar size="3xl" :src="$config.avatar" :ui="{ size: { '3xl': 'size-32 md:size-56 text-4xl' } }" />
       </div>
-      <h1 class="mt-3 text-5xl" id="name">Jasonzyt <span id="pronoun" class="mx-1 text-2xl font-normal">he/she🌈</span>
+      <h1 class="mt-3 text-3xl md:text-5xl" id="name">Jasonzyt <span id="pronoun"
+          class="mx-1 text-xl md:text-2xl font-normal">he/she🌈</span>
       </h1>
     </div>
     <div class="mt-2 w-full flex lg:flex-row flex-col">
@@ -211,12 +212,12 @@ const gameList = [
     server: 'CN_Official'
   },
   {
-    name: '战地五',
+    name: '战地5',
     server: '-'
   },
   {
-    name: '雨中冒险2',
-    server: '-'
+    name: '雨中冒险',
+    server: '2'
   },
   {
     name: '微软模飞',
