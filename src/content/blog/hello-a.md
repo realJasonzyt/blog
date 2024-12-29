@@ -1,15 +1,15 @@
 ---
-slug: hello-world
+slug: hello-a
 title: Hello, World!
 description: 你好，世界！
-cover: /assets/img/bangumi-covers/yurucamp/3.jpg
+cover: /assets/img/bangumi-covers/yurucamp/5.jpg
 author:
   name: Jasonzyt
   avatar: /assets/img/avatar.jpg
 tags: [test, hello]
 category: Test
-pinned: 3
-created: 2024-06-01T12:00:00.000Z
+pinned: 2
+created: 2024-06-12T12:00:00.000Z
 updated: 2024-08-01T12:00:00.000Z
 ---
 

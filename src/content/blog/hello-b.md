@@ -1,5 +1,5 @@
 ---
-slug: hello-world
+slug: hello-b
 title: Hello, World!
 description: 你好，世界！
 cover: /assets/img/bangumi-covers/yurucamp/3.jpg
@@ -8,8 +8,8 @@ author:
   avatar: /assets/img/avatar.jpg
 tags: [test, hello]
 category: Test
-pinned: 3
-created: 2024-06-01T12:00:00.000Z
+pinned: 0
+created: 2024-06-05T12:00:00.000Z
 updated: 2024-08-01T12:00:00.000Z
 ---
 

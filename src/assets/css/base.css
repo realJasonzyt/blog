@@ -41,6 +41,7 @@ a {
 
   code {
     @apply font-mono;
+    font-size: 0.9em;
     background-color: rgb(var(--color-gray-100));
   }
 

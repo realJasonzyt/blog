@@ -8,6 +8,7 @@ author:
   avatar: /assets/img/avatar.jpg
 tags: ["windows", "os", "fix"]
 category: Tech
+pinned: 1
 created: 2024-08-14T12:07:35.000Z
 updated: 2024-08-14T12:07:35.000Z
 ---
