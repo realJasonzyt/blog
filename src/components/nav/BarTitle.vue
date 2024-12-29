@@ -1,5 +1,5 @@
 <template>
-  <div class="title select-none" :class="show ? 'show' : 'hidden'">
+  <div class="title select-none font-mono text-[22px]" :class="show ? 'show' : 'hidden'">
     <slot></slot>
   </div>
 </template>
@@ -13,9 +13,7 @@ defineProps({
 <style scoped>
 .title {
   color: rgb(var(--color-gray-600));
-  font-family: 'Jetbrains Mono', sans-serif;
   font-weight: bold;
-  font-size: 1.1rem;
   transition: opacity 0.4s ease-in-out;
 }
 </style>

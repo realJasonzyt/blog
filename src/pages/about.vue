@@ -1,7 +1,7 @@
 <template>
   <!-- TODO: Birthday Party! -->
   <div class="cover"></div>
-  <div class="body p-6">
+  <div class="body p-6 text-gray-800">
     <div class="w-full">
       <div class="avatar">
         <UAvatar size="3xl" :src="$config.avatar" :ui="{ size: { '3xl': 'size-32 md:size-56 text-4xl' } }" />

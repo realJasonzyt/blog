@@ -20,7 +20,7 @@ const displayViews = ref('-')
       <div class="content" :span="12">
         <div class="blog-content">
           <div class="header-and-info">
-            <div class="header">
+            <div class="header font-serif">
               <NuxtLink :to="`/blog/${blog.slug}`">
                 <h1 dir="ltr">{{ blog.title }}</h1>
               </NuxtLink>
@@ -103,7 +103,6 @@ const displayViews = ref('-')
   overflow-y: hidden;
   font-size: 0.8em;
   line-height: 2.5em;
-  font-family: 'Noto Serif', 'Noto Serif SC', serif;
 }
 
 .header h1 {

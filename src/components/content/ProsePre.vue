@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <div class="code-block flex" ref="block" @mouseenter="showButton = true" @mouseleave="showButton = false">
+    <div class="code-block font-mono flex" ref="block" @mouseenter="showButton = true" @mouseleave="showButton = false">
       <div class="flex-none w-16 text-right text-md text-gray-600">
         <div class="line-no pr-6 flex" :class="highlights.includes(i) ? 'highlight' : ''" v-for="i in lineCount"
           :key="i">
@@ -94,7 +94,6 @@ onMounted(() => {
 
 <style scoped>
 .code-block {
-  font-family: 'JetBrains Mono', Consolas, monospace;
   background-color: rgb(var(--color-gray-100));
   border-radius: 5px;
   margin: 1em 0;
@@ -124,7 +123,6 @@ onMounted(() => {
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  font-family: Rubik, sans-serif;
 }
 
 .lang {

@@ -76,10 +76,6 @@ img {
   margin-bottom: 10px;
 }
 
-.article-body code {
-  font-size: 0.85em;
-}
-
 .article-body a {
   color: inherit;
 }

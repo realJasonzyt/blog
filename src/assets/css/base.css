@@ -38,4 +38,16 @@ a {
   h6 {
     @apply font-bold;
   }
+
+  code {
+    @apply font-mono;
+    background-color: rgb(var(--color-gray-100));
+  }
+
+  :not(pre) > code {
+    padding: 0.2em 0.35em;
+    margin: 0;
+    background-color: rgb(var(--color-gray-100));
+    border-radius: 3px;
+  }
 }

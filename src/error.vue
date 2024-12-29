@@ -24,8 +24,4 @@ const props = defineProps({
   height: 100vh;
   text-align: center;
 }
-
-.statuscode {
-  font-family: 'Ubuntu', serif;
-}
 </style>
