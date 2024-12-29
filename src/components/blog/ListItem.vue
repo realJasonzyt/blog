@@ -68,7 +68,7 @@ const displayViews = ref('-')
 }
 
 .more-btn .iconify {
-  color: #111;
+  color: rgb(var(--color-gray-700));
   transition: color 0.3s;
 }
 
@@ -101,14 +101,13 @@ const displayViews = ref('-')
   width: 80%;
   padding: 25px 0px 0px 25px;
   overflow-y: hidden;
-  color: #111;
   font-size: 0.8em;
   line-height: 2.5em;
   font-family: 'Noto Serif', 'Noto Serif SC', serif;
 }
 
 .header h1 {
-  color: #111;
+  color: rgb(var(--color-gray-800));
   margin-bottom: 10px;
   transition: color 0.3s;
 }
@@ -128,7 +127,7 @@ const displayViews = ref('-')
 
 .info {
   padding: 6px 25px;
-  color: #555;
+  color: rgb(var(--color-gray-600));
   font-size: 16px;
 }
 

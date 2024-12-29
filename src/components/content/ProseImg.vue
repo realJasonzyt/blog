@@ -62,7 +62,7 @@ const onImgLoaded = () => {
   font-size: 0.8rem;
   text-align: center;
   display: inline-block;
-  color: #888;
+  color: rgb(var(--color-gray-500));
   width: v-bind('imgActualWidth');
 }
 </style>

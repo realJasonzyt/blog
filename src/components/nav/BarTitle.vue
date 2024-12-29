@@ -12,7 +12,7 @@ defineProps({
 
 <style scoped>
 .title {
-  color: #666;
+  color: rgb(var(--color-gray-600));
   font-family: 'Jetbrains Mono', sans-serif;
   font-weight: bold;
   font-size: 1.1rem;

@@ -10,11 +10,11 @@ const handleExpand = () => {
   document.body.style.overflow = realNavShow.value ? 'hidden' : 'auto'
 }
 
-const links = [{ label: 'Home', icon: 'i-my-home', to: '/', color: '#666' }].concat(props.items.map(it => ({
+const links = [{ label: 'Home', icon: 'i-my-home', to: '/', color: 'rgb(var(--color-gray-600))' }].concat(props.items.map(it => ({
   label: it.text,
   icon: it.icon,
   to: it.index,
-  color: '#666'
+  color: 'rgb(var(--color-gray-600))'
 })))
 
 </script>
@@ -27,7 +27,8 @@ const links = [{ label: 'Home', icon: 'i-my-home', to: '/', color: '#666' }].con
       </div>
     </Transition>
     <div class="expand" @click="handleExpand">
-      <Icon :name="realNavShow ? 'uil:multiply' : 'my:options'" size="1.8rem" style="color:#666" />
+      <Icon :name="realNavShow ? 'uil:multiply' : 'my:options'" size="1.8rem"
+        style="color:rgb(var(--color-gray-600))" />
     </div>
     <Transition name="fade">
       <div class="real-nav" v-if="realNavShow">
@@ -74,7 +75,7 @@ const links = [{ label: 'Home', icon: 'i-my-home', to: '/', color: '#666' }].con
   height: 100%;
   padding: 3rem 2rem;
   background-color: #fff;
-  color: #333;
+  color: rgb(var(--color-gray-500));
   text-align: center;
   z-index: 9;
 }
@@ -89,7 +90,7 @@ const links = [{ label: 'Home', icon: 'i-my-home', to: '/', color: '#666' }].con
   margin: 1rem auto;
   padding: 0.5rem 1rem;
   width: fit-content;
-  color: #666;
+  color: rgb(var(--color-gray-600));
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 5px;
   font-size: calc(100vw / 26);

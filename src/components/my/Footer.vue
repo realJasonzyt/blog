@@ -43,7 +43,7 @@ const documentWidth = document.documentElement.clientWidth
 <style scoped>
 .footer {
   height: 12rem;
-  color: #444;
+  color: rgb(var(--color-gray-600));
   text-align: center;
   padding: 50px;
 }

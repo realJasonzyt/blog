@@ -83,7 +83,7 @@ onMounted(() => {
 
 <style>
 .highlight {
-  background-color: rgba(255, 247, 187, 0.8) !important;
+  background-color: rgba(var(--color-primary-200) / 0.6) !important;
 }
 
 .line {
@@ -95,7 +95,7 @@ onMounted(() => {
 <style scoped>
 .code-block {
   font-family: 'JetBrains Mono', Consolas, monospace;
-  background-color: var(--vt-c-white-mute);
+  background-color: rgb(var(--color-gray-100));
   border-radius: 5px;
   margin: 1em 0;
   padding: 0.8em 0;
@@ -103,7 +103,7 @@ onMounted(() => {
 }
 
 .highlight .line-mark {
-  background-color: rgb(204, 159, 55)
+  background-color: rgb(var(--color-primary-500))
 }
 
 .info {
@@ -120,7 +120,7 @@ onMounted(() => {
   margin: 0;
   border: none;
   background: none;
-  color: #666;
+  color: rgb(var(--color-gray-600));
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;

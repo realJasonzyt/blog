@@ -5,8 +5,7 @@ body {
   min-height: 100%;
   max-width: 100%;
   overflow-x: hidden;
-  color: var(--color-text);
-  background: var(--color-background);
+  background: #fff;
   transition:
     color 0.5s,
     background-color 0.5s;
@@ -39,7 +38,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #409eff;
+  background-color: rgb(var(--color-primary-500));
   border-radius: 3px;
 }
 
@@ -49,13 +48,13 @@ body::-webkit-scrollbar-track {
 
 code {
   font-family: 'JetBrains Mono', Consolas, monospace;
-  background-color: var(--vt-c-white-mute);
+  background-color: rgb(var(--color-gray-100));
 }
 
 :not(pre) > code {
   padding: 0.2em 0.4em;
   margin: 0;
-  background-color: var(--vt-c-white-mute);
+  background-color: rgb(var(--color-gray-100));
   border-radius: 3px;
 }
 
@@ -99,11 +98,11 @@ code {
 
 a.link {
   margin: 0 3px;
-  color: #409eff;
+  color: rgb(var(--color-primary-500));
   text-decoration: none;
   transition: 0.5s color;
 }
 
 a.link:hover {
-  color: #005fb1;
+  color: rgb(var(--color-primary-700));
 }

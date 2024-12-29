@@ -81,17 +81,17 @@ img {
 }
 
 .article-body a {
-  color: #303133
+  color: inherit;
 }
 
 .article-body p a {
-  color: #409eff;
+  color: rgb(var(--color-primary-500));
   text-decoration: none;
   transition: 0.5s color;
 }
 
 .article-body p a:hover {
-  color: #005fb1;
+  color: rgb(var(--color-primary-700));
 }
 
 code {

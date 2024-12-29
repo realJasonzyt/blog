@@ -29,7 +29,7 @@ const handleMouseLeave = () => {
   font-size: 1.05rem;
   margin-top: 1px !important;
   padding: 0 10px;
-  color: #666;
+  color: rgb(var(--color-gray-600));
   position: relative;
   cursor: pointer;
   transition:
@@ -44,7 +44,7 @@ const handleMouseLeave = () => {
   position: absolute;
   bottom: 0;
   height: 5px;
-  background-color: #409eff;
+  background-color: rgba(var(--color-primary-500));
   width: 100%;
   max-width: var(--border-width, 0);
   transition: max-width 0.25s ease-in-out;
@@ -52,6 +52,6 @@ const handleMouseLeave = () => {
 }
 
 .item:hover {
-  color: #409eff;
+  color: rgba(var(--color-primary-500));
 }
 </style>
