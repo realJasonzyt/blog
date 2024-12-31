@@ -12,3 +12,31 @@
 .fade-leave-active {
   transition: opacity 0.5s;
 }
+
+.fade-in-1\/4-enter-from,
+.fade-in-1\/4-leave-to {
+  opacity: 0;
+}
+
+.fade-in-1\/4-enter-to,
+.fade-in-1\/4-leave-from {
+  opacity: 1;
+}
+
+.fade-in-1\/4-enter-active {
+  transition: opacity 0.25s;
+}
+
+.fade-out-1\/4-enter-from,
+.fade-out-1\/4-leave-to {
+  opacity: 0;
+}
+
+.fade-out-1\/4-enter-to,
+.fade-out-1\/4-leave-from {
+  opacity: 1;
+}
+
+.fade-out-1\/4-leave-active {
+  transition: opacity 0.25s;
+}

@@ -1,22 +1,29 @@
 <template>
   <div class="relative">
     <div class="code-block font-mono flex" ref="block" @mouseenter="showButton = true" @mouseleave="showButton = false">
-      <div class="flex-none w-16 text-right text-md text-gray-600">
+      <div v-if="lineCount > 1" class="flex-none w-16 text-right text-md text-gray-600">
         <div class="line-no pr-6 flex" :class="highlights.includes(i) ? 'highlight' : ''" v-for="i in lineCount"
           :key="i">
           <div class="line-mark flex-none w-[3px] h-[1.6rem]" />
           <span class="flex-1 pl-4">{{ i }}</span>
         </div>
       </div>
-      <pre ref="pre" class="p-0 m-0 flex-auto" :class="$props.class"><slot /></pre>
+      <pre v-if="lineCount == 1" ref="pre" class="p-0 ml-6 flex-auto" :class="$props.class"><slot /></pre>
+      <pre v-else ref="pre" class="p-0 m-0 flex-auto" :class="$props.class"><slot /></pre>
       <div class="info">
-        <UButton v-show="showButton || showCheck" class="copy" color="gray" variant="solid" size="lg" square
-          @click="onClick" @mouseleave="onMouseLeave">
-          <Icon name="ic:round-content-copy" size="1.2rem" v-show="!showCheck" />
-          <Icon name="uil:check" size="1.2rem" style="color: #1a7f37" v-show="showCheck" />
-        </UButton>
-        <span v-if="filename == null" v-show="!showButton" class="lang">{{ language }}</span>
-        <span v-if="filename != null" v-show="!showButton" class="filename">{{ filename }}</span>
+        <Transition v-if="lineCount > 1" name="fade-in-1/4">
+          <UButton v-show="showButton || showCheck" color="gray" variant="solid" size="lg" square @click="onClick"
+            @mouseleave="onMouseLeave">
+            <Icon name="ic:round-content-copy" size="1.2rem" v-show="!showCheck" />
+            <Icon name="uil:check" size="1.2rem" style="color: #1a7f37" v-show="showCheck" />
+          </UButton>
+        </Transition>
+        <Transition name="fade-in-1/4">
+          <span v-if="filename == null" v-show="!showButton" class="lang">{{ language }}</span>
+        </Transition>
+        <Transition name="fade-in-1/4">
+          <span v-if="filename != null" v-show="!showButton" class="filename">{{ filename }}</span>
+        </Transition>
       </div>
     </div>
   </div>
@@ -52,7 +59,7 @@ const props = defineProps({
 })
 
 const lineCount = computed(() => {
-  return props.code.split('\n').length
+  return props.code.split('\n').length - 1
 })
 
 const showButton = ref(false)
@@ -101,6 +108,18 @@ onMounted(() => {
   overflow: auto;
 }
 
+.code-block::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  background-color: rgb(var(--color-gray-100));
+}
+
+.code-block::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgb(var(--color-gray-300));
+}
+
 .highlight .line-mark {
   background-color: rgb(var(--color-primary-500))
 }
@@ -121,7 +140,7 @@ onMounted(() => {
   background: none;
   color: rgb(var(--color-gray-600));
   font-size: 14px;
-  font-weight: 600;
+  font-weight: bold;
   cursor: pointer;
 }
 
