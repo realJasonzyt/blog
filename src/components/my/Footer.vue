@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import $config from '@/utils/_config'
+import $config from '~/utils/_config'
 import { updateHitokoto } from '~/utils';
 
 // setInterval(updateHitokoto, 5 * 60 * 1000)

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import $config from '@/utils/_config';
+import $config from '~/utils/_config';
 
 const props = defineProps<{ blog: ParsedBlog, coverPos: 'left' | 'right' }>()
 

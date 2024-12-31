@@ -130,7 +130,7 @@
 
 
 <script setup lang="ts">
-import $config from '@/utils/_config'
+import $config from '~/utils/_config'
 
 useHead({
   title: 'About Me'

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import $config from '@/utils/_config'
+import $config from '~/utils/_config'
 
 const props = defineProps<{ items: { index: string; text: string; icon: string }[], show: boolean }>()
 
