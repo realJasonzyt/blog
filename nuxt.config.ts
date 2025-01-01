@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/ui",
   ],
+  ssr: false,
   srcDir: "src/",
   icon: {
     provider: "server",
