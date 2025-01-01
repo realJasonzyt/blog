@@ -113,5 +113,11 @@ export function updateHitokoto(): Ref<{ hitokoto: string; from: string }> {
   return curHitokoto;
 }
 
+export function compareTime(a: string, b: string): number {
+  const dateA = new Date(a);
+  const dateB = new Date(b);
+  return dateB.getTime() - dateA.getTime();
+}
+
 import * as types from "./type";
 export { types };

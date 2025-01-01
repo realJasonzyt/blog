@@ -3,46 +3,15 @@ useHead({
   title: 'Blogs'
 })
 
-// TODO: autocomplete
-// const onSelect = () => {
-// }
-// const fetchSuggestions = () => {
-// };
-
-let searchBarFocused = ref(false)
 </script>
 
 <template>
   <div class="main">
-    <!-- <div class="search">
-      <el-input placeholder="Search articles" size="large" clearable @change="onChange" @submit="onSearch"
-        @focus="searchBarFocused = true" @blur="searchBarFocused = false"
-        :style="{ boxShadow: searchBarFocused ? '0 0 10px rgba(0, 0, 0, 0.2)' : 'none' }">
-        <template #prepend>
-          <el-button @click="onSearch">
-            <el-icon>
-              <MyIcon name="Search" />
-            </el-icon>
-          </el-button>
-        </template>
-TODO: filter
-<template #append>
-          <el-icon>
-            <MyIcon name="Filter" />
-          </el-icon>
-        </template>
-</el-input>
-</div> -->
-    <BlogList :columns="1" />
+    <BlogList :columns="1" :sort="(a: ParsedBlog, b: ParsedBlog) => compareTime(a.created, b.created)" />
   </div>
 </template>
 
 <style>
-.el-input {
-  --el-input-border-radius: 10px;
-  border-radius: var(--el-input-border-radius);
-}
-
 @media screen and (min-width: 1000px) {
   .el-input {
     width: 600px;
@@ -62,6 +31,10 @@ TODO: filter
   height: 4rem;
   text-align: center;
   margin-bottom: 2rem;
+}
+
+.search-bar {
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 @media screen and (max-width: 768px) {
