@@ -19,11 +19,11 @@ jobs:
       - run: corepack enable
       # Pick your own package manager and build script
       - run: pnpm install
-      - run: pnpm exec nuxi build --preset bun
+      - run: pnpm exec nuxi build --preset node-server
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: bun
+          name: node
           path: ./.output/
           include-hidden-files: true
           if-no-files-found: error
