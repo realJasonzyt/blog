@@ -19,12 +19,12 @@ jobs:
       - run: corepack enable
       # Pick your own package manager and build script
       - run: pnpm install
-      - run: pnpm exec nuxi build --preset node-server
+      - run: pnpm exec nuxi build --preset bun
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: node-server
-          path: ./.output/server/
+          name: bun
+          path: ./.output/
   # Deployment job
   deploy:
     # Add a dependency to the build job
