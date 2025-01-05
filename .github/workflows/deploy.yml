@@ -25,6 +25,9 @@ jobs:
         with:
           name: bun
           path: ./.output/
+          include-hidden-files: true
+          if-no-files-found: error
+
   # Deployment job
   deploy:
     # Add a dependency to the build job
