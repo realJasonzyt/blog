@@ -42,7 +42,8 @@ const links = [{ label: 'Home', icon: 'i-my-home', to: '/', color: 'rgb(var(--co
         <NavSocialBar class="my-2" size="1.2rem" />
         <UDivider class="py-4" />
         <UVerticalNavigation :links="links"
-          :ui="{ padding: 'px-6 py-3', size: 'text-xl', icon: { base: 'mr-4 fill-gray-600' }, label: 'text-gray-600' }" />
+          :ui="{ padding: 'px-6 py-3', size: 'text-xl', icon: { base: 'mr-4 fill-gray-600' }, label: 'text-gray-600' }"
+          @click="handleExpand" />
       </div>
     </Transition>
   </div>
