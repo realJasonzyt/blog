@@ -4,10 +4,14 @@ useHead({
 })
 
 const pinnedShowTitles: Ref<boolean[]> = ref([])
+const pinCovers = useTemplateRef('pin-covers')
 
 const handleMouseEnter = (index: number) => {
   if (isTouchScreen()) {
     return
+  }
+  if (pinCovers.value) {
+    pinCovers.value[index]?.$el?.classList.add("scale-125")
   }
   pinnedShowTitles.value[index] = true
 }
@@ -16,13 +20,16 @@ const handleMouseLeave = (index: number) => {
   if (isTouchScreen()) {
     return
   }
+  if (pinCovers.value) {
+    pinCovers.value[index]?.$el?.classList.remove("scale-125")
+  }
   pinnedShowTitles.value[index] = false
 }
 
 const pinnedBlogs = await useAsyncData(() => queryContent('blog').where({ pinned: { $gt: 0 } }).sort({ pinned: 1 }).find()).then(
   (res) => {
     pinnedShowTitles.value.fill(isTouchScreen(), 0, res.data.value?.length)
-    return res.data.value
+    return res.data.value as ParsedBlog[]
   })
 </script>
 
@@ -39,8 +46,8 @@ const pinnedBlogs = await useAsyncData(() => queryContent('blog').where({ pinned
           <div
             class="flex relative items-center h-52 shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-500"
             @mouseenter="handleMouseEnter(index)" @mouseleave="handleMouseLeave(index)">
-            <NuxtImg class="size-full object-cover hover:scale-125 transition-transform duration-500" :src="blog.cover"
-              alt="cover" />
+            <NuxtImg class="size-full object-cover transition-transform duration-500" :src="blog.cover" alt="cover"
+              ref="pin-covers" />
             <Transition name="fade">
               <div
                 class="absolute flex justify-center items-center text-center w-full h-24 p-4 bg-black bg-opacity-60 text-white text-xl font-medium font-sans"
