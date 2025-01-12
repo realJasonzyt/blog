@@ -1,75 +1,24 @@
-# Nuxt Minimal Starter
+# Campu-site
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Campu is a blog framework based on Nuxt.
 
-## Setup
+It's @Jasonzyt's first web frontend project.
 
-Make sure to install dependencies:
+Still under construction.
 
-```bash
-# npm
-npm install
-
-# pnpm
+## Build
+  
+```
 pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+pnpm run build
 ```
 
-## Development Server
+## Deploy
 
-Start the development server on `http://localhost:3000`:
+[./.github/workflows/deploy.yml](./.github/workflows/deploy.yml) provided a way to deploy the site to your own server.
 
-```bash
-# npm
-npm run dev
+Since the static support with Nuxt Content is under development, GitHub Pages deployment is not supported at the moment. (see [nuxt/content#1229](https://github.com/nuxt/content/issues/1229))
 
-# pnpm
-pnpm dev
+## License
 
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+MIT
