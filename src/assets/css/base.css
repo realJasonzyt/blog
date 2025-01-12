@@ -48,8 +48,24 @@ a {
 
   :not(pre) > code {
     padding: 0.2em 0.35em;
-    margin: 0;
+    margin: 0 2px;
     background-color: rgb(var(--color-gray-100));
     border-radius: 3px;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  li {
+    @apply ml-4;
+  }
+
+  table {
+    @apply table-auto;
   }
 }

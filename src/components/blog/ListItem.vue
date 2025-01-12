@@ -10,14 +10,13 @@ const displayViews = ref('-')
 
 <template>
   <UCard class="transition-shadow hover:shadow-md" :ui="{ body: { padding: 'p-0 sm:p-0' } }">
-    <div class="flex" :class="coverPos == 'right' ? 'flex-row-reverse' : 'flex-row'">
+    <div class="flex max-md:hidden" :class="coverPos == 'right' ? 'flex-row-reverse' : 'flex-row'">
       <div class="cover">
-        <!-- TODO: Lazy load img-->
         <NuxtLink :to="`/blog/${blog.slug}`">
           <NuxtImg :src="blog.cover" alt="cover" loading="lazy" />
         </NuxtLink>
       </div>
-      <div class="content" :span="12">
+      <div class="content">
         <div class="blog-content">
           <div class="header-and-info">
             <div class="header font-serif">
@@ -51,6 +50,44 @@ const displayViews = ref('-')
             <Icon name="ic:round-more-horiz" size="30px" />
           </NuxtLink>
         </div>
+      </div>
+    </div>
+    <div class="md:hidden">
+      <div class="w-full h-36 overflow-hidden">
+        <NuxtLink :to="`/blog/${blog.slug}`">
+          <NuxtImg class="size-full object-cover" :src="blog.cover" alt="cover" loading="lazy" />
+        </NuxtLink>
+      </div>
+      <div class="px-4 pt-4">
+        <div class="p-0 font-serif">
+          <NuxtLink :to="`/blog/${blog.slug}`">
+            <h1 dir="ltr">{{ blog.title }}</h1>
+          </NuxtLink>
+        </div>
+        <div class="py-2 text-gray-600 text-[16px]">
+          <span>
+            <Icon name="ic:sharp-access-time-filled" class="text-sm mr-0.5" />
+            <time :datetime="blog.created">
+              {{ new Date(blog.created ?? '').toLocaleDateString() }}
+            </time>
+          </span>
+          <span class="ml-1">
+            <Icon name="ic:round-folder" class="text-sm mr-0.5" />
+            <span>{{ blog.category }}</span>
+          </span>
+          <span class="ml-1" v-if="$config.api.blog.stats.enable">
+            <Icon name="ic:round-local-fire-department" class="text-sm mr-0.5" />
+            <span v-html="displayViews"></span>
+          </span>
+        </div>
+      </div>
+      <div class="px-4">
+        <p>{{ blog.description }}</p>
+      </div>
+      <div class="px-4 py-0">
+        <NuxtLink :to="`/blog/${blog.slug}`">
+          <Icon name="ic:round-more-horiz" size="30px" />
+        </NuxtLink>
       </div>
     </div>
   </UCard>
@@ -146,20 +183,5 @@ const displayViews = ref('-')
 
 .info span+span {
   margin-left: 1rem;
-}
-
-@media screen and (max-width: 768px) {
-  .header {
-    padding: 12px 18px;
-  }
-
-  .header h1 {
-    font-size: 1.5rem;
-  }
-
-  .info {
-    font-size: 13px;
-    padding: 14px 18px;
-  }
 }
 </style>

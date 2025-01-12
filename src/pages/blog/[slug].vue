@@ -131,7 +131,7 @@ code {
 
 @media screen and (max-width: 768px) {
   .cover {
-    height: 400px;
+    height: 375px;
   }
 
   .main {
