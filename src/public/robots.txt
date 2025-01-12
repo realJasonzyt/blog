@@ -1,1 +1,4 @@
-
+User-agent: *
+Allow: /blog
+Allow: /blog/
+Allow: /about

@@ -2,7 +2,7 @@
 slug: bad-win11-experience
 title: 一次痛苦的Win11使用体验——登录无限循环
 description: Windows 11 登录微软账户后无法进入系统，通过修改注册表删除与微软账户相关项，成功恢复
-cover: /assets/img/bangumi-covers/yurucamp/2.jpg
+cover: /assets/img/blogs/bad-win11-experience/cover.webp
 author:
   name: Jasonzyt
   avatar: /assets/img/avatar.jpg
@@ -23,7 +23,7 @@ Windows 11 在本地（离线）账户上登录微软账户之后，重启发现
 
 网上的前人解决方法主要有：
 
-1. 安全模式 netsh winsocks reset
+1. 安全模式 `netsh winsocks reset`
 
 2. 换个 WiFi
 

@@ -2,7 +2,7 @@
 slug: hello-world
 title: Hello, World!
 description: 你好，世界！
-cover: /assets/img/bangumi-covers/yurucamp/3.jpg
+cover: /assets/img/blogs/hello-world/cover.webp
 author:
   name: Jasonzyt
   avatar: /assets/img/avatar.jpg
@@ -68,9 +68,9 @@ import vue from "vue";
 
 # HTML
 
-![](/assets/img/illustrations/112981252_p0.jpg)
-![左对齐](/assets/img/illustrations/112981252_p0.jpg){align=left}
-![右对齐](/assets/img/illustrations/112981252_p0.jpg){align=right}
+![](/assets/img/blogs/hello-world/112981252_p0.jpg)
+![左对齐](/assets/img/blogs/hello-world/112981252_p0.jpg){align=left}
+![右对齐](/assets/img/blogs/hello-world/112981252_p0.jpg){align=right}
 
 ```python
 from PIL import Image
